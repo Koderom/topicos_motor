@@ -1,0 +1,582 @@
+[
+  {
+    "artwork": {
+      "150x150": "https://cn3.mainnet.audiusindex.org/content/QmSQmidMVBrVwYb5fUJGRrncMdm9gESnt8w5syBFhzj5WS/150x150.jpg",
+      "480x480": "https://cn3.mainnet.audiusindex.org/content/QmSQmidMVBrVwYb5fUJGRrncMdm9gESnt8w5syBFhzj5WS/480x480.jpg",
+      "1000x1000": "https://cn3.mainnet.audiusindex.org/content/QmSQmidMVBrVwYb5fUJGRrncMdm9gESnt8w5syBFhzj5WS/1000x1000.jpg"
+    },
+    "description": "My latest remix work for friends Noisia. Out now on THE RESONANCE II on  Vision Recordings -  https://vision.fanlink.to/TheResonance",
+    "genre": "Drum & Bass",
+    "id": "q4wME",
+    "track_cid": "QmbBpGHa9zDf3LTHmuW7RoBsD2JCrN48u6tsBn2AdyKwxC",
+    "preview_cid": null,
+    "mood": "Melancholy",
+    "release_date": "Fri Feb 18 2022 12:00:00 GMT+0100",
+    "remix_of": {
+      "tracks": null
+    },
+    "repost_count": 1083,
+    "favorite_count": 1204,
+    "tags": "phace,noisia,theholept1,resonance",
+    "title": "Noisia - The Hole Pt.1 - PHACE REMIX",
+    "user": {
+      "album_count": 8,
+      "artist_pick_track_id": "q4wME",
+      "bio": "https://phace.space/\n\nSYSTEM IRRELEVANT  MINI ALBUM & A/V SET OUT NOW\nhttps://lnk.bio/phace\n\nBOOKING: mark@esp-agency.com",
+      "cover_photo": {
+        "640x": "https://blockdaemon-audius-content-06.bdnodes.net/content/Qmb7uugBGEPzTbtePzLNh6shFZ3DngA9sh9NFfE89QAzE2/640x.jpg",
+        "2000x": "https://blockdaemon-audius-content-06.bdnodes.net/content/Qmb7uugBGEPzTbtePzLNh6shFZ3DngA9sh9NFfE89QAzE2/2000x.jpg"
+      },
+      "followee_count": 27,
+      "follower_count": 1018,
+      "does_follow_current_user": false,
+      "handle": "phace",
+      "id": "n1Y8Q",
+      "is_verified": false,
+      "location": "HAMBURG OR SOMEWHERE ELSE",
+      "name": "phace",
+      "playlist_count": 3,
+      "profile_picture": {
+        "150x150": "https://content-node.audius.co/content/QmeBQ58gWbVekWaHyQJsKhcDxdaLrDsv8bysDoBLxEiKDP/150x150.jpg",
+        "480x480": "https://content-node.audius.co/content/QmeBQ58gWbVekWaHyQJsKhcDxdaLrDsv8bysDoBLxEiKDP/480x480.jpg",
+        "1000x1000": "https://content-node.audius.co/content/QmeBQ58gWbVekWaHyQJsKhcDxdaLrDsv8bysDoBLxEiKDP/1000x1000.jpg"
+      },
+      "repost_count": 8,
+      "track_count": 60,
+      "is_deactivated": false,
+      "is_available": true,
+      "erc_wallet": "0xdb4b9fc1405a8cb7c34846ee8af4063416f333c7",
+      "spl_wallet": "6v2cF5AnCNpH6jFDygZ4JkQW1Hcby2veDeLHBh2qaQy7",
+      "supporter_count": 2,
+      "supporting_count": 0,
+      "total_audio_balance": null
+    },
+    "duration": 232,
+    "downloadable": false,
+    "play_count": 12861,
+    "permalink": "/phace/noisia-the-hole-pt1-phace-remix",
+    "is_streamable": true
+  },
+  {
+    "artwork": {
+      "150x150": "https://audius-content-9.cultur3stake.com/content/QmcJCHrCNQS22g1oBkWvpLMeoK82Tc2iHUzVscak3QvMnD/150x150.jpg",
+      "480x480": "https://audius-content-9.cultur3stake.com/content/QmcJCHrCNQS22g1oBkWvpLMeoK82Tc2iHUzVscak3QvMnD/480x480.jpg",
+      "1000x1000": "https://audius-content-9.cultur3stake.com/content/QmcJCHrCNQS22g1oBkWvpLMeoK82Tc2iHUzVscak3QvMnD/1000x1000.jpg"
+    },
+    "description": "A wake-up call for women dealing with peer pressures and fleeting self-confidence.\n“Hold It Down” is a melodic bop about the desire to conform.",
+    "genre": "Hip-Hop/Rap",
+    "id": "oPN8a",
+    "track_cid": "QmPKp2TKmEswzrLNaCyY4bzcfGcvam1MPX3r3vM866YwfT",
+    "preview_cid": null,
+    "mood": "Cool",
+    "release_date": "Sat Feb 12 2022 14:18:20 GMT-0500",
+    "remix_of": {
+      "tracks": null
+    },
+    "repost_count": 280,
+    "favorite_count": 391,
+    "tags": "holditdown,hold,down,liquor,partying,chill,cool,bop,smooth,heart",
+    "title": "Hold It Down",
+    "user": {
+      "album_count": 1,
+      "artist_pick_track_id": "oPN8a",
+      "bio": "HaHailing from Stroudsburg, PA. The lyrical virtuoso found solace in the art of vocal recording. Having found success early-on with a co-sign from The Chainsmokers, He was catapulted into the spotlight. The next chapter in  Khai's story is about to unfold.",
+      "cover_photo": {
+        "640x": "https://audius-content-7.figment.io/content/QmWGSKF4kuUvzUYck1EdU2b24Chv5yjyr4AT2VbzbVvJSD/640x.jpg",
+        "2000x": "https://audius-content-7.figment.io/content/QmWGSKF4kuUvzUYck1EdU2b24Chv5yjyr4AT2VbzbVvJSD/2000x.jpg"
+      },
+      "followee_count": 6,
+      "follower_count": 1002,
+      "does_follow_current_user": false,
+      "handle": "grandkhai",
+      "id": "noP9v",
+      "is_verified": true,
+      "location": "Pennsylvania",
+      "name": "Grand Khai",
+      "playlist_count": 0,
+      "profile_picture": {
+        "150x150": "https://audius-creator-4.theblueprint.xyz/content/01H64WD97RR5AQWTA0JR44PVZJ/150x150.jpg",
+        "480x480": "https://audius-creator-4.theblueprint.xyz/content/01H64WD97RR5AQWTA0JR44PVZJ/480x480.jpg",
+        "1000x1000": "https://audius-creator-4.theblueprint.xyz/content/01H64WD97RR5AQWTA0JR44PVZJ/1000x1000.jpg"
+      },
+      "repost_count": 1,
+      "track_count": 11,
+      "is_deactivated": false,
+      "is_available": true,
+      "erc_wallet": "0x5b16cd634daaf42902871aff7fda81c7b6badb97",
+      "spl_wallet": "BdLBVmbty5rf96MHtUaE9jqG393VPeG94E7uABNKJTHm",
+      "supporter_count": 0,
+      "supporting_count": 0,
+      "total_audio_balance": null
+    },
+    "duration": 135,
+    "downloadable": false,
+    "play_count": 11336,
+    "permalink": "/grandkhai/hold-it-down",
+    "is_streamable": true
+  },
+  {
+    "artwork": {
+      "150x150": "https://audius-content-8.cultur3stake.com/content/QmcpF1MNSxSKVj7MWBjiY59ynGbZkcixCvAmKEk9vY9iFi/150x150.jpg",
+      "480x480": "https://audius-content-8.cultur3stake.com/content/QmcpF1MNSxSKVj7MWBjiY59ynGbZkcixCvAmKEk9vY9iFi/480x480.jpg",
+      "1000x1000": "https://audius-content-8.cultur3stake.com/content/QmcpF1MNSxSKVj7MWBjiY59ynGbZkcixCvAmKEk9vY9iFi/1000x1000.jpg"
+    },
+    "description": null,
+    "genre": "Electronic",
+    "id": "rG179",
+    "track_cid": "QmQrhZqtq6ULxqwxHgyzoHEvBzBFyP4tRT8Wi2fAGCzfkj",
+    "preview_cid": null,
+    "mood": "Yearning",
+    "release_date": "Fri Dec 18 2020 14:27:24 GMT-0500",
+    "remix_of": {
+      "tracks": null
+    },
+    "repost_count": 164,
+    "favorite_count": 547,
+    "tags": "sanholo,outkast,drdre,50cent,eminem,willsmith,nelly,stayvibrant,electronic,futurebass",
+    "title": "Eminem - Lose Yourself (San Holo Remix) ",
+    "user": {
+      "album_count": 1,
+      "artist_pick_track_id": null,
+      "bio": "↑%",
+      "cover_photo": {
+        "640x": "https://audius-content-4.figment.io/content/QmWidborPNmdedJi3MBJt1YfKQ4TGkUyMsnHeZj3vVP4wZ/640x.jpg",
+        "2000x": "https://audius-content-4.figment.io/content/QmWidborPNmdedJi3MBJt1YfKQ4TGkUyMsnHeZj3vVP4wZ/2000x.jpg"
+      },
+      "followee_count": 7,
+      "follower_count": 2117,
+      "does_follow_current_user": false,
+      "handle": "sanholobeats",
+      "id": "2ooEp",
+      "is_verified": true,
+      "location": null,
+      "name": "San Holo (92%) -bb u ok?-",
+      "playlist_count": 0,
+      "profile_picture": {
+        "150x150": "https://audius-content-12.cultur3stake.com/content/QmbTFZBBJ5AHRZGvgtkH6vHtuC2chfYHqNSZfWRAhevawA/150x150.jpg",
+        "480x480": "https://audius-content-12.cultur3stake.com/content/QmbTFZBBJ5AHRZGvgtkH6vHtuC2chfYHqNSZfWRAhevawA/480x480.jpg",
+        "1000x1000": "https://audius-content-12.cultur3stake.com/content/QmbTFZBBJ5AHRZGvgtkH6vHtuC2chfYHqNSZfWRAhevawA/1000x1000.jpg"
+      },
+      "repost_count": 0,
+      "track_count": 6,
+      "is_deactivated": false,
+      "is_available": true,
+      "erc_wallet": "0x0a412484d12341d91221be6b7626ed4e2f7a1508",
+      "spl_wallet": "DWtDqe3mwB755DD9Gm6qwgnLhZioCunFE3AbqhVgBPGB",
+      "supporter_count": 5,
+      "supporting_count": 0,
+      "total_audio_balance": null
+    },
+    "duration": 241,
+    "downloadable": false,
+    "play_count": 57747,
+    "permalink": "/sanholobeats/eminem-lose-yourself-san-holo-remix--209230",
+    "is_streamable": true
+  },
+  {
+    "artwork": {
+      "150x150": "https://audius-content-8.cultur3stake.com/content/QmcpF1MNSxSKVj7MWBjiY59ynGbZkcixCvAmKEk9vY9iFi/150x150.jpg",
+      "480x480": "https://audius-content-8.cultur3stake.com/content/QmcpF1MNSxSKVj7MWBjiY59ynGbZkcixCvAmKEk9vY9iFi/480x480.jpg",
+      "1000x1000": "https://audius-content-8.cultur3stake.com/content/QmcpF1MNSxSKVj7MWBjiY59ynGbZkcixCvAmKEk9vY9iFi/1000x1000.jpg"
+    },
+    "description": null,
+    "genre": "Electronic",
+    "id": "jNwvV",
+    "track_cid": "QmZcFBoQJqftmu6Wj2cJ3BaFB5PR5UHHXjvbAZEkp5ra6Z",
+    "preview_cid": null,
+    "mood": "Yearning",
+    "release_date": "Fri Dec 18 2020 14:27:24 GMT-0500",
+    "remix_of": {
+      "tracks": null
+    },
+    "repost_count": 222,
+    "favorite_count": 595,
+    "tags": "sanholo,outkast,drdre,50cent,eminem,willsmith,nelly,stayvibrant,electronic,futurebass",
+    "title": "Dr. Dre - The Next Episode (San Holo Remix)",
+    "user": {
+      "album_count": 1,
+      "artist_pick_track_id": null,
+      "bio": "↑%",
+      "cover_photo": {
+        "640x": "https://audius-content-4.figment.io/content/QmWidborPNmdedJi3MBJt1YfKQ4TGkUyMsnHeZj3vVP4wZ/640x.jpg",
+        "2000x": "https://audius-content-4.figment.io/content/QmWidborPNmdedJi3MBJt1YfKQ4TGkUyMsnHeZj3vVP4wZ/2000x.jpg"
+      },
+      "followee_count": 7,
+      "follower_count": 2117,
+      "does_follow_current_user": false,
+      "handle": "sanholobeats",
+      "id": "2ooEp",
+      "is_verified": true,
+      "location": null,
+      "name": "San Holo (92%) -bb u ok?-",
+      "playlist_count": 0,
+      "profile_picture": {
+        "150x150": "https://audius-content-12.cultur3stake.com/content/QmbTFZBBJ5AHRZGvgtkH6vHtuC2chfYHqNSZfWRAhevawA/150x150.jpg",
+        "480x480": "https://audius-content-12.cultur3stake.com/content/QmbTFZBBJ5AHRZGvgtkH6vHtuC2chfYHqNSZfWRAhevawA/480x480.jpg",
+        "1000x1000": "https://audius-content-12.cultur3stake.com/content/QmbTFZBBJ5AHRZGvgtkH6vHtuC2chfYHqNSZfWRAhevawA/1000x1000.jpg"
+      },
+      "repost_count": 0,
+      "track_count": 6,
+      "is_deactivated": false,
+      "is_available": true,
+      "erc_wallet": "0x0a412484d12341d91221be6b7626ed4e2f7a1508",
+      "spl_wallet": "DWtDqe3mwB755DD9Gm6qwgnLhZioCunFE3AbqhVgBPGB",
+      "supporter_count": 5,
+      "supporting_count": 0,
+      "total_audio_balance": null
+    },
+    "duration": 240,
+    "downloadable": false,
+    "play_count": 28254,
+    "permalink": "/sanholobeats/dr.-dre-the-next-episode-san-holo-remix-209233",
+    "is_streamable": true
+  },
+  {
+    "artwork": {
+      "150x150": "https://audius-content-1.cultur3stake.com/content/QmUQmQgePuXsVT5bPEQjZkEzjuKqKCWbsm7zBDxcqnSkCF/150x150.jpg",
+      "480x480": "https://audius-content-1.cultur3stake.com/content/QmUQmQgePuXsVT5bPEQjZkEzjuKqKCWbsm7zBDxcqnSkCF/480x480.jpg",
+      "1000x1000": "https://audius-content-1.cultur3stake.com/content/QmUQmQgePuXsVT5bPEQjZkEzjuKqKCWbsm7zBDxcqnSkCF/1000x1000.jpg"
+    },
+    "description": "contains no riddim",
+    "genre": "Electronic",
+    "id": "4kwwZ",
+    "track_cid": "QmbyhVdgJaAzomDtsdz86huqq2aUQ8Ym8veJuaDofhXFpr",
+    "preview_cid": null,
+    "mood": null,
+    "release_date": "Fri Sep 17 2021 14:56:48 GMT-0700",
+    "remix_of": {
+      "tracks": null
+    },
+    "repost_count": 97,
+    "favorite_count": 221,
+    "tags": null,
+    "title": "Riddimology",
+    "user": {
+      "album_count": 1,
+      "artist_pick_track_id": null,
+      "bio": "Pigeon Hole //\nSleeveless Records\nWakaan\nOuter Realms\nSaturate",
+      "cover_photo": {
+        "640x": "https://audius-content-8.figment.io/content/QmTJBGeCouZ2zctqhs6smDEew6UQKRw1CiJAs1yxy28NGg/640x.jpg",
+        "2000x": "https://audius-content-8.figment.io/content/QmTJBGeCouZ2zctqhs6smDEew6UQKRw1CiJAs1yxy28NGg/2000x.jpg"
+      },
+      "followee_count": 33,
+      "follower_count": 1263,
+      "does_follow_current_user": false,
+      "handle": "pigeonhole",
+      "id": "ngXpL",
+      "is_verified": false,
+      "location": "Victoria, BC",
+      "name": "Pigeon Hole",
+      "playlist_count": 1,
+      "profile_picture": {
+        "150x150": "https://audius-content-17.cultur3stake.com/content/QmR9mktTWwctvWCmNmPscfLbNoiUpJsBRLSfTpw4KXtpse/150x150.jpg",
+        "480x480": "https://audius-content-17.cultur3stake.com/content/QmR9mktTWwctvWCmNmPscfLbNoiUpJsBRLSfTpw4KXtpse/480x480.jpg",
+        "1000x1000": "https://audius-content-17.cultur3stake.com/content/QmR9mktTWwctvWCmNmPscfLbNoiUpJsBRLSfTpw4KXtpse/1000x1000.jpg"
+      },
+      "repost_count": 8,
+      "track_count": 16,
+      "is_deactivated": false,
+      "is_available": true,
+      "erc_wallet": "0xbf197e88a82ed58d3bb7b30c1d92dc133294fda0",
+      "spl_wallet": "DGoyjxpUwAjPcRim6oxxqHpzbeLZTCYfGLxFXt2g9Y9t",
+      "supporter_count": 0,
+      "supporting_count": 0,
+      "total_audio_balance": null
+    },
+    "duration": 233,
+    "downloadable": false,
+    "play_count": 3350,
+    "permalink": "/pigeonhole/riddimology",
+    "is_streamable": true
+  },
+  {
+    "artwork": {
+      "150x150": "https://blockchange-audius-content-02.bdnodes.net/content/QmS3EgetLoZAeRyec4GnDevHny9aNuAxk6fHuHykddbPRG/150x150.jpg",
+      "480x480": "https://blockchange-audius-content-02.bdnodes.net/content/QmS3EgetLoZAeRyec4GnDevHny9aNuAxk6fHuHykddbPRG/480x480.jpg",
+      "1000x1000": "https://blockchange-audius-content-02.bdnodes.net/content/QmS3EgetLoZAeRyec4GnDevHny9aNuAxk6fHuHykddbPRG/1000x1000.jpg"
+    },
+    "description": "Audius.co/jake_the_jake",
+    "genre": "Electronic",
+    "id": "QKWOR",
+    "track_cid": "QmVPq4GqMrrrnSAj5YbXMcWyhS12owFVvuBbvJ4eUxJ9ug",
+    "preview_cid": null,
+    "mood": "Cool",
+    "release_date": "Wed Jan 05 2022 12:39:40 GMT-0800",
+    "remix_of": {
+      "tracks": null
+    },
+    "repost_count": 114,
+    "favorite_count": 294,
+    "tags": null,
+    "title": "Heliosky - Hold",
+    "user": {
+      "album_count": 0,
+      "artist_pick_track_id": null,
+      "bio": "audius.co/phuture collective x audius.co/goodsociety // we are don't listen.",
+      "cover_photo": {
+        "640x": "https://creatornode.audius.co/content/Qmab8DjYAdjb9htFCdY5x1S2ntUQcewCXTas9sZg4zmUq8/640x.jpg",
+        "2000x": "https://creatornode.audius.co/content/Qmab8DjYAdjb9htFCdY5x1S2ntUQcewCXTas9sZg4zmUq8/2000x.jpg"
+      },
+      "followee_count": 15,
+      "follower_count": 285,
+      "does_follow_current_user": false,
+      "handle": "dontlisten",
+      "id": "nZwy6",
+      "is_verified": false,
+      "location": "Sherman Oaks, CA",
+      "name": "don't listen",
+      "playlist_count": 0,
+      "profile_picture": {
+        "150x150": "https://cn1.stuffisup.com/content/QmbdAjypfixTcYr4YyZrgXFRWwtZ9aKBjGh7abgbMeCo5T/150x150.jpg",
+        "480x480": "https://cn1.stuffisup.com/content/QmbdAjypfixTcYr4YyZrgXFRWwtZ9aKBjGh7abgbMeCo5T/480x480.jpg",
+        "1000x1000": "https://cn1.stuffisup.com/content/QmbdAjypfixTcYr4YyZrgXFRWwtZ9aKBjGh7abgbMeCo5T/1000x1000.jpg"
+      },
+      "repost_count": 3,
+      "track_count": 7,
+      "is_deactivated": false,
+      "is_available": true,
+      "erc_wallet": "0x5db7e398e3a2660bafad5561742964c02301298d",
+      "spl_wallet": "F2JGx9BKQrpMsNmoj9M59og1ceHpWNFBFjupihsgMVxW",
+      "supporter_count": 0,
+      "supporting_count": 0,
+      "total_audio_balance": null
+    },
+    "duration": 154,
+    "downloadable": false,
+    "play_count": 26087,
+    "permalink": "/dontlisten/heliosky-hold",
+    "is_streamable": true
+  },
+  {
+    "artwork": {
+      "150x150": "https://audius-content-1.jollyworld.xyz/content/QmW7Z8SwuQ4aCsr1qrGP7yNCeJhEe1RreyipV8WnMW29Gx/150x150.jpg",
+      "480x480": "https://audius-content-1.jollyworld.xyz/content/QmW7Z8SwuQ4aCsr1qrGP7yNCeJhEe1RreyipV8WnMW29Gx/480x480.jpg",
+      "1000x1000": "https://audius-content-1.jollyworld.xyz/content/QmW7Z8SwuQ4aCsr1qrGP7yNCeJhEe1RreyipV8WnMW29Gx/1000x1000.jpg"
+    },
+    "description": "Throwback to our very first san holo release! DL/Stream: sanholo.lnk.to/bwu",
+    "genre": "Electronic",
+    "id": "Q7PVv",
+    "track_cid": "QmTY1BSGVse2w6Yw5iYZcXP96sqK6c7P9Sr4Ecm9oroCvp",
+    "preview_cid": null,
+    "mood": null,
+    "release_date": "Thu Apr 28 2022 17:39:59 GMT+0200",
+    "remix_of": {
+      "tracks": null
+    },
+    "repost_count": 113,
+    "favorite_count": 224,
+    "tags": null,
+    "title": "San Holo - BWU",
+    "user": {
+      "album_count": 2,
+      "artist_pick_track_id": null,
+      "bio": "independent record label ✨\ncreate forever.\n\nhttps://discord.gg/bitbird",
+      "cover_photo": {
+        "640x": "https://audius-content-4.figment.io/content/QmVfZxDKG6uG8J5m6hnaD81dypL3tbDMEyLg4X8o9DbB8G/640x.jpg",
+        "2000x": "https://audius-content-4.figment.io/content/QmVfZxDKG6uG8J5m6hnaD81dypL3tbDMEyLg4X8o9DbB8G/2000x.jpg"
+      },
+      "followee_count": 50,
+      "follower_count": 57986,
+      "does_follow_current_user": false,
+      "handle": "bitbird",
+      "id": "4W2ay",
+      "is_verified": true,
+      "location": null,
+      "name": "bitbird",
+      "playlist_count": 25,
+      "profile_picture": {
+        "150x150": "https://audius-creator-1.theblueprint.xyz/content/QmX7wVThFfb62YQtPW8joFrh5TP7TAYYJZV3bSauPovbtb/150x150.jpg",
+        "480x480": "https://audius-creator-1.theblueprint.xyz/content/QmX7wVThFfb62YQtPW8joFrh5TP7TAYYJZV3bSauPovbtb/480x480.jpg",
+        "1000x1000": "https://audius-creator-1.theblueprint.xyz/content/QmX7wVThFfb62YQtPW8joFrh5TP7TAYYJZV3bSauPovbtb/1000x1000.jpg"
+      },
+      "repost_count": 10,
+      "track_count": 299,
+      "is_deactivated": false,
+      "is_available": true,
+      "erc_wallet": "0x57818a616902328032b8c5415f531846d5c54c9a",
+      "spl_wallet": "HcgjDtsn1uUD1RjpbnxJi7Dip9vods3EKa7M7RCtLKpJ",
+      "supporter_count": 36,
+      "supporting_count": 0,
+      "total_audio_balance": null
+    },
+    "duration": 242,
+    "downloadable": false,
+    "play_count": 20132,
+    "permalink": "/bitbird/san-holo-bwu",
+    "is_streamable": true
+  },
+  {
+    "artwork": {
+      "150x150": "https://blockdaemon-audius-content-04.bdnodes.net/content/Qmcv5A9pbvqNSdgHkgAEN4rQbHyeM3jTNNTn2LzzzTcks5/150x150.jpg",
+      "480x480": "https://blockdaemon-audius-content-04.bdnodes.net/content/Qmcv5A9pbvqNSdgHkgAEN4rQbHyeM3jTNNTn2LzzzTcks5/480x480.jpg",
+      "1000x1000": "https://blockdaemon-audius-content-04.bdnodes.net/content/Qmcv5A9pbvqNSdgHkgAEN4rQbHyeM3jTNNTn2LzzzTcks5/1000x1000.jpg"
+    },
+    "description": null,
+    "genre": "Hip-Hop/Rap",
+    "id": "kpmxp",
+    "track_cid": "QmdJK5Ckup8cx5mw8hBgFRYoCzsUn15HLHENo83wfB1U3D",
+    "preview_cid": null,
+    "mood": "Cool",
+    "release_date": "Fri Nov 05 2021 02:57:24 GMT-0700",
+    "remix_of": {
+      "tracks": null
+    },
+    "repost_count": 82,
+    "favorite_count": 172,
+    "tags": null,
+    "title": "Hold Up",
+    "user": {
+      "album_count": 0,
+      "artist_pick_track_id": null,
+      "bio": "19\nNew artist from Rochester, NY\nMoved to California to chase the dream",
+      "cover_photo": {
+        "640x": "https://audius-content-12.figment.io/content/QmXCx62XmR91g7eR5GGhhphBmkWqtYdQ5WSYXpXVyPo85B/640x.jpg",
+        "2000x": "https://audius-content-12.figment.io/content/QmXCx62XmR91g7eR5GGhhphBmkWqtYdQ5WSYXpXVyPo85B/2000x.jpg"
+      },
+      "followee_count": 706,
+      "follower_count": 508,
+      "does_follow_current_user": false,
+      "handle": "ime_kvng",
+      "id": "KEMzz",
+      "is_verified": false,
+      "location": "Los Angeles, CA",
+      "name": "Kvng",
+      "playlist_count": 0,
+      "profile_picture": {
+        "150x150": "https://blockdaemon-audius-content-07.bdnodes.net/content/QmWPFznMZjCYQMVGYPuSP5gqv1aNnqUQyfDdj2QVsPWQ1d/150x150.jpg",
+        "480x480": "https://blockdaemon-audius-content-07.bdnodes.net/content/QmWPFznMZjCYQMVGYPuSP5gqv1aNnqUQyfDdj2QVsPWQ1d/480x480.jpg",
+        "1000x1000": "https://blockdaemon-audius-content-07.bdnodes.net/content/QmWPFznMZjCYQMVGYPuSP5gqv1aNnqUQyfDdj2QVsPWQ1d/1000x1000.jpg"
+      },
+      "repost_count": 197,
+      "track_count": 3,
+      "is_deactivated": false,
+      "is_available": true,
+      "erc_wallet": "0x39eb72d63e0df0330a946d666e3232e91829ebcb",
+      "spl_wallet": "FESSsQwPQrWegq8JPydox87yk5iw1FDyWwYz3fJcQhza",
+      "supporter_count": 0,
+      "supporting_count": 0,
+      "total_audio_balance": null
+    },
+    "duration": 132,
+    "downloadable": false,
+    "play_count": 4746,
+    "permalink": "/ime_kvng/hold-up",
+    "is_streamable": true
+  },
+  {
+    "artwork": {
+      "150x150": "https://creatornode.audius2.prod-eks-ap-northeast-1.staked.cloud/content/QmXFoGy9HEpxxK5Sv6M6CKJP6BiaaktXjL5x5YYc8UvJAs/150x150.jpg",
+      "480x480": "https://creatornode.audius2.prod-eks-ap-northeast-1.staked.cloud/content/QmXFoGy9HEpxxK5Sv6M6CKJP6BiaaktXjL5x5YYc8UvJAs/480x480.jpg",
+      "1000x1000": "https://creatornode.audius2.prod-eks-ap-northeast-1.staked.cloud/content/QmXFoGy9HEpxxK5Sv6M6CKJP6BiaaktXjL5x5YYc8UvJAs/1000x1000.jpg"
+    },
+    "description": "this year's christmas cover is one of my favourite christmas songs! happy holodays and stay vibrant everybody 🥺",
+    "genre": "Electronic",
+    "id": "GEjQm",
+    "track_cid": "QmXqtJiQWjHJWuEXRePgTRtC98HDbEKQR7HGruutPjQjFm",
+    "preview_cid": null,
+    "mood": "Sentimental",
+    "release_date": "Tue Dec 22 2020 13:52:42 GMT-0500",
+    "remix_of": {
+      "tracks": null
+    },
+    "repost_count": 102,
+    "favorite_count": 226,
+    "tags": "wham,lastchristmas,sanholo,remix,cover",
+    "title": "Wham - Last Christmas (San Holo Remix)",
+    "user": {
+      "album_count": 1,
+      "artist_pick_track_id": null,
+      "bio": "↑%",
+      "cover_photo": {
+        "640x": "https://audius-content-4.figment.io/content/QmWidborPNmdedJi3MBJt1YfKQ4TGkUyMsnHeZj3vVP4wZ/640x.jpg",
+        "2000x": "https://audius-content-4.figment.io/content/QmWidborPNmdedJi3MBJt1YfKQ4TGkUyMsnHeZj3vVP4wZ/2000x.jpg"
+      },
+      "followee_count": 7,
+      "follower_count": 2117,
+      "does_follow_current_user": false,
+      "handle": "sanholobeats",
+      "id": "2ooEp",
+      "is_verified": true,
+      "location": null,
+      "name": "San Holo (92%) -bb u ok?-",
+      "playlist_count": 0,
+      "profile_picture": {
+        "150x150": "https://audius-content-12.cultur3stake.com/content/QmbTFZBBJ5AHRZGvgtkH6vHtuC2chfYHqNSZfWRAhevawA/150x150.jpg",
+        "480x480": "https://audius-content-12.cultur3stake.com/content/QmbTFZBBJ5AHRZGvgtkH6vHtuC2chfYHqNSZfWRAhevawA/480x480.jpg",
+        "1000x1000": "https://audius-content-12.cultur3stake.com/content/QmbTFZBBJ5AHRZGvgtkH6vHtuC2chfYHqNSZfWRAhevawA/1000x1000.jpg"
+      },
+      "repost_count": 0,
+      "track_count": 6,
+      "is_deactivated": false,
+      "is_available": true,
+      "erc_wallet": "0x0a412484d12341d91221be6b7626ed4e2f7a1508",
+      "spl_wallet": "DWtDqe3mwB755DD9Gm6qwgnLhZioCunFE3AbqhVgBPGB",
+      "supporter_count": 5,
+      "supporting_count": 0,
+      "total_audio_balance": null
+    },
+    "duration": 185,
+    "downloadable": false,
+    "play_count": 8328,
+    "permalink": "/sanholobeats/wham-last-christmas-san-holo-remix-213462",
+    "is_streamable": true
+  },
+  {
+    "artwork": {
+      "150x150": "https://audius-content-6.cultur3stake.com/content/QmfU5NEptqLktMzAhBA2rQtJYgKxFBtpuSzwxNZyxuc63b/150x150.jpg",
+      "480x480": "https://audius-content-6.cultur3stake.com/content/QmfU5NEptqLktMzAhBA2rQtJYgKxFBtpuSzwxNZyxuc63b/480x480.jpg",
+      "1000x1000": "https://audius-content-6.cultur3stake.com/content/QmfU5NEptqLktMzAhBA2rQtJYgKxFBtpuSzwxNZyxuc63b/1000x1000.jpg"
+    },
+    "description": null,
+    "genre": "Pop",
+    "id": "Mlq6X",
+    "track_cid": "QmPePLAaQXpHyWMdyshgrYc3czsHVRR9QLVnzPc6ZmEoDp",
+    "preview_cid": null,
+    "mood": "Romantic",
+    "release_date": "Mon Mar 30 2020 12:00:00 GMT-0700",
+    "remix_of": {
+      "tracks": null
+    },
+    "repost_count": 89,
+    "favorite_count": 128,
+    "tags": "afrobeats,rnb",
+    "title": "Hold On",
+    "user": {
+      "album_count": 0,
+      "artist_pick_track_id": "KxdXkM9",
+      "bio": "DE BRAINIACS, also known as \" No Music Bad\", West African bilingual Afrobeats brother duo based in Accra, Ghana.",
+      "cover_photo": {
+        "640x": "https://audius-content-4.cultur3stake.com/content/Qmc7Eyze5Pki3LDN5SQBzoSxe8Ymo8uGNAgpop1LgCwXYt/640x.jpg",
+        "2000x": "https://audius-content-4.cultur3stake.com/content/Qmc7Eyze5Pki3LDN5SQBzoSxe8Ymo8uGNAgpop1LgCwXYt/2000x.jpg"
+      },
+      "followee_count": 497,
+      "follower_count": 2750,
+      "does_follow_current_user": false,
+      "handle": "nomusicbad",
+      "id": "YZwJr",
+      "is_verified": false,
+      "location": "Accra, Ghana",
+      "name": "DE BRAINIACS",
+      "playlist_count": 1,
+      "profile_picture": {
+        "150x150": "https://creatornode.audius1.prod-eks-ap-northeast-1.staked.cloud/content/QmPEwodj5jEKyrZUBNxApVbLb3RzQXMpW8rkj7CG9Ty4oE/150x150.jpg",
+        "480x480": "https://creatornode.audius1.prod-eks-ap-northeast-1.staked.cloud/content/QmPEwodj5jEKyrZUBNxApVbLb3RzQXMpW8rkj7CG9Ty4oE/480x480.jpg",
+        "1000x1000": "https://creatornode.audius1.prod-eks-ap-northeast-1.staked.cloud/content/QmPEwodj5jEKyrZUBNxApVbLb3RzQXMpW8rkj7CG9Ty4oE/1000x1000.jpg"
+      },
+      "repost_count": 14592,
+      "track_count": 12,
+      "is_deactivated": false,
+      "is_available": true,
+      "erc_wallet": "0xd572535d8d72988213d7e6ed7b1fd7291462f7cb",
+      "spl_wallet": "6QTJwkWo9wYSLtcAM6qsRyxYQcA6hhLzQufGHE6u9SNi",
+      "supporter_count": 10,
+      "supporting_count": 1,
+      "total_audio_balance": null
+    },
+    "duration": 185,
+    "downloadable": false,
+    "play_count": 2355,
+    "permalink": "/nomusicbad/hold-on",
+    "is_streamable": true
+  }
+]
