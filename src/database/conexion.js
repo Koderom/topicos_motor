@@ -1,9 +1,9 @@
 const {Pool, Client} = require('pg');
 const dotenv = require('dotenv').config();
 
-const conexion = {};
+const Conexion = {};
 
-conexion.newConexion = () => {
+Conexion.newConexion = () => {
     const pool = new Client({
         user: process.env.DB_USER,
         host: process.env.DB_HOST,
@@ -14,6 +14,4 @@ conexion.newConexion = () => {
     return pool;
 }
 
-
-
-module.exports = {conexion};
+module.exports = {Conexion};

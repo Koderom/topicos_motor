@@ -1,4 +1,4 @@
-const {conexion} = require('../database/conexion');
+const {Conexion} = require('../database/conexion');
 const fs = require('fs');
 const path = require('path');
 
@@ -11,7 +11,7 @@ controller.index = (req, res) => {
 
 controller.start = async (req, res) => {    
     try {
-        const client = conexion.newConexion();
+        const client = Conexion.newConexion();
         await client.connect();
 
         const tablaspath = path.join(__dirname,'../database/tablas.sql' );
