@@ -1,9 +1,12 @@
 const sdk = require('api')('@d-id/v4.2.0#1f3wxrelm7g7po0');
+const {FileManager} = require('../utils/fileManager');
 const dotenv = require('dotenv').config();
 sdk.auth(process.env.API_KEY_D_ID);
 
 const TIME_OUT = 30;
 const DIDService = {};
+const NGROK_PUBLIC_URL = process.env.NGROK_PUBLIC_URL;
+
 
 DIDService.clipGenerate = async (text) => {
     try {
@@ -19,12 +22,29 @@ DIDService.clipGenerate = async (text) => {
             },
             config: {result_format: 'mp4'},
             presenter_id: 'amy-jcwCkr1grs',
-            background: {color: '#74c0c0'}
+            background: {color: '#74c0c0'},
+            //webhook: 'https://5e47-2800-cd0-5212-1000-9088-4eb6-cda1-a8bb.ngrok-free.app/wh/d-id'
+            webhook: `${NGROK_PUBLIC_URL}/wh/d-id`
         });
-        console.log(resp.data);
-        return resp.data.id;
+        return resp.data;
     } catch (error) {
         console.log(resp.data);
+        return error;
+    }
+}
+
+DIDService.getDIDResponse = async (data) => {
+    try {
+        const dResponse = {};
+        dResponse.nombre = data.id;
+        dResponse.tipo = "mp4";
+        dResponse.duracion = `${data.duration}`;
+        dResponse.url_portada = "https://clips-presenters.d-id.com/amy/jcwCkr1grs/uM00QMwJ9x/image.png";
+        const url = data.result_url;
+        const fileInfo = await FileManager.storeFileFromURL(url, dResponse.nombre);
+        dResponse.path = fileInfo.filepath;
+        return dResponse;
+    } catch (error) {
         return error;
     }
 }

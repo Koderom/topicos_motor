@@ -30,7 +30,10 @@ Guion.findAll = () => {
 Guion.saveGuion = async (guion) => {
     try {
         if(guion.id) await Guion.update(guion);
-        else await Guion.saveNewGuion(guion);
+        else {
+            const id = await Guion.saveNewGuion(guion);
+            return id;
+        } 
     } catch (error) {
         return error;
     }
@@ -47,7 +50,7 @@ Guion.saveNewGuion = async (guion) => {
 
         if(response.rowCount == 0) throw new Error("Error al insertar");
         if(guion.escenas) await Escena.saveListEscenas(guion.escenas, response.rows[0].id);
-
+        return response.rows[0].id;
     } catch (error) {
         return error;
     }

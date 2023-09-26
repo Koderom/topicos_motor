@@ -69,9 +69,11 @@ const guionTest ={
 
 GuionController.save = async (req, res) => {
     try {
-        const gion = guionTest;
-        await Guion.saveGuion(gion);
-        res.status(200).send('ok');
+        const gion = req.body;
+        console.log(gion);
+        const id = await Guion.saveGuion(gion);
+        console.log(id);
+        res.status(200).send({id});
     } catch (error) {
         res.status(400).send(error.message);
     }

@@ -1,9 +1,11 @@
 const {Conexion} = require('../database/conexion');
 const fs = require('fs');
 const path = require('path');
+const socketManager = require('../utils/SocketManager');
 
 const controller = {};
 controller.index = (req, res) => {
+    socketManager.sendObjectAll({mensaje: 'hola mundo'});
     res.json({
         "mensaje" : "hola mundo"
     });
