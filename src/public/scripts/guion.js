@@ -1,3 +1,4 @@
+import { contenido } from './contenido.js';
 import { servicios } from './service.js';
 
 const guion = {};
@@ -34,7 +35,7 @@ guion.nuevo = async (mGuion) => {
 guion.cargar = async (mGuion) => {
     try {
         const guionCargado = await servicios.cargar(mGuion);
-        console.log(guionCargado);
+        contenido.mostrarNotificacion('Datos guardados exitosamente')
         return guionCargado;
     } catch (error) {
         return error;

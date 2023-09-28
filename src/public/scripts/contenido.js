@@ -40,6 +40,10 @@ contenido.mostrarNotificacion = (textoNoticacion) => {
 }
 
 contenido.cargarDatosVista = (mGuion) => {
+    const escena_container = document.getElementById('escenas-container');
+    const guion = document.getElementById('messages-container');
+    escena_container.innerHTML = "";
+    guion.innerHTML = "";
     const escenas = mGuion.escenas;
     for(let escena of escenas) contenido.adicionarEscena(escena);
 };

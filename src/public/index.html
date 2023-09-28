@@ -38,18 +38,41 @@
 
         </div>
         <div class="opciones-guion">
-            <textarea name="entrada-guion" class="entrada-guion" id="entrada-guion" cols="30" rows="10" ></textarea>
-            <button class="button-guion" id="btn-adicionar">Adicionar al guion
-                <i class="fa-solid fa-play"></i>
+            <button class="opcion-guion" id="btn-avatar">Interaccion avatar
+                
             </button>
-            <button class="button-guion" id="btn-generar">Generar contenido
-                <i class="fa-solid fa-play"></i>
+            <button class="opcion-guion" id="btn-generar">Musica
+                
             </button>
+            <button class="opcion-guion" id="btn-generar">Video
+                
+            </button>
+            <button class="opcion-guion" id="btn-generar">Imagenes
+                
+            </button>    
         </div>
-        
+        <button class="button-guion" id="btn-generar">Generar contenido
+        </button>
     </div>
-    
- </body>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Agregar interaccion con el avatar</h2>
+            <form id="myForm" enctype="multipart/form-data">
+                <div>
+                    <label for="mensaje">Texto:</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" cols="50"></textarea>
+                </div>
+                <div>
+                    <label for="mensaje">Texto:</label>
+                    <input type="file" name="file" id="file" >
+                </div>
+                
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>    
+</body>
 <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
 <script src="https://kit.fontawesome.com/871fc34738.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

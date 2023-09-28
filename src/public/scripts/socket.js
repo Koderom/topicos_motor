@@ -3,7 +3,7 @@ import {escenas} from './escenas.js';
 const socket = {};
 
 socket.open = (event) => {
-    contenido.mostrarNotificacion("Conectado al socket");
+    //contenido.mostrarNotificacion("Conectado al socket");
 }
 socket.message = (event) => {
     const resp = JSON.parse(event.data);

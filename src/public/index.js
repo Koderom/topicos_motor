@@ -6,25 +6,29 @@ import { guion as mGuion} from './scripts/guion.js';
 let escenas = [];
 let guion = {id: 2};
 
-const ws = new WebSocket('ws://localhost:3035');
-ws.addEventListener('open', socket.open);
-ws.addEventListener('message', socket.message);
-ws.addEventListener('close', socket.close);
-ws.addEventListener('error', socket.error);
+// const ws = new WebSocket('ws://localhost:3035');
+// ws.addEventListener('open', socket.open);
+// ws.addEventListener('message', socket.message);
+// ws.addEventListener('close', socket.close);
+// ws.addEventListener('error', socket.error); 
 
 
-document.getElementById('btn-adicionar').addEventListener('click', (event) => {
-    const texto = document.getElementById('entrada-guion').value;
-    escenas = mEscenas.addEscena(escenas, texto);
+// document.getElementById('btn-adicionar').addEventListener('click', (event) => {
+//     const texto = document.getElementById('entrada-guion').value;
+//     escenas = mEscenas.addEscena(escenas, texto);
 
-    contenido.adicionarEscena(escenas[escenas.length - 1]);
+//     contenido.adicionarEscena(escenas[escenas.length - 1]);
     
-});
+// });
 
 document.getElementById('btn-generar').addEventListener('click', async (event) => {
-    escenas = await mEscenas.generarContenido(escenas);
-    for(let escena of escenas) contenido.adicionarArchivo(escena.archivo);
-    
+    try {
+        escenas = await mEscenas.generarContenido(escenas);
+        console.log(escenas);
+        for(let escena of escenas) contenido.adicionarArchivo(escena.archivo);    
+    } catch (error) {
+        contenido.mostrarNotificacion(error.message);
+    }
 });
 
 document.getElementById('btn-guardar').addEventListener('click', async (event) => {
@@ -40,10 +44,32 @@ window.addEventListener('load', async () => {
     if(guion.id){
         guion = await mGuion.cargar(guion);
         contenido.cargarDatosVista(guion);
+        contenido.mostrarNotificacion("Datos cargados exitosamente")
     }
 });
 
 
+/*Ventana modal */
+const openModalBtn = document.getElementById('btn-avatar');
+const modal = document.getElementById('myModal');
+const closeModal = document.querySelector('.close');
+
+openModalBtn.addEventListener('click', () => {
+    modal.style.display = 'block';
+});
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+const myForm = document.getElementById('myForm');
+
+myForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(myForm);
+    
+    modal.style.display = 'none';
+});
 
 
 
