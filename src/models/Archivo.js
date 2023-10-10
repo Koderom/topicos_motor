@@ -1,84 +1,51 @@
 const {Conexion} = require('../database/conexion');
-const Archivo = {};
 
-Archivo.findArchivoByID = (id) => {
+class Archivo{
+    constructor(id, nombre, tipo, duracion, local_path, fecha_hora_creacion){
+        this.id = id;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.duracion = duracion;
+        this.local_path = local_path;
+        this.fecha_hora_creacion = fecha_hora_creacion;
+    }
 
-}
+    static async create(archivo){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                INSERT INTO archivos(nombre, tipo, duracion, local_path, fecha_hora_creacion)
+                VALUES ($1, $2, $3, $4, $5) RETURNING id
+            `;
+            const params = [archivo.nombre, archivo.tipo, archivo.duracion, archivo.local_path, archivo.fecha_hora_creacion];
+            const response = await cliente.query(query, params);
+            await cliente.end();
 
-Archivo.findAll = () => {
+            if(response.rowCount > 0) return response.rows[0].id;
+            else return null;    
+        } catch (error) {
+            return error;
+        }
+    }
 
-}
-Archivo.findArchivosForEscenas = async (escenas) => {
-    try {
-        const cliente = Conexion.newConexion();
-        await cliente.connect();
+    static async getArchivo(archivo_id){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT * FROM archivos WHERE id = $1
+            `;
+            const params = [archivo_id];
+            const response = await cliente.query(query, params);
+            await cliente.end();
 
-        escenas = await Promise.all(escenas.map(async (escena) => {
-            let query = 'SELECT ar.* FROM escenas es, archivos ar WHERE es.id = ar.escena_id and es.id = $1';
-            let params = [escena.id];
-            let response = await cliente.query(query, params);
-            
-            if(response.rowCount == 0) escena.archivo = null;
-            else escena.archivo = response.rows[0];
-
-            return escena;
-        }));
-        await cliente.end();
-        
-        return escenas;
-    } catch (error) {
-        return error;
+            if(response.rowCount > 0) return response.rows[0];
+            else return null;    
+        } catch (error) {
+            return error;
+        }
     }
 }
 
-Archivo.save = async (archivo, escena_id) => {
-    try {
-        if(archivo.id) await Archivo.update(archivo);
-        else await Archivo.saveNewArchivo(archivo, escena_id);
-    } catch (error) {
-        return error;
-    }
-}
-
-Archivo.saveNewArchivo = async (archivo, escena_id) => {
-    try {
-        const cliente = Conexion.newConexion();
-
-        await cliente.connect();
-        const query = 'INSERT INTO archivos(nombre, local_path, tipo, url_portada, duracion, escena_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id';
-        const params = [archivo.nombre, archivo.local_path, archivo.tipo, archivo.url_portada, archivo.duracion, escena_id];
-        const response = await Promise.all(await cliente.query(query, params));
-        await cliente.end();
-
-        if(response.rowCount == 0) throw new Error("Error al insertar");
-        
-
-    } catch (error) {
-        return error;
-    }
-}
-
-Archivo.update = async (archivo) => {
-    try {
-        const cliente = Conexion.newConexion();
-
-        await cliente.connect();
-        const query = `
-            UPDATE archivos
-            SET nombre = $1, local_path = $2, tipo = $3, url_portada = $4, duracion = $5
-            WHERE id = $6
-        `;
-        const params = [archivo.nombre, archivo.local_path, archivo.tipo, archivo.url_portada, archivo.duracion, archivo.id];
-        const response = await Promise.all(await cliente.query(query, params));
-        await cliente.end();
-
-        if(response.rowCount == 0) throw new Error("Error al insertar");
-    } catch (error) {
-        return error;
-    }
-}
-Archivo.saveListArchivo = (archivoLis) => {
-
-}
-
-module.exports = {Archivo};
+module.exports = Archivo;

@@ -11,7 +11,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: row;
-    background: rgb(36, 36, 36);
+    background: rgb(32, 32, 32);
     overflow: hidden;
 }
 .recursos-container{
@@ -38,7 +38,7 @@ body {
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
-    overflow-y: hidden;
+    overflow-y: auto;
     overflow-x: auto;
     justify-content: start;;
     flex-wrap: wrap;
@@ -210,27 +210,26 @@ span {
     cursor: pointer;
 }
 
-/* Estilos para el formulario dentro del modal */
-form {
-    text-align: center;
+
+
+.absolute-container{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.658);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
 
-label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-button {
-    background-color: #5eb0e788;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 0.5rem;
+.float-notifycation-container{
+    width: 500px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

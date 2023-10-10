@@ -1,67 +1,113 @@
-const {Conexion} = require('../database/conexion')
-const {Escena} = require('../models/Escena');
-const Guion = {}
+const {Conexion} = require('../database/conexion');
+const Archivo = require('./Archivo');
+const Audio = require('./Audio');
+const Escena = require('./Escena');
+const Imagen = require('./Imagen');
+const Interaccion = require('./Interaccion');
+const Video = require('./Video');
 
-Guion.findGuionByID = async (id) => {
-    try {
-        let mGuion = {};
-        const cliente = Conexion.newConexion();
-
-        await cliente.connect();
-        const query = 'SELECT * FROM guiones g WHERE g.id = $1';
-        const params = [id];
-        const response = await cliente.query(query, params);
-        await cliente.end();
-
-        if(response.rowCount == 0) throw new Error("guion no encontrado");
-        mGuion = response.rows[0];
-        mGuion.escenas = await Escena.findEscenasForGuionId(mGuion.id);
-
-        return mGuion;
-    } catch (error) {
-        return error;
+class Guion{
+    constructor(id, titulo){
+        this.id = id;
+        this.titulo = titulo;
+        this.escenas = [];
+        this.formulario;
     }
-}
 
-Guion.findAll = () => {
+    static async create(guion){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                INSERT INTO guiones(titulo) VALUES ($1) RETURNING id
+            `;
+            const params = [guion.titulo];
+            const response = await cliente.query(query, params);
+            await cliente.end();
 
-}
-
-Guion.saveGuion = async (guion) => {
-    try {
-        if(guion.id) await Guion.update(guion);
-        else {
-            const id = await Guion.saveNewGuion(guion);
-            return id;
-        } 
-    } catch (error) {
-        return error;
+            if(response.rowCount > 0) return response.row[0].id;
+            else return null;    
+        } catch (error) {
+            return error;
+        }
     }
-}
+    static async getGuion(guion_id){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT * FROM guiones WHERE id = $1
+            `;
+            const params = [guion_id];
+            const response = await cliente.query(query, params);
+            await cliente.end();
 
-Guion.saveNewGuion = async (guion) => {
-    try {
-        const cliente = Conexion.newConexion();
-
-        await cliente.connect();
-        const query = 'INSERT INTO guiones DEFAULT VALUES RETURNING id';
-        const response = await cliente.query(query);
-        await cliente.end();
-
-        if(response.rowCount == 0) throw new Error("Error al insertar");
-        if(guion.escenas) await Escena.saveListEscenas(guion.escenas, response.rows[0].id);
-        return response.rows[0].id;
-    } catch (error) {
-        return error;
+            if(response.rowCount > 0) return response.rows[0];
+            else return null;    
+        } catch (error) {
+            return error;
+        }
     }
-}
+    
+    static async getArchivosGuion(guion_id){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT archivos.*
+                FROM archivos, escenas
+                WHERE archivos.id = escenas.archivo_id and escenas.guion_id = $1
+            `;
+            const params = [guion_id];
+            const response = await cliente.query(query, params);
+            await cliente.end();
 
-Guion.update = async (guion) => {
-    try {
-        if(guion.escenas) await Escena.saveListEscenas(guion.escenas, guion.id);
-    } catch (error) {
-        return error;
+            if(response.rowCount > 0) return response.rows;
+            else return null;    
+        } catch (error) {
+            return error;
+        }
     }
+
+    static async getEscenas(guion_id){
+        try {
+            let escenas = await Escena.getEscenas(guion_id);
+            escenas = await Promise.all(
+                escenas.map( async (escena) => {
+                    const escenaWithChild = await this.getChildEscena(escena);
+                    escenaWithChild.archivo = await Archivo.getArchivo(escena.archivo_id);
+                    return escenaWithChild;
+                })
+            );
+            return escenas;
+        } catch (error) {
+            return error;
+        }
+    }
+
+    static async getChildEscena(escena){
+        try {
+            let data = {};
+            switch (escena.tipo_escena) {
+                case 'A':
+                   data = await Audio.getAudio(escena.id);
+                break;
+                case 'I':
+                    data = await Imagen.getImagen(escena.id);
+                break;
+                case 'V':
+                    data = await Video.getVideo(escena.id);
+                break;
+                case 'D':
+                    data = await Interaccion.getInteraccion(escena.id);
+                break;
+            }
+            return data;
+        } catch (error) {
+            return error;
+        }
+    }
+
 }
 
-module.exports = {Guion}
+module.exports = Guion;

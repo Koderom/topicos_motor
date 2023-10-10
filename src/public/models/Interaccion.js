@@ -1,12 +1,16 @@
-import Escena from "./Escena";
+import Escena from "./Escena.js";
 
-class Interaccion extends Escenas{
-    constructor(escena_id, indice, contexto, guion_id, idioma, texto, avatar_id){
-        super(escena_id, indice, contexto, guion_id);
-        this.id = id;
+class Interaccion extends Escena{
+    constructor(id, indice, contexto, idioma, texto,  guion_id, avatar_id){
+        super(id, indice, contexto, guion_id);
         this.idioma = idioma;
         this.texto = texto;
         this.avatar_id = avatar_id;
+        
+        this.clip_id = null;
+        this.formulario = null;
+        this.estado = 'C';
+        this.generado = false;
     }
 }
 export default Interaccion;

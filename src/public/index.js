@@ -1,16 +1,24 @@
 import {socket} from './scripts/socket.js';
-import {escenas as mEscenas} from './scripts/escenas.js';
+import Guion from './models/Guion.js';
+import Video from './models/Video.js';
+import Audio from './models/Audio.js';
+import Imagen from './models/Imagen.js';
+import Interaccion from './models/Interaccion.js';
 import { contenido } from './scripts/contenido.js';
-import { guion as mGuion} from './scripts/guion.js';
+import { VideoService } from './services/VideoService.js';
+import { AudioService } from './services/AudioService.js';
+import { ImagenService } from './services/ImagenService.js';
+import { InteraccionService } from './services/InteraccionService.js';
+import { GuionService } from './services/GuionService.js';
+import { EscenaService } from './services/EscenaService.js';
 
-let escenas = [];
-let guion = {id: 2};
+const mGuion = new Guion(1, 'Guion de prueba');
 
-// const ws = new WebSocket('ws://localhost:3035');
-// ws.addEventListener('open', socket.open);
-// ws.addEventListener('message', socket.message);
-// ws.addEventListener('close', socket.close);
-// ws.addEventListener('error', socket.error); 
+const ws = new WebSocket('ws://localhost:3035');
+ws.addEventListener('open', socket.open);
+ws.addEventListener('message', socket.message);
+ws.addEventListener('close', socket.close);
+ws.addEventListener('error', socket.error); 
 
 
 // document.getElementById('btn-adicionar').addEventListener('click', (event) => {
@@ -21,68 +29,222 @@ let guion = {id: 2};
     
 // });
 
-document.getElementById('btn-generar').addEventListener('click', async (event) => {
-    try {
-        escenas = await mEscenas.generarContenido(escenas);
-        console.log(escenas);
-        for(let escena of escenas) contenido.adicionarArchivo(escena.archivo);    
-    } catch (error) {
-        contenido.mostrarNotificacion(error.message);
-    }
-});
+// document.getElementById('btn-generar').addEventListener('click', async (event) => {
+//     try {
+//         escenas = await mEscenas.generarContenido(escenas);
+//         console.log(escenas);
+//         for(let escena of escenas) contenido.adicionarArchivo(escena.archivo);    
+//     } catch (error) {
+//         contenido.mostrarNotificacion(error.message);
+//     }
+// });
 
-document.getElementById('btn-guardar').addEventListener('click', async (event) => {
-    guion.escenas = escenas;
-    const id = await mGuion.guardar(guion);
-    if(id) guion.id = id;
+// document.getElementById('btn-guardar').addEventListener('click', async (event) => {
+//     guion.escenas = escenas;
+//     const id = await mGuion.guardar(guion);
+//     if(id) guion.id = id;
     
-    guion = await mGuion.cargar(guion);
-    contenido.cargarDatosVista(guion);
-});
+//     guion = await mGuion.cargar(guion);
+//     contenido.cargarDatosVista(guion);
+// });
 
 window.addEventListener('load', async () => {
-    if(guion.id){
-        guion = await mGuion.cargar(guion);
-        contenido.cargarDatosVista(guion);
-        contenido.mostrarNotificacion("Datos cargados exitosamente")
+    await cargarData();
+});
+ 
+async function cargarData(){
+    contenido.limpiar();
+    contenido.mostrarNotificacion("Cargando datos ...");
+    const data = await GuionService.getData(mGuion.id);
+    const escenas = data.escenas;
+    escenas.forEach( escena => {
+        contenido.adicionarEscena(escena);
+        contenido.adicionarArchivo(escena);
+    });
+    mGuion.escenas = escenas;
+    contenido.mostrarNotificacion("Datos cargados");
+}
+
+//boton generar video
+const btnGenerarVideo = document.getElementById('btn-generar-video');
+btnGenerarVideo.addEventListener('click', (event) => {
+    const container = document.getElementById('container-form-video');
+    container.style.display = 'flex'
+});
+// Formulario manejar adicion de video
+const formularioVideo = document.getElementById('form-video');
+formularioVideo.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const container = document.getElementById('container-form-video');
+    const id = null;
+    const guion_id = mGuion.id;
+    //const indice = mGuion.escenas.length + 1;
+    const indice = getIndice();
+    const contexto = document.querySelector(`#form-video textarea[name='video-contexto']`).value;
+    const titulo = document.querySelector(`#form-video input[name='video-titulo']`).value;
+    const autor = document.querySelector(`#form-video input[name='video-autor']`).value;
+    const formData = event.currentTarget;
+    const mVideo = new Video(id, indice, contexto, titulo, autor, guion_id);
+    mVideo.formulario = formData;
+    mGuion.addEscena(mVideo);
+    // VideoService.create(mVideo);
+    contenido.adicionarEscena(mVideo);
+    container.style.display = 'none';
+})
+//boton cancelar video
+const formBtnVideoCancelar = document.getElementById('form-btn-video-cancelar');
+formBtnVideoCancelar.addEventListener('click', (event) => {
+    const container = document.getElementById('container-form-video');
+    container.style.display = 'none'
+})
+
+//boton generar audio
+const btnGenerarAudio = document.getElementById('btn-generar-audio');
+btnGenerarAudio.addEventListener('click', (event) => {
+    const container = document.getElementById('container-form-audio');
+    container.style.display = 'flex'
+});
+// Formulario manejar adicion de video
+const formularioAudio = document.getElementById('form-audio');
+formularioAudio.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const container = document.getElementById('container-form-audio');
+    const id = null;
+    const guion_id = mGuion.id;
+    //const indice = mGuion.escenas.length + 1;
+    const indice = getIndice();
+    const contexto = document.querySelector(`#form-audio textarea[name='audio-contexto']`).value;
+    const titulo = document.querySelector(`#form-audio input[name='audio-titulo']`).value;
+    const autor = document.querySelector(`#form-audio input[name='audio-autor']`).value;
+    const genero = document.querySelector(`#form-audio input[name='audio-genero']`).value;
+    const formData = event.currentTarget;
+    const mAudio = new Audio(id, indice, titulo, contexto, autor, genero, guion_id);
+    mAudio.formulario = formData;
+    mGuion.addEscena(mAudio);
+    // AudioService.create(mAudio);
+    contenido.adicionarEscena(mAudio);
+    container.style.display = 'none';
+})
+//boton cancelar video
+const formBtnAudioCancelar = document.getElementById('form-btn-audio-cancelar');
+formBtnAudioCancelar.addEventListener('click', (event) => {
+    const container = document.getElementById('container-form-audio');
+    container.style.display = 'none'
+})
+
+//boton generar imagen
+const btnGenerarImagen = document.getElementById('btn-generar-imagen');
+btnGenerarImagen.addEventListener('click', (event) => {
+    const container = document.getElementById('container-form-imagen');
+    container.style.display = 'flex'
+});
+// Formulario manejar adicion de imagen
+const formularioImagen = document.getElementById('form-imagen');
+formularioImagen.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const container = document.getElementById('container-form-imagen');
+    const id = null;
+    const guion_id = mGuion.id;
+    //const indice = mGuion.escenas.length + 1;
+    const indice = getIndice();
+    const contexto = document.querySelector(`#form-imagen textarea[name='imagen-contexto']`).value;
+    const descripcion = document.querySelector(`#form-imagen textarea[name='imagen-descripcion']`).value;
+    const formData = event.currentTarget;
+    const mImagen = new Imagen(id, indice, contexto, descripcion , guion_id);
+    mImagen.formulario = formData;
+    mGuion.addEscena(mImagen);
+    // ImagenService.create(mImagen);
+    contenido.adicionarEscena(mImagen);
+    container.style.display = 'none';
+})
+//boton cancelar imagen
+const formBtnImagenCancelar = document.getElementById('form-btn-imagen-cancelar');
+formBtnImagenCancelar.addEventListener('click', (event) => {
+    const container = document.getElementById('container-form-imagen');
+    container.style.display = 'none'
+})
+
+// boton generar interaccion
+const btnGenerarInteraccion = document.getElementById('btn-generar-interaccion');
+btnGenerarInteraccion.addEventListener('click', (event) => {
+    const container = document.getElementById('container-form-interaccion');
+    container.style.display = 'flex'
+});
+// Formulario manejar adicion de interaccion
+const formularioInteraccion = document.getElementById('form-interaccion');
+formularioInteraccion.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const container = document.getElementById('container-form-interaccion');
+    const id = null;
+    const guion_id = mGuion.id;
+    //const indice = mGuion.escenas.length + 1;
+    const indice = getIndice();
+    const contexto = document.querySelector(`#form-interaccion textarea[name='interaccion-contexto']`).value;
+    const texto = document.querySelector(`#form-interaccion textarea[name='interaccion-texto']`).value;
+    const idioma = document.querySelector(`#form-interaccion input[name='interaccion-idioma']`).value;
+    const formData = event.currentTarget;
+    const mInteraccion = new Interaccion(id, indice, contexto, idioma , texto, guion_id, null);
+    mInteraccion.formulario = formData;
+    mGuion.addEscena(mInteraccion);
+    //InteraccionService.create(mInteraccion);
+    contenido.adicionarEscena(mInteraccion);
+    container.style.display = 'none';
+})
+//boton cancelar interaccion
+const formBtnInteraccionCancelar = document.getElementById('form-btn-interaccion-cancelar');
+formBtnInteraccionCancelar.addEventListener('click', (event) => {
+    const container = document.getElementById('container-form-interaccion');
+    container.style.display = 'none'
+})
+
+// boton generar
+const btnGenerar = document.getElementById('btn-generar');
+btnGenerar.addEventListener('click', async (event) => {
+    await eliminarEscenasServidor();
+    await Guion.generarContenidoFromList(mGuion.escenas);
+    await cargarData();
+});
+async function eliminarEscenasServidor(){
+    try {
+        await Promise.all(
+            mGuion.escenas.forEach( async (escena) => {
+                    if(escena.borrar) await EscenaService.delete(escena.id);
+                })
+            );  
+    } catch (error) {
+        
     }
-});
-
-
-/*Ventana modal */
-const openModalBtn = document.getElementById('btn-avatar');
-const modal = document.getElementById('myModal');
-const closeModal = document.querySelector('.close');
-
-openModalBtn.addEventListener('click', () => {
-    modal.style.display = 'block';
-});
-closeModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-});
-
-const myForm = document.getElementById('myForm');
-
-myForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(myForm);
     
-    modal.style.display = 'none';
+}
+function eliminarEscena(escena_indice) {
+    let index = null;
+    mGuion.escenas.forEach( (escena, i) => {
+        if(escena.indice == escena_indice) index = i;
+    })
+    if(mGuion.escenas[index].archivo){
+        contenido.borrarEscenaItem(escena_indice);
+        console.log(mGuion);
+        mGuion.escenas[index].borrar = true;
+    }else{
+        mGuion.escenas.splice(index,1);
+        contenido.borrarEscenaItem(escena_indice)
+    }
+    console.log(mGuion);
+}
+
+function getIndice(){
+    let may = mGuion.escenas.length;
+    mGuion.escenas.forEach( (escena) => {
+        if(may < escena.indice) may = escena.indice;
+    });
+    return may+1;
+}
+export {mGuion,eliminarEscena}
+
+const refreshFilesButton = document.getElementById('refresh-files-button');
+refreshFilesButton.addEventListener('click', (event) => {
+    location.reload();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 // const videoRep = document.getElementById('my-video');
 // const autoRepButton = document.getElementById('auto-rep');
 // //videoRep.style.display = 'none';

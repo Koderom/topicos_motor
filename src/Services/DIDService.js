@@ -1,5 +1,7 @@
 const sdk = require('api')('@d-id/v4.2.0#1f3wxrelm7g7po0');
 const {FileManager} = require('../utils/fileManager');
+const Archivo = require('../models/Archivo');
+const Interaccion = require('../models/Interaccion');
 const dotenv = require('dotenv').config();
 sdk.auth(process.env.API_KEY_D_ID);
 
@@ -11,7 +13,7 @@ const NGROK_PUBLIC_URL = process.env.NGROK_PUBLIC_URL;
 DIDService.clipGenerate = async (text) => {
     try {
         let resp = await sdk.createClip({
-            driver_id: 'uM00QMwJ9x',
+            driver_id: 'Vcq0R4a8F0',
             script: {
                 type: 'text',
                 provider: {
@@ -21,19 +23,19 @@ DIDService.clipGenerate = async (text) => {
                 input: `${text}`,
             },
             config: {result_format: 'mp4'},
-            presenter_id: 'amy-jcwCkr1grs',
+            presenter_id: 'amy-Aq6OmGZnMt',
             background: {color: '#74c0c0'},
             //webhook: 'https://5e47-2800-cd0-5212-1000-9088-4eb6-cda1-a8bb.ngrok-free.app/wh/d-id'
             webhook: `${NGROK_PUBLIC_URL}/wh/d-id`
         });
         return resp.data;
     } catch (error) {
-        console.log(resp.data);
+        console.log(error);
         return error;
     }
 }
 
-DIDService.getDIDResponse = async (data) => {
+DIDService.storeVideoDID = async (data) => {
     try {
         const dResponse = {};
         dResponse.nombre = data.id;
@@ -42,9 +44,13 @@ DIDService.getDIDResponse = async (data) => {
         dResponse.url_portada = "https://clips-presenters.d-id.com/amy/jcwCkr1grs/uM00QMwJ9x/image.png";
         const url = data.result_url;
         const fileInfo = await FileManager.storeFileFromURL(url, dResponse.nombre);
+        const archivo = new Archivo(null, `${fileInfo.filename}.${fileInfo.filetype}`, "mp4", null, fileInfo.filepath, null);
+        const archivoId = await Archivo.create(archivo);        
+        await Interaccion.updateWhitClip(data.id, archivoId);
         dResponse.path = fileInfo.filepath;
-        return dResponse;
+        return archivo;
     } catch (error) {
+        console.log(error);
         return error;
     }
 }

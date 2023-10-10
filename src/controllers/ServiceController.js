@@ -3,7 +3,6 @@ const {DIDService} = require('../Services/DIDService');
 const SocketManager = require('../utils/SocketManager');
 const ServiceController = {};
 
-
 ServiceController.create = async (req, res) => {
     try {
         let respuesta = {};
@@ -18,7 +17,7 @@ ServiceController.create = async (req, res) => {
 ServiceController.webhook_DID = async (req, res) => {
     try {
         const data = req.body;
-        const info = await DIDService.getDIDResponse(data);
+        const info = await DIDService.storeVideoDID(data);
         SocketManager.sendObjectAll({type: "wh-did-respuesta", body: info});
         res.status(200).send('ok');
     } catch (error) {

@@ -11,15 +11,17 @@ const socketManager = require('./utils/SocketManager');
 const SERVER_PORT = process.env.SERVER_PORT || 3035;
 const wss = new WebSocket.Server({server: server});
 
+app.use(express.static(path.join(__dirname, '/public')));
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended : false }));
+app.use(bodyParser.json());
+
 wss.on('connection', function connection(ws){
     console.log('nuevo cliente conectado');
     socketManager.updateSocket(wss);
 });
 
-app.use(express.static(path.join(__dirname, '/public')));
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended : false }));
-app.use(bodyParser.json());
+
 const routes = require('./routes/routes');
 app.use(routes);
 

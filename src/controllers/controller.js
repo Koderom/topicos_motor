@@ -16,7 +16,7 @@ controller.start = async (req, res) => {
         const client = Conexion.newConexion();
         await client.connect();
 
-        const tablaspath = path.join(__dirname,'../database/tablas.sql' );
+        const tablaspath = path.join(__dirname,'../database/tablas2.sql' );
         const sqlScriptTablas = fs.readFileSync(tablaspath, 'utf-8');
         await client.query(sqlScriptTablas);
         await client.end();

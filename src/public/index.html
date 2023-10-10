@@ -8,10 +8,11 @@
     <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet" />
     <link href="https://fonts.bunny.net/css?family=roboto:300,400,500,700,900" rel="stylesheet" />
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles//formularios.css">
+    <link rel="stylesheet" href="./styles//cards.css">
     <title>Avatar Twilio</title>
 
     </style>
-
 </head>
 
 <body>
@@ -23,7 +24,7 @@
     </div>
     <div class="recursos-container">
         <div id="video-container" class="video-container">
-            <video id="my-video" class="video-js" controls preload="auto" poster="./assets/default_music_poster.jpg" data-setup="{}" ></video>
+            <!-- <video id="my-video" class="video-js" controls preload="auto" poster="./assets/default_music_poster.jpg" data-setup="{}" ></video> -->
         </div>
         <div class="escenas-container" id="escenas-container">
         </div>
@@ -35,46 +36,141 @@
             <span id="btn-guardar">Guardar</span>
         </div>
         <div id="messages-container">
-
         </div>
         <div class="opciones-guion">
-            <button class="opcion-guion" id="btn-avatar">Interaccion avatar
-                
-            </button>
-            <button class="opcion-guion" id="btn-generar">Musica
-                
-            </button>
-            <button class="opcion-guion" id="btn-generar">Video
-                
-            </button>
-            <button class="opcion-guion" id="btn-generar">Imagenes
-                
-            </button>    
+            <button class="opcion-guion" id="btn-generar-interaccion">Interaccion avatar</button>
+            <button class="opcion-guion" id="btn-generar-audio">Musica</button>
+            <button class="opcion-guion" id="btn-generar-video">Video</button>
+            <button class="opcion-guion" id="btn-generar-imagen">Imagenes</button>    
+            <button class="button-guion" id="btn-generar">Generar contenido</button>
         </div>
-        <button class="button-guion" id="btn-generar">Generar contenido
-        </button>
     </div>
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Agregar interaccion con el avatar</h2>
-            <form id="myForm" enctype="multipart/form-data">
-                <div>
-                    <label for="mensaje">Texto:</label>
-                    <textarea id="mensaje" name="mensaje" rows="4" cols="50"></textarea>
+    <!-- opciones -->
+    
+    <!-- formularios --> 
+    <!-- videos -->
+    <div class="absolute-container" id="container-form-video">
+        <div class="form-container">
+            <h3>Agregar video al guion</h3>
+            <form class="form" action="http://localhost:3035/test" method="post" enctype="multipart/form-data" id="form-video" >
+                <div class="form-group">
+                    <label for="video-titulo">Titulo: </label>
+                    <input type="text" id="video-titulo" name="video-titulo" required="">
                 </div>
-                <div>
-                    <label for="mensaje">Texto:</label>
-                    <input type="file" name="file" id="file" >
+                <div class="form-group">
+                    <label for="video-autor">Autor: </label>
+                    <input type="text" id="video-autor" name="video-autor" required="">
+                </div>
+                <div class="form-group">
+                    <label for="video-contexto">Contexto</label>
+                    <textarea name="video-contexto" id="video-contexto" cols="30" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="video-archivo">Selecciona un archivo a subir:</label>
+                    <input type="file" id="video-archivo" name="video-archivo" required="" accept="video/*">
+                </div>
+                <div class="form-option-container">
+                    <button class="form-submit-btn" type="submit" id="form-btn-video-guardar">Guardar</button>
+                    <button class="form-submit-btn" type="button" id="form-btn-video-cancelar">Cancelar</button>
                 </div>
                 
-                <button type="submit">Enviar</button>
             </form>
         </div>
-    </div>    
+    </div>
+    <!-- audios -->
+    <div class="absolute-container" id="container-form-audio">
+        <div class="form-container">
+            <h3>Agregar audios/muiscas al guion</h3>
+            <form class="form" action="http://localhost:3035/test" method="post" enctype="multipart/form-data" id="form-audio" >
+                <div class="form-group">
+                    <label for="audio-titulo">Titulo: </label>
+                    <input type="text" id="audio-titulo" name="audio-titulo" required="">
+                </div>
+                <div class="form-group">
+                    <label for="audio-autor">Autor: </label>
+                    <input type="text" id="audio-autor" name="audio-autor" required="">
+                </div>
+                <div class="form-group">
+                    <label for="audio-genero">Genero (opcional): </label>
+                    <input type="text" id="audio-genero" name="audio-genero">
+                </div>
+                <div class="form-group">
+                    <label for="audio-contexto">Contexto</label>
+                    <textarea name="audio-contexto" id="audio-contexto" cols="30" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="audio-archivo">Selecciona un archivo a subir:</label>
+                    <input type="file" id="audio-archivo" name="audio-archivo" required="" accept="audio/*">
+                </div>
+                <div class="form-option-container">
+                    <button class="form-submit-btn" type="submit" id="form-btn-audio-guardar">Guardar</button>
+                    <button class="form-submit-btn" type="button" id="form-btn-audio-cancelar">Cancelar</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    <!-- imagenes -->
+    <div class="absolute-container" id="container-form-imagen">
+        <div class="form-container">
+            <h3>Agregar imagen al guion</h3>
+            <form class="form" action="http://localhost:3035/test" method="post" enctype="multipart/form-data" id="form-imagen" >
+                <div class="form-group">
+                    <label for="imagen-contexto">Contexto de la escena:</label>
+                    <textarea name="imagen-contexto" id="imagen-contexto" cols="30" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="imagen-descripcion">Descripcion de la imagen:</label>
+                    <textarea name="imagen-descripcion" id="imagen-descripcion" cols="30" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="imagen-archivo">Selecciona un archivo a subir:</label>
+                    <input type="file" id="imagen-archivo" name="imagen-archivo" required="" accept="image/*">
+                </div>
+                <div class="form-option-container">
+                    <button class="form-submit-btn" type="submit" id="form-btn-imagen-guardar">Guardar</button>
+                    <button class="form-submit-btn" type="button" id="form-btn-imagen-cancelar">Cancelar</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    <!-- interacciones -->
+    <div class="absolute-container" id="container-form-interaccion">
+        <div class="form-container">
+            <h3>Agregar dialogos del presentador</h3>
+            <form class="form" action="http://localhost:3035/api/interaccion/create" method="post" enctype="multipart/form-data" id="form-interaccion" >
+                <div class="form-group">
+                    <label for="interaccion-contexto">Contexto de la escena:</label>
+                    <textarea name="interaccion-contexto" id="interaccion-contexto" cols="30" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="interaccion-idioma">Idioma: </label>
+                    <input type="text" id="interaccion-idioma" name="interaccion-idioma"  value='Español' readonly required="">
+                </div>
+                <div class="form-group">
+                    <label for="interaccion-texto">Dialogos del presentador:</label>
+                    <textarea name="interaccion-texto" id="interaccion-texto" cols="30" rows="3"></textarea>
+                </div>
+                <div class="form-option-container">
+                    <button class="form-submit-btn" type="submit" id="form-btn-interaccion-guardar">Guardar</button>
+                    <button class="form-submit-btn" type="button" id="form-btn-interaccion-cancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="absolute-container" id="refresh-content-notifycation">
+        <div class="float-notifycation-container">
+            <p>Nuevos archivos añadidos, recarga la pagina pagina para sincronizarlos</p>
+            <button id="refresh-files-button">Recargar pagina</button>
+        </div>
+        
+    </div>
+
 </body>
-<script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
+<!-- <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
 <script src="https://kit.fontawesome.com/871fc34738.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 <script src="./index.js" type="module"></script>
 </html>

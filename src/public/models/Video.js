@@ -1,11 +1,14 @@
-import Escena from "./Escena";
-class Video{
-    constructor(escena_id, indice, contexto, guion_id, titulo, autor, tipo_video){
+import Escena from "./Escena.js";
+
+class Video extends Escena{
+    constructor(escena_id, indice, contexto, titulo, autor, guion_id){
         super(escena_id, indice, contexto, guion_id);
-        this.id = id;
         this.titulo = titulo;
         this.autor = autor;
-        this.tipo_video = tipo_video;
+
+        this.formulario = null;
+        this.estado = 'C';
+        this.generado = false;
     }
 }
 

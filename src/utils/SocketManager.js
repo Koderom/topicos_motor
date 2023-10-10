@@ -15,6 +15,7 @@ class SocketManager{
           client.send(JSON.stringify(object));
         }
       });
+      console.log("Socket: mensaje enviado a los clientes");
     }
 
     static getInstance() {
