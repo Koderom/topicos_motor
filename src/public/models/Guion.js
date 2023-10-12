@@ -9,12 +9,20 @@ import { InteraccionService } from "../services/InteraccionService.js";
 import { contenido } from '../scripts/contenido.js';
 
 class Guion{
-    constructor(id, titulo){
-        this.id = id;
+    constructor(titulo, programacion_id){
+        this.id = null
         this.titulo = titulo;
+        this.programacion_id = programacion_id;
         this.escenas = [];
         this.formulario;
     }
+
+    static getInstanceFromObject(object){
+        const mGion = new Guion(object.titulo, object.programacion_id);
+        if(object.id) mGion.id = object.id;
+        return mGion;
+    }
+    
     addEscena(escena){
         this.escenas.push(escena);
     }
@@ -38,7 +46,6 @@ class Guion{
                     contenido.mostrarNotificacion(`Escena # ${escena.indice} fue subido correctamente`);
                 })
             );
-            alert("archivos subidos");
         } catch (error) {
             return error;
         }

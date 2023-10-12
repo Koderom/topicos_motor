@@ -7,11 +7,18 @@ const Interaccion = require('./Interaccion');
 const Video = require('./Video');
 
 class Guion{
-    constructor(id, titulo){
-        this.id = id;
+    constructor(titulo, programacion_id){
+        this.id = null
         this.titulo = titulo;
+        this.programacion_id = programacion_id;
         this.escenas = [];
         this.formulario;
+    }
+
+    static getInstanceFromObject(object){
+        const mGion = new Guion(object.titulo, object.programacion_id);
+        if(object.id) mGion.id = object.id;
+        return mGion;
     }
 
     static async create(guion){
@@ -19,13 +26,13 @@ class Guion{
             const cliente = Conexion.newConexion();
             await cliente.connect();
             const query = `
-                INSERT INTO guiones(titulo) VALUES ($1) RETURNING id
+                INSERT INTO guiones(titulo, programacion_id) VALUES ($1,$2) RETURNING id
             `;
-            const params = [guion.titulo];
+            const params = [guion.titulo, guion.programacion_id];
             const response = await cliente.query(query, params);
             await cliente.end();
 
-            if(response.rowCount > 0) return response.row[0].id;
+            if(response.rowCount > 0) return response.rows[0].id;
             else return null;    
         } catch (error) {
             return error;

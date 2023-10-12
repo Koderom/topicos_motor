@@ -1,7 +1,7 @@
 import Escena from "../models/Escena.js";
 import Video from "../models/Video.js";
 const contenido = {}
-import { eliminarEscena } from "../index.js";
+import { eliminarEscena } from "../pages/guiones/index.js";
 // contenido.adicionarEscena = (escena) => {
 //     const guion = document.getElementById('messages-container');
 //     const messageItem = document.createElement('div');
@@ -30,16 +30,23 @@ contenido.adicionarEscenaVideo = (video) => {
     }
 }
 contenido.adicionarEscena = (escena) => {
+    const modificadores = {
+        'I': {text: "Imagen", color: '#63bdb3'},
+        'V': {text: "Video", color: '#c68846'},
+        'A': {text: "Audio", color: '#1c4e71'},
+        'D': {text: "Interaccion", color: '#e33927'},
+    };
     const guion = document.getElementById('messages-container');
     const messageItem = document.createElement('div');
     messageItem.className = 'card';
+    messageItem.style.backgroundColor = modificadores[escena.tipo_escena].color;
     messageItem.id=`escena_${escena.indice}`;
     messageItem.addEventListener('click', (event) => {
         eliminarEscena(escena.indice);
     });
     messageItem.innerHTML = `
     <div class="card">
-        <span class="card__title">Escena # ${escena.indice} </span> 
+        <span class="card__title">Escena # ${escena.indice} - tipo:${modificadores[escena.tipo_escena].text}</span> 
         <p class="card__text">${escena.contexto}</p>
         
     </div>

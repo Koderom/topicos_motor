@@ -11,6 +11,7 @@ class Interaccion extends Escena{
         this.formulario = null;
         this.estado = 'C';
         this.generado = false;
+        this.tipo_escena = 'D';
     }
 }
 export default Interaccion;

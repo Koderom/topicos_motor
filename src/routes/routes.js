@@ -10,6 +10,8 @@ const { AudioController } = require('../controllers/AudioController');
 const { ImagenController } = require('../controllers/ImagenController');
 const { InteraccionController } = require('../controllers/InteraccionController');
 const { EscenaController } = require('../controllers/EscenaController');
+const { ProgramaController } = require('../controllers/ProgramaController');
+const { ProgramacionController } = require('../controllers/ProgramacionController');
 
 const dotenv = require('dotenv').config();
 
@@ -41,8 +43,13 @@ router.post('/api/imagen/create', upload.single('imagen-archivo'), ImagenControl
 //rutas interacciones
 router.post('/api/interaccion/create', upload.none(), InteraccionController.create);
 
-//router.post('/api/guion-save', GuionController.save);
-//router.get('/api/guion', GuionController.getGuion);
+//rutas programas
+router.get('/api/programa', ProgramaController.getProgramas);
+router.post('/api/programa/create', ProgramaController.create);
+
+//rutas programacion
+router.get('/api/programacion', ProgramacionController.getProgramaciones);
+router.post('/api/programacion/create', ProgramacionController.create);
 
 router.post('/api/contenido/create', ServiceController.create);
 router.post('/wh/d-id', ServiceController.webhook_DID);

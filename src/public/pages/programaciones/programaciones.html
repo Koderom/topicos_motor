@@ -68,61 +68,44 @@
 <body>
     <main class="programaciones-container">
         <header class="programaciones-header">
-            <span class="title">Programas</span>
+            <span class="title">Programaciones</span>
         </header>
-        <div id="programas-list-container" class="programaciones-list-container">
+        <div id="programaciones-list-container" class="programaciones-list-container">
 
         </div>
-        <button id="btn-crear-programa">
+        <button id="btn-crear-programacion">
             crear nuevo
         </button>
     </main>
 
-    <div class="absolute-container" id="form-container-crear-programa">
+    <div class="absolute-container" id="form-container-crear-programacion">
         <div class="form-container">
-            <h3>Crear programa</h3>
-            <form class="form" action="http://localhost:3035/api/programa/create" method="post" enctype="application/x-www-form-urlencoded" id="form-crear-programa" >
+            <h3>Crear programacion</h3>
+            <form class="form" action="http://localhost:3035/api/programacion/create" method="post" enctype="application/x-www-form-urlencoded" id="form-crear-programacion" >
                 <div class="form-group">
                     <label for="programa-titulo">Titulo: </label>
-                    <input type="text" id="programa-titulo" name="titulo"  value=''required>
+                    <input type="text" id="programacion-titulo" name="titulo"  value=''required>
                 </div>
                 <div class="form-group">
-                    <label for="programa-descripcion">Descripcion: </label>
-                    <input type="text" id="programa-descripcion" name="descripcion">
+                    <label for="programacion-nro-episodio">Numero de episodio: </label>
+                    <input type="number" id="programacion-nro-episodio" name="nro_episodio"  value=''required>
                 </div>
                 <div class="form-group">
-                    <label for="programa-genero">Genero: </label>
-                    <input type="text" id="programa-genero" name="genero" >
+                    <label for="programacaion-descripcion">Descripcion: </label>
+                    <input type="text" id="programacaion-descripcion" name="descripcion"  value=''required>
                 </div>
                 <div class="form-group">
-                    <label for="programa-clasificacion">Clasificacion: </label>
-                    <input type="text" id="programa-clasificacion" name="clasificacion">
+                    <label for="programa-fecha-emision">Fecha de emision: </label>
+                    <input type="date" id="programa-titulo" name="fecha_emision"  value=''required>
                 </div>
-                <div class="form-group">
-                    <label for="programa-fecha-incio">Fecha de inicio de transmision: </label>
-                    <input type="date" id="programa-fecha-incio" name="fecha_inicio" required>
-                </div>
-                <div class="form-group">
-                    <label for="programa-estado">Estado: </label>
-                    <input type="text" id="programa-estado" name="estado" required>
-                </div>
-                <div class="form-group">
-                    <label for="programa-hora-emision">Horario de emision: </label>
-                    <input type="time" id="programa-hora-emision" name="horario_emision" required>
-                </div>
-                <div class="form-group">
-                    <label for="programa-duracion">Duración (minutos): </label>
-                    <input type="number" id="programa-duracion" name="duracion" required>
-                </div>
-
                 <div class="form-option-container">
-                    <button class="form-submit-btn" type="submit" id="form-btn-interaccion-guardar">Guardar</button>
-                    <button class="form-submit-btn" type="button" id="form-btn-crear-programa-cancelar">Cancelar</button>
+                    <button class="form-submit-btn" type="submit" id="form-btn-programacion-guardar">Guardar</button>
+                    <button class="form-submit-btn" type="button" id="form-btn-programacion-cancelar">Cancelar</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <script type="module" src="./index.js"></script>
+    <script type="module" src="./programaciones.js"></script>
 </body>
 </html>

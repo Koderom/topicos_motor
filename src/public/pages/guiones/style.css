@@ -51,12 +51,17 @@ body {
     /* flex-grow: 1; */
     margin: 0.3rem;
     display: flex;
+    font-size: 12px;
+    padding: 0.5rem;
     justify-content: center;
     align-items: center;
     border-radius: 0.2rem ;
     width: 20%;
     height: 100%;
     background-color: rgba(218, 218, 218, 0.459);
+}
+.escena p {
+    width: 100%;
 }
 #chat-container {
     box-sizing: content-box;

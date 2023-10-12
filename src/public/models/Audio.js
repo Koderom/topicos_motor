@@ -7,6 +7,7 @@ class Audio extends Escena{
         this.autor = autor;
         this.genero = genero;
 
+        this.tipo_escena = 'A';
         this.formulario = null;
         this.estado = 'C';
         this.generado = false;

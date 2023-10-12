@@ -6,10 +6,37 @@ DROP TABLE IF EXISTS avatares;
 DROP TABLE IF EXISTS escenas;
 DROP TABLE IF EXISTS archivos;
 DROP TABLE IF EXISTS guiones;
+DROP TABLE IF EXISTS programaciones;
+DROP TABLE IF EXISTS programas;
+
+CREATE TABLE programas(
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(150),
+    descripcion VARCHAR(250),
+    genero VARCHAR(150),
+    clasificacion VARCHAR(250),
+    fecha_inicio DATE,
+    estado VARCHAR(50),
+    horario_emision TIME,
+    duracion INTEGER
+);
+
+CREATE TABLE programaciones(
+    id SERIAL PRIMARY KEY,
+    nro_episodio INTEGER,
+    titulo VARCHAR(150),
+    descripcion VARCHAR(250),
+    fecha_emision DATE,
+    programa_id INTEGER,
+    FOREIGN KEY (programa_id) REFERENCES programas(id)
+);
 
 CREATE TABLE guiones(
     id SERIAL PRIMARY KEY,
-    titulo VARCHAR(150)
+    titulo VARCHAR(150),
+    programacion_id INTEGER,
+
+    FOREIGN KEY (programacion_id) REFERENCES programaciones(id)
 );
 
 CREATE TABLE archivos(
@@ -76,4 +103,4 @@ CREATE TABLE interacciones(
     FOREIGN KEY (avatar_id) REFERENCES avatares(actor_id)
 );
 
-INSERT INTO guiones(titulo) VALUES ('guion de pruebas') RETURNING id
+-- INSERT INTO guiones(titulo) VALUES ('guion de pruebas') RETURNING id
