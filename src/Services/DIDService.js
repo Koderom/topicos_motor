@@ -1,14 +1,15 @@
-const sdk = require('api')('@d-id/v4.2.0#1f3wxrelm7g7po0');
+const sdk = require('api')('@d-id/v4.2.0#g23r1clm7g7rlv');
 const {FileManager} = require('../utils/fileManager');
 const Archivo = require('../models/Archivo');
 const Interaccion = require('../models/Interaccion');
 const dotenv = require('dotenv').config();
-sdk.auth(process.env.API_KEY_D_ID);
+const axios = require('axios');
 
 const TIME_OUT = 30;
 const DIDService = {};
 const NGROK_PUBLIC_URL = process.env.NGROK_PUBLIC_URL;
-
+const credentials = `Basic ${process.env.API_KEY_D_ID}`;
+sdk.auth(credentials);
 
 DIDService.clipGenerate = async (text) => {
     try {
@@ -35,6 +36,28 @@ DIDService.clipGenerate = async (text) => {
     }
 }
 
+DIDService.talkGenerate = async (text) => {
+    try {
+        let resp = await sdk.createTalk({
+            driver_id: 'Vcq0R4a8F0',
+            script: {
+                type: 'text',
+                provider: {
+                    type: 'microsoft', voice_id: 'es-AR-ElenaNeural'
+                },
+                ssml: 'false',
+                input: `${text}`,
+            },
+            config: {fluent: 'false', pad_audio: '0.0', stitch: true},
+            source_url: 'https://clips-presenters.d-id.com/amy/Aq6OmGZnMt/Vcq0R4a8F0/image.png',
+            webhook: `${NGROK_PUBLIC_URL}/wh/d-id`
+        });
+        return resp.data;
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+}
 DIDService.storeVideoDID = async (data) => {
     try {
         const dResponse = {};
@@ -55,6 +78,36 @@ DIDService.storeVideoDID = async (data) => {
     }
 }
 
+DIDService.getPresentadores = async () => {
+    try {
+        const response = await axios.get(
+            'https://api.d-id.com/clips/presenters?limit=100', {
+                headers : {
+                    'accept' : 'application/json',
+                    'authorization' : `${credentials}`
+                }
+            }
+        );
+        return response.data.presenters;
+    } catch (error) {
+        
+    }
+}
+DIDService.getVoicesAvailable = async () => {
+    try {
+        const response = await axios.get(
+            'https://api.d-id.com/tts/voices?provider=microsoft', {
+                headers : {
+                    'accept' : 'application/json',
+                    'authorization' : `${credentials}`
+                }
+            }
+        );
+        return response.data;
+    } catch (error) {
+        
+    }
+}
 async function getPresenterImageUrlByID(presenterID){
     try {
         let resp = sdk.getPresenterById({id: 'amy-jcwCkr1grs'});

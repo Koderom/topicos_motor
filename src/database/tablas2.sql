@@ -8,6 +8,24 @@ DROP TABLE IF EXISTS archivos;
 DROP TABLE IF EXISTS guiones;
 DROP TABLE IF EXISTS programaciones;
 DROP TABLE IF EXISTS programas;
+DROP TABLE IF EXISTS usuarios;
+DROP TABLE IF EXISTS configuracion_presentadores;
+DROP TABLE IF EXISTS presentadores;
+
+CREATE TABLE usuarios(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(150) UNIQUE NOT NULL,
+    password VARCHAR(150) NOT NULL
+);
+
+CREATE TABLE presentadores(
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(150),
+    genero VARCHAR(50),
+    lenguaje VARCHAR(150),
+    presentador_url VARCHAR(255),
+    voz_provider_id VARCHAR(255)
+);
 
 CREATE TABLE programas(
     id SERIAL PRIMARY KEY,
@@ -18,7 +36,10 @@ CREATE TABLE programas(
     fecha_inicio DATE,
     estado VARCHAR(50),
     horario_emision TIME,
-    duracion INTEGER
+    duracion INTEGER,
+    presentador_id INTEGER,
+
+    FOREIGN KEY (presentador_id) REFERENCES presentadores(id)
 );
 
 CREATE TABLE programaciones(
@@ -28,6 +49,7 @@ CREATE TABLE programaciones(
     descripcion VARCHAR(250),
     fecha_emision DATE,
     programa_id INTEGER,
+
     FOREIGN KEY (programa_id) REFERENCES programas(id)
 );
 
@@ -60,13 +82,20 @@ CREATE TABLE escenas(
     FOREIGN KEY (archivo_id) REFERENCES archivos(id)
 );
 
-CREATE TABLE avatares(
-    actor_id VARCHAR(30) PRIMARY KEY,
-    presenter_id VARCHAR(50),
-    driver_id VARCHAR(50),
-    genero CHAR,
-    url_imagen VARCHAR(200)
-);
+-- CREATE TABLE presentadores (
+--     id SERIAL PRIMARY KEY,
+--     presenter_id VARCHAR(255),
+--     created_at TIMESTAMPTZ,
+--     thumbnail_url VARCHAR(255),
+--     preview_url VARCHAR(255),
+--     driver_id VARCHAR(255),
+--     image_url VARCHAR(255),
+--     gender VARCHAR(50),
+--     model_url VARCHAR(255),
+--     modified_at TIMESTAMPTZ,
+--     owner_id VARCHAR(255)
+-- );
+
 
 CREATE TABLE imagenes(
     id INTEGER PRIMARY KEY,
@@ -94,13 +123,13 @@ CREATE TABLE videos(
 
 CREATE TABLE interacciones(
     id INTEGER PRIMARY KEY,
-    idioma VARCHAR(100),
     texto TEXT,
-    avatar_id VARCHAR(30),
     clip_id VARCHAR(200),
 
-    FOREIGN KEY (id) REFERENCES escenas(id) ON DELETE CASCADE,
-    FOREIGN KEY (avatar_id) REFERENCES avatares(actor_id)
+    FOREIGN KEY (id) REFERENCES escenas(id) ON DELETE CASCADE
 );
 
+INSERT INTO usuarios(name, password) VALUES ('admin', '123456789');
 -- INSERT INTO guiones(titulo) VALUES ('guion de pruebas') RETURNING id
+INSERT INTO presentadores(nombre, genero, lenguaje, presentador_url, voz_provider_id)
+    VALUES ('prentador 1', 'male','Spanish (Spain)','https://cdn.aarp.net/content/dam/aarp/entertainment/television/2020/02/1140-alex-trebek-jeopardy-esp.jpg','es-ES-DarioNeural')

@@ -12,6 +12,10 @@ const { InteraccionController } = require('../controllers/InteraccionController'
 const { EscenaController } = require('../controllers/EscenaController');
 const { ProgramaController } = require('../controllers/ProgramaController');
 const { ProgramacionController } = require('../controllers/ProgramacionController');
+const { UsuarioController } = require('../controllers/UsuarioController');
+const { PresentadorController } = require('../controllers/PresentadorController');
+const { VocesController } = require('../controllers/VocesController');
+const { ConfiguracionPresentadorController } = require('../controllers/ConfiguracionPresentadorController');
 
 const dotenv = require('dotenv').config();
 
@@ -26,31 +30,33 @@ const storage = multer.diskStorage({
 const upload = multer({storage});
 
 router.get('/api', controller.index);
+router.get('/api/test', PresentadorController.getAll);
 router.get('/api/start', controller.start);
-//escenas
-router.get('/api/escena/delete', EscenaController.delete);
-//traer datos
+
+router.post('/api/login', UsuarioController.login);
+
+router.get('/api/programa', ProgramaController.getProgramas);
+router.post('/api/programa/create',upload.none(), ProgramaController.create);
+
+router.get('/api/programacion', ProgramacionController.getProgramaciones);
+router.post('/api/programacion/create', upload.none(),ProgramacionController.create);
+router.get('/api/programacion/get_programa', ProgramacionController.getPrograma);
+
+
 router.get('/api/guion', GuionController.getData);
-//rutas videos
+router.get('/api/guion/programacion', GuionController.getProgramacion);
+
+router.get('/api/escena/delete', EscenaController.delete);
 router.post('/api/video/create', upload.single('video-archivo'), VideoController.create);
-
-//rutas audios
 router.post('/api/audio/create', upload.single('audio-archivo'), AudioController.create);
-
-//rutas imagenes
 router.post('/api/imagen/create', upload.single('imagen-archivo'), ImagenController.create);
-
-//rutas interacciones
 router.post('/api/interaccion/create', upload.none(), InteraccionController.create);
 
-//rutas programas
-router.get('/api/programa', ProgramaController.getProgramas);
-router.post('/api/programa/create', ProgramaController.create);
 
-//rutas programacion
-router.get('/api/programacion', ProgramacionController.getProgramaciones);
-router.post('/api/programacion/create', ProgramacionController.create);
+router.get('/api/presentador/getAll', PresentadorController.getAll);
 
+router.get('/api/voces/getAll', VocesController.getAll);
+router.post('/api/configuracionPresentador/create', upload.none(), ConfiguracionPresentadorController.create);
 router.post('/api/contenido/create', ServiceController.create);
 router.post('/wh/d-id', ServiceController.webhook_DID);
 

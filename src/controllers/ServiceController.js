@@ -16,6 +16,7 @@ ServiceController.create = async (req, res) => {
 
 ServiceController.webhook_DID = async (req, res) => {
     try {
+        console.log("intentando almacenar interaccion");
         const data = req.body;
         const info = await DIDService.storeVideoDID(data);
         SocketManager.sendObjectAll({type: "wh-did-respuesta", body: info});

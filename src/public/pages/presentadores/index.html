@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgb(219, 219, 219);
+            overflow: hidden;
+            
+        }
+        .programaciones-container{
+            width: 95%;
+            height: 95%;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid rgba(102, 102, 102, 0.411);
+        }
+        .programaciones-header{
+            height: 2.5rem;
+            width: 100%;
+            border-bottom: 1px solid rgba(102, 102, 102, 0.411);
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+        }
+        .programaciones-list-container{
+            height: 70%;
+            width: 95%;
+            margin: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(102, 102, 102, 0.411);
+            display: flex;
+            flex-direction: row;
+            /* justify-content: space-between; */
+            padding: 2rem;
+        }
+        .absolute-container{
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.658);
+
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        a{
+            width: fit-content;
+            height: fit-content;
+            text-decoration: none;
+        }
+        a:visited, a:link, a:focus{
+            color: black;
+        }
+        .btn-crear-programa{
+            align-self: flex-end;
+            margin: 0 2rem;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../../styles/componentes.css">
+    <title>Document</title>
+</head>
+<body>
+    <main class="programaciones-container">
+        <header class="programaciones-header">
+            <span class="title">Configurar presentadores</span>
+        </header>
+        <div id="programas-list-container" class="programaciones-list-container"></div>
+        <div>
+            <button class="btn-crear-configuracion" id="btn-crear-configuracion">Crear nueva configuracion</button>
+        </div>
+    </main>
+
+    <div class="absolute-container" id="form-container-crear-configuracion">
+        <div class="form-container colorful-form">
+            <form class="form" action="" method="post" enctype="application/x-www-form-urlencoded" id="form-crear-configuracion" >
+                
+                <div class="form-group">
+                    <label class="form-label" for="programa-titulo">Nombre de la configuracion: </label>
+                    <input class="form-input" type="text" id="programa-titulo" name="nombre"  value=''required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="presentador_id">Seleccionar presentador: </laber>
+                    <select class="form-input" name="presentador_id" id="presentador_id"></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="presentador_url">Url de un presentador: </laber>
+                    <input class="form-input" type="text" id="presentador_url" name="presentadorUrl"  value=''>
+                </div>
+                <div class="form-group">
+                    <img src="" alt="" id="img-preview-presentador" height="280px">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="lenguaje">Seleccionar un idioma: </laber>
+                    <select class="form-input" name="lenguaje" id="lenguajeSelector">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="genero">Seleccionar un genero: </laber>
+                    <select class="form-input" name="genero" id="generoSelector">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="voz">Seleccionar un opcion: </laber>
+                    <select class="form-input" name="vozProviderId" id="vozSelector">
+                    </select>
+                </div>
+
+                <div class="form-option-container">
+                    <button class="form-button" type="submit" id="form-btn-interaccion-guardar">Guardar</button>
+                    <button class="form-button" type="button" id="form-btn-crear-configuracion-cancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>

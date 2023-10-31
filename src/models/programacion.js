@@ -54,6 +54,29 @@ class Programacion{
             return error.message;
         }
     }
+    
+    static async getPrograma(idProgramcion){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT programas.*
+                FROM  programas
+                INNER JOIN programaciones ON programaciones.programa_id = programas.id
+                WHERE programacion.id = idProgramacion
+            `;
+            const params = [idProgramcion]
+            const response = await cliente.query(query, params);
+            await cliente.end();
+
+            if(response.rowCount > 0) return response.rows[0];
+            else return null;    
+        } catch (error) {
+            console.log(error);
+            return error.message;
+        }
+    }
+
 }
 
 module.exports = Programacion;

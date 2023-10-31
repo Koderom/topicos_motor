@@ -14,6 +14,7 @@ import { eliminarEscena } from "../pages/guiones/index.js";
 
 //     if(escena.archivo) contenido.adicionarArchivo(escena.archivo);
 // };
+
 contenido.adicionarEscenaVideo = (video) => {
     if(video instanceof Video){
         const guion = document.getElementById('messages-container');
@@ -29,42 +30,60 @@ contenido.adicionarEscenaVideo = (video) => {
         guion.appendChild(messageItem);
     }
 }
-contenido.adicionarEscena = (escena) => {
-    const modificadores = {
-        'I': {text: "Imagen", color: '#63bdb3'},
-        'V': {text: "Video", color: '#c68846'},
-        'A': {text: "Audio", color: '#1c4e71'},
-        'D': {text: "Interaccion", color: '#e33927'},
-    };
+
+const modificadores = {
+    'I': {text: "Imagen", color: '#63bdb3'},
+    'V': {text: "Video", color: '#c68846'},
+    'A': {text: "Audio", color: '#1c4e71'},
+    'D': {text: "Interaccion", color: '#e33927'},
+};
+contenido.adicionarEscena = (escena) => {  
     const guion = document.getElementById('messages-container');
     const messageItem = document.createElement('div');
-    messageItem.className = 'card';
-    messageItem.style.backgroundColor = modificadores[escena.tipo_escena].color;
+    messageItem.className = 'interacciones-card';
+    messageItem.style.border = `5px solid ${modificadores[escena.tipo_escena].color}`;
     messageItem.id=`escena_${escena.indice}`;
-    messageItem.addEventListener('click', (event) => {
-        eliminarEscena(escena.indice);
-    });
+    // messageItem.addEventListener('click', (event) => {
+    //     eliminarEscena(escena.indice);
+    // });
     messageItem.innerHTML = `
-    <div class="card">
-        <span class="card__title">Escena # ${escena.indice} - tipo:${modificadores[escena.tipo_escena].text}</span> 
-        <p class="card__text">${escena.contexto}</p>
-        
+    <div>
+        <span class="interacciones-card-title">Escena # ${escena.indice} - tipo:${modificadores[escena.tipo_escena].text}</span> 
+        <p class="interacciones-card-text">${escena.contexto}</p>
     </div>
     `;
+    const optionsContainer = document.createElement('div');
+    optionsContainer.className = 'interacciones-card-options';
+    const deleteIcon = document.createElement('i');
+    deleteIcon.classList.add('fa-solid', 'fa-trash', 'icon');
+    deleteIcon.addEventListener('click', (event) => {
+        eliminarEscena(escena.indice);
+    });
+    messageItem.addEventListener('mouseover', (event) => {
+        deleteIcon.style.color = 'red';
+    })
+    messageItem.addEventListener('mouseout', (event) => {
+        deleteIcon.style.color = 'white';
+    })
+    optionsContainer.appendChild(deleteIcon);
+    messageItem.appendChild(optionsContainer);
     guion.appendChild(messageItem);
 }
+
 contenido.borrarEscenaItem = (escena_indice) => {
     console.log('se preciono borrar');
     const itemEscena = document.getElementById(`escena_${escena_indice}`);
     const guion = document.getElementById('messages-container');
     guion.removeChild(itemEscena);
 }
+
 contenido.limpiar = () => {
     const guion = document.getElementById('messages-container');
     const escena_container = document.getElementById('escenas-container');
     escena_container.innerHTML = "";
     guion.innerHTML = "";
 }
+
 contenido.adicionarArchivo = (escena) => {
     if(!escena.archivo)return;
     const escena_container = document.getElementById('escenas-container');
@@ -107,6 +126,7 @@ contenido.mostrarNotificacion = (textoNoticacion) => {
         contenedor.style.display = 'none';
     });
 }
+
 contenido.showRefreshNotifycation = () => {
     const notifycationContainer = document.getElementById('refresh-content-notifycation');
     notifycationContainer.style.display = 'flex';

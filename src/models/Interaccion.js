@@ -13,6 +13,14 @@ class Interaccion extends Escena{
         this.estado = 'C';
         this.generado = false;
     }
+    
+    getInstanceFromObject(object){
+        try {
+            return new Interaccion(object.id, object.indice, object.idioma, object.contexto, object.texto, object.guion_id, object.avatar_id, object.archivo_id );
+        } catch (error) {
+            return error;
+        }
+    }
 
     static async create(interaccion) {
         try {
@@ -28,6 +36,7 @@ class Interaccion extends Escena{
             if(response.rowCount > 0) return response.rows[0].id;
             else return null;    
         } catch (error) {
+            console.log(error);
             return error;
         }
     }

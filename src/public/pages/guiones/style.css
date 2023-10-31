@@ -1,3 +1,4 @@
+@import url('../../styles/googlefonts/fonts.css');
 * {
     margin: 0;
     padding: 0;
@@ -6,10 +7,13 @@
 
 body {
     font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: row;
     background: rgb(32, 32, 32);
     overflow: hidden;
@@ -19,6 +23,7 @@ body {
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     padding: 2rem;
 }
@@ -158,14 +163,10 @@ img {
 } */
 
 #notificacion-container {
-    width: 100%;
+    width: fit-content;
     margin: 1rem 0;
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     top: 0;
-    left: 0;
     box-sizing: border-box;
     color: rgba(255, 255, 255, 0.836);
     display: none;
@@ -238,3 +239,49 @@ span {
     justify-content: center;
     align-items: center;
 }
+
+a{
+    width: fit-content;
+    height: fit-content;
+    text-decoration: none;
+}
+
+a:visited, a:link, a:focus{
+    color: rgb(255, 255, 255);
+}
+a:hover{
+    color: #587dcc;
+}
+.icon{
+    color: white;
+    cursor: pointer;
+}
+.icon:hover{
+    color: #587dcc;
+}
+
+/*interacciones-card*/
+.interacciones-card{
+    width: 100%;
+    height: min-content;
+    font-size: 12px;
+    background: #f7f9f9;
+    padding: 0.5rem;
+    border-radius: 5px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+}
+.interacciones-card .interacciones-card-options{
+    display: flex;
+    flex-direction: column;
+}
+.interacciones-card .interacciones-card-title{
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.interacciones-card .interacciones-card-text{
+    font-weight: 300;
+}
+
+/*end interacciones-card*/

@@ -1,0 +1,76 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(219, 219, 219);
+    overflow: hidden;
+    
+}
+.programaciones-container{
+    width: 95%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid rgba(102, 102, 102, 0.411);
+}
+.programaciones-header{
+    height: 2.5rem;
+    width: 100%;
+    border-bottom: 1px solid rgba(102, 102, 102, 0.411);
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+}
+.programaciones-list-container{
+    height: 70%;
+    width: 95%;
+    margin: 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(102, 102, 102, 0.411);
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    padding: 2rem;
+}
+.absolute-container{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.658);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+a{
+    width: fit-content;
+    height: fit-content;
+    text-decoration: none;
+}
+a:visited, a:link, a:focus{
+    color: black;
+}
+.btn-crear-programa{
+    align-self: flex-end;
+    margin: 0 2rem;
+}
+
+.form_title{
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+}

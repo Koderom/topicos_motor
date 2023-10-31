@@ -9,7 +9,7 @@ ProgramaController.create = async (req, res) => {
         const mPrograma = Programa.getInstanceFromObject(req.body);
         console.log(mPrograma);
         const idPrograma = await Programa.create(mPrograma);
-        res.redirect(`${url}/pages/programaciones/programaciones.html?idPrograma=${idPrograma}`);
+        res.status(200).send('ok');
     } catch (error) {
         console.log(error);
         res.status(400).send(error);

@@ -1,4 +1,4 @@
-.card {
+/* .card {
     width: 100%;
     height: min-content;
     font-size: 12px;
@@ -13,11 +13,11 @@
 
 .card__title {
     font-size: 0.8rem;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .card__text {
-    font-weight: 500;
+    font-weight: 300;
 }
 
 .card__button {
@@ -39,4 +39,4 @@
 
 .card__button:hover {
     background-color: #272C30;
-}
+} */

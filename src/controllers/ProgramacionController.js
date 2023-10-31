@@ -32,4 +32,14 @@ ProgramacionController.getProgramaciones = async (req, res) => {
         res.status(400).send(error);
     }
 }
+ProgramacionController.getPrograma = async (req, res) => {
+    try {
+        const idProgramacion = req.query.idProgramacion;
+        const programa = await Programacion.getPrograma(idProgramacion);
+        res.status(200).send(programa);
+    } catch (error) {
+        console.log(error);
+        res.status(400).send(error);
+    }
+}
 module.exports = {ProgramacionController};

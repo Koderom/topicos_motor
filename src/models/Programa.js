@@ -1,7 +1,7 @@
 const {Conexion} = require('../database/conexion');
 
 class Programa{
-    constructor(titulo, descripcion, genero, clasificacion, fecha_inicio, estado, horario_emision, duracion){
+    constructor(titulo, descripcion, genero, clasificacion, fecha_inicio, estado, horario_emision, duracion,presentador_id){
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.genero = genero;
@@ -10,9 +10,11 @@ class Programa{
         this.estado = estado;
         this.horario_emision = horario_emision;
         this.duracion = duracion;
+        this.presentador_id = presentador_id;
     }
+    
     static getInstanceFromObject(object) {
-        return new Programa(object.titulo,object.descripcion, object.genero, object.clasificacion, object.fecha_inicio, object.estado, object.horario_emision, object.duracion);
+        return new Programa(object.titulo,object.descripcion, object.genero, object.clasificacion, object.fecha_inicio, object.estado, object.horario_emision, object.duracion, object.presentador_id);
     }
 
     static async create(programa) {
@@ -20,10 +22,10 @@ class Programa{
             const cliente = Conexion.newConexion();
             await cliente.connect();
             const query = `
-                INSERT INTO programas(titulo, descripcion, genero, clasificacion, fecha_inicio, estado, horario_emision, duracion) 
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;
+                INSERT INTO programas(titulo, descripcion, genero, clasificacion, fecha_inicio, estado, horario_emision, duracion, presentador_id) 
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id;
             `;
-            const params = [programa.titulo, programa.descripcion, programa.genero, programa.clasificacion, programa.fecha_inicio, programa.estado, programa.horario_emision, programa.duracion];
+            const params = [programa.titulo, programa.descripcion, programa.genero, programa.clasificacion, programa.fecha_inicio, programa.estado, programa.horario_emision, programa.duracion, programa.presentador_id];
             const response = await cliente.query(query, params);
             await cliente.end();
 

@@ -6,23 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet" />
-    <link href="https://fonts.bunny.net/css?family=roboto:300,400,500,700,900" rel="stylesheet" />
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="../../styles/formularios.css">
     <link rel="stylesheet" href="../../styles/cards.css">
+    <link rel="stylesheet" href="./../../assets/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="./../../assets/fontawesome/css/brands.css">
+    <link rel="stylesheet" href="./../../assets/fontawesome/css/solid.css">
     <title>Avatar Twilio</title>
-
-    </style>
 </head>
-
 <body>
-    <div id="notificacion-container">
-        <div class="notificacion-message" id="notificacion-text-container">
-            <i class="fas fa-exclamation-circle"></i>
-            <span id="notificacion">Esta seria la notificacion</span>
-        </div>
-    </div>
     <div class="recursos-container">
+        <div id="notificacion-container">
+            <div class="notificacion-message" id="notificacion-text-container">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="notificacion">Esta seria la notificacion</span>
+            </div>
+        </div>
         <div id="video-container" class="video-container">
             <!-- <video id="my-video" class="video-js" controls preload="auto" poster="./assets/default_music_poster.jpg" data-setup="{}" ></video> -->
         </div>
@@ -33,7 +32,7 @@
     <div id="chat-container">
         <div class="chat-title">
             Guion: 
-            <span id="btn-guardar">Guardar</span>
+            <a id="btn-volver" class="btn-guardar" href="#" ><i class="fa-solid fa-arrow-left"></i> Volver </a>
         </div>
         <div id="messages-container">
         </div>

@@ -1,4 +1,5 @@
 const InteraccionService = {};
+const authToken = localStorage.getItem('authToken');
 
 InteraccionService.create = async (interaccion) => {
     try {
@@ -10,7 +11,9 @@ InteraccionService.create = async (interaccion) => {
         const options = {
             method: 'POST', 
             body: formulario, 
-            //headers: {"Content-Type": "application/json"}
+            headers: {
+                "Authorization" : `Bearer ${authToken}`
+            }
         };
         const response = await fetch(url, options);
         if(!response.ok) throw new Error("WARN", response.status);

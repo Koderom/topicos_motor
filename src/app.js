@@ -23,6 +23,13 @@ wss.on('connection', function connection(ws){
 
 
 const routes = require('./routes/routes');
+const middleware = require('./middlewares/middleware');
+
+app.use((req, res, next) => {
+    if (req.path === '/api/login') next();
+    else middleware.auth(req, res, next);
+});
+
 app.use(routes);
 
 server.listen(SERVER_PORT, () => {

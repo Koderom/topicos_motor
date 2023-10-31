@@ -1,0 +1,12 @@
+@import './normalize.css';
+@import '../styles/googlefonts/fonts.css';
+
+*{
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+}

@@ -10,7 +10,7 @@ import { EscenaService } from '../../services/EscenaService.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 const idGuion = urlParams.get('idGuion');
-const idProgramacion = urlParams.get('idProgramacion');
+let idProgramacion = urlParams.get('idProgramacion');
 
 let mGuion = {};
 //const mGuion = new Guion(1, 'Guion de prueba');
@@ -51,7 +51,6 @@ ws.addEventListener('error', socket.error);
 
 window.addEventListener('load', async () => {
     mGuion = Guion.getInstanceFromObject({id: idGuion, titulo:'Guion de prueba', programacion_id:idProgramacion});
-    console.log(mGuion);
     await cargarData();
 });
  
@@ -59,6 +58,7 @@ async function cargarData(){
     contenido.limpiar();
     contenido.mostrarNotificacion("Cargando datos ...");
     const data = await GuionService.getData(mGuion.id);
+    console.log(data);
     const escenas = data.escenas;
     escenas.forEach( escena => {
         contenido.adicionarEscena(escena);
@@ -224,13 +224,13 @@ function eliminarEscena(escena_indice) {
     mGuion.escenas.forEach( (escena, i) => {
         if(escena.indice == escena_indice) index = i;
     })
-    if(mGuion.escenas[index].archivo){
+    if(mGuion.escenas[index].id){
         contenido.borrarEscenaItem(escena_indice);
         console.log(mGuion);
         mGuion.escenas[index].borrar = true;
     }else{
         mGuion.escenas.splice(index,1);
-        contenido.borrarEscenaItem(escena_indice)
+        contenido.borrarEscenaItem(escena_indice);
     }
     console.log(mGuion);
 }
@@ -248,6 +248,20 @@ const refreshFilesButton = document.getElementById('refresh-files-button');
 refreshFilesButton.addEventListener('click', (event) => {
     location.reload();
 });
+
+// boton volver
+let btnVolverClickState = false;
+const btnVolver = document.getElementById('btn-volver');
+btnVolver.addEventListener('click', async (event) => {
+    if(btnVolverClickState){
+        event.preventDefault();
+        return;
+    }
+    btnVolverClickState = true;
+    let programacion = await GuionService.getProgramacion(idGuion);
+    window.location.href = `http://localhost:3035/pages/programaciones/programaciones.html?idPrograma=${programacion.programa_id}`;
+});
+
 // const videoRep = document.getElementById('my-video');
 // const autoRepButton = document.getElementById('auto-rep');
 // //videoRep.style.display = 'none';

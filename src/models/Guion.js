@@ -50,7 +50,7 @@ class Guion{
             await cliente.end();
 
             if(response.rowCount > 0) return response.rows[0];
-            else return null;    
+            else return {};    
         } catch (error) {
             return error;
         }
@@ -70,6 +70,26 @@ class Guion{
             await cliente.end();
 
             if(response.rowCount > 0) return response.rows;
+            else return null;    
+        } catch (error) {
+            return error;
+        }
+    }
+    static async getProgamacion(guion_id){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT programaciones.*
+                FROM programaciones
+                INNER JOIN guiones ON guiones.programacion_id = programaciones.id
+                WHERE guiones.id = $1
+            `;
+            const params = [guion_id];
+            const response = await cliente.query(query, params);
+            await cliente.end();
+
+            if(response.rowCount > 0) return response.rows[0];
             else return null;    
         } catch (error) {
             return error;
