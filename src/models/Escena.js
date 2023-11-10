@@ -52,7 +52,7 @@ class Escena{
             const cliente = Conexion.newConexion();
             await cliente.connect();
             const query = `
-                SELECT * FROM  escenas WHERE guion_id = $1
+                SELECT * FROM  escenas WHERE guion_id = $1 ORDER BY indice 
             `;
             const params = [guion_id];
             const response = await cliente.query(query, params);

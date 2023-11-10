@@ -6,8 +6,22 @@ PresentadorController.getAll = async (req, res) => {
     try {
         
         let presentadores = await Presentador.getAll();
-        if(presentadores.length == 0) presentadores = await cargarPresentadores();
+        //if(presentadores.length == 0) presentadores = await cargarPresentadores();
+        console.log(presentadores)
         res.status(200).send(presentadores);
+    } catch (error) {
+        console.log(error);
+        res.status(400).send(error);
+    }
+}
+PresentadorController.create = async (req, res) => {
+    try {   
+        let params = req.body;
+        let idPresentador = await Presentador.create(params);
+        if(idPresentador){
+            let presentadores = await Presentador.getAll();
+            res.status(200).send(presentadores);
+        }else throw new Error('Error al crear presentador');
     } catch (error) {
         console.log(error);
         res.status(400).send(error);

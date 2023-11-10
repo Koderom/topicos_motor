@@ -4,7 +4,7 @@ const ConfiguracionPresentadorService = {};
 ConfiguracionPresentadorService.create = async (dataForm) => {
     try {
         const formulario = new FormData(dataForm);
-        const url = 'http://localhost:3035/api/configuracionPresentador/create';
+        const url = 'http://localhost:3035/api/presentador/create';
         const options = {
             method: 'POST', body: formulario,
             headers:{

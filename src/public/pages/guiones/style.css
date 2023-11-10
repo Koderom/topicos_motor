@@ -1,4 +1,4 @@
-@import url('../../styles/googlefonts/fonts.css');
+/* @import url('../../styles/googlefonts/fonts.css');
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@ body {
     flex-direction: row;
     background: rgb(32, 32, 32);
     overflow: hidden;
-}
+} */
 .recursos-container{
     width: 75%;
     height: 100%;
@@ -54,7 +54,7 @@ body {
 }
 .escena{
     /* flex-grow: 1; */
-    margin: 0.3rem;
+    margin: 0.5rem;
     display: flex;
     font-size: 12px;
     padding: 0.5rem;
@@ -68,7 +68,7 @@ body {
 .escena p {
     width: 100%;
 }
-#chat-container {
+/* #chat-container {
     box-sizing: content-box;
     width: 25%;
     height: 95%;
@@ -80,26 +80,16 @@ body {
     border-radius: 1rem;
     border: 1px solid rgb(107, 107, 107);
 
-}
-
-#messages-container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-}
+} */
 
 
 
-video, .video-js {
-    /* width: 100%; */
+
+/* video, .video-js {
     width: 100%;
     height: 100%;
-}
+} */
 
-img {
-    height: 100%;
-}
 .escena-image{
     height: 100%;
 }
@@ -163,10 +153,12 @@ img {
 } */
 
 #notificacion-container {
-    width: fit-content;
-    margin: 1rem 0;
+    width: max-content;
     position: absolute;
-    top: 0;
+    top: 2rem;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
     box-sizing: border-box;
     color: rgba(255, 255, 255, 0.836);
     display: none;
@@ -262,12 +254,15 @@ a:hover{
 
 /*interacciones-card*/
 .interacciones-card{
-    width: 100%;
+    box-sizing: border-box;
+    margin: 1rem;
+    color: white;
     height: min-content;
     font-size: 12px;
-    background: #f7f9f9;
+    background: transparent;
     padding: 0.5rem;
     border-radius: 5px;
+    border: 1px solid white;
     justify-content: space-between;
     display: flex;
     flex-direction: row;
@@ -277,11 +272,9 @@ a:hover{
     flex-direction: column;
 }
 .interacciones-card .interacciones-card-title{
-    font-size: 0.8rem;
     font-weight: 600;
 }
 .interacciones-card .interacciones-card-text{
     font-weight: 300;
 }
 
-/*end interacciones-card*/

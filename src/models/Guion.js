@@ -52,7 +52,7 @@ class Guion{
             if(response.rowCount > 0) return response.rows[0];
             else return {};    
         } catch (error) {
-            return error;
+            throw error;
         }
     }
     
@@ -102,10 +102,14 @@ class Guion{
             escenas = await Promise.all(
                 escenas.map( async (escena) => {
                     const escenaWithChild = await this.getChildEscena(escena);
-                    escenaWithChild.archivo = await Archivo.getArchivo(escena.archivo_id);
-                    return escenaWithChild;
-                })
+                    if(escenaWithChild){
+                        escenaWithChild.archivo = await Archivo.getArchivo(escena.archivo_id);
+                        return escenaWithChild;
+                    }
+                }).filter( async escena => escena instanceof Promise)
             );
+            escenas = escenas.filter( escena => escena != undefined)
+            
             return escenas;
         } catch (error) {
             return error;

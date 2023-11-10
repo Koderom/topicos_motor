@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./../../styles/componentes.css">
+    <link rel="stylesheet" href="../../global/global.css">
     <link rel="stylesheet" href="programas.css">
     <title>TvStudioHub</title>
 </head>
@@ -16,7 +17,7 @@
 
         </div>
         <div>
-            <button id="btn-configurar-presentadores">Configurar presentadores</button>
+            <!-- <button id="btn-configurar-presentadores">Configurar presentadores</button> -->
             <button class="btn-crear-programa" id="btn-crear-programa">crear nuevo</button>
         </div>
         
@@ -37,7 +38,11 @@
 
                 <div class="form-group">
                     <label class="form-label" for="presentador_selector">Seleccione un presentador: </label>
-                    <select class="form-input" name="presentador_id" id="presentador_selector" ></select>
+
+                    <div class="flex_row_container">
+                        <select class="form-input" name="presentador_id" id="presentador_selector" ></select>
+                        <button type="button" id="btn_add_presentador"><i class="fa-solid fa-plus"></i></button>
+                    </div>
                 </div>
 
                 <div class="form-group">

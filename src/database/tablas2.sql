@@ -132,4 +132,5 @@ CREATE TABLE interacciones(
 INSERT INTO usuarios(name, password) VALUES ('admin', '123456789');
 -- INSERT INTO guiones(titulo) VALUES ('guion de pruebas') RETURNING id
 INSERT INTO presentadores(nombre, genero, lenguaje, presentador_url, voz_provider_id)
-    VALUES ('prentador 1', 'male','Spanish (Spain)','https://cdn.aarp.net/content/dam/aarp/entertainment/television/2020/02/1140-alex-trebek-jeopardy-esp.jpg','es-ES-DarioNeural')
+    VALUES ('prentador 1', 'male','Spanish (Spain)','https://cgfaces.com/collection/preview/0f3e1b79-d4f5-4d1f-81ce-a70fb0cef7a2.jpg','es-ES-DarioNeural'),
+    VALUES ('prentador 2', 'female','Spanish (Arg)','https://img.freepik.com/fotos-premium/mujer-encuentra-oficina-brazos-cruzados_57490-363.jpg?size=626&ext=jpg','es-AR-ElenaNeural')

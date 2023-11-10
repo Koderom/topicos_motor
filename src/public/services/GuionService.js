@@ -1,3 +1,5 @@
+import Guion from './../models/Guion.js';
+
 const GuionService = {};
 const authToken = localStorage.getItem('authToken');
 
@@ -11,9 +13,10 @@ GuionService.getData = async (guion_id) => {
             }
         });
         let data = await response.json();
-        return data;
+        const mGuion = parseResponseToGuion(data);
+        return mGuion;
     } catch (error) {
-        return error;
+        throw error;
     }
 }
 GuionService.getProgramacion = async (guion_id) => {
@@ -31,6 +34,15 @@ GuionService.getProgramacion = async (guion_id) => {
     } catch (error) {
         return error;
     }
+}
+
+function parseResponseToGuion(object){
+    const mGuion = new Guion();
+    mGuion.id = object.id;
+    mGuion.titulo = object.titulo;
+    mGuion.programacion_id = object.programacion_id;
+    mGuion.escenas = object.escenas;
+    return mGuion;
 }
 
 export {GuionService}

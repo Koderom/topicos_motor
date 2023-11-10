@@ -8,6 +8,7 @@ GuionController.getData = async (req, res) => {
         const guionId = req.query.guion_id;
         const guion = await Guion.getGuion(guionId);
         guion.escenas = await Guion.getEscenas(guionId);
+        console.log(guion)
         res.status(200).send(guion);
     } catch (error) {
         console.log(error);

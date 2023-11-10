@@ -1,6 +1,7 @@
 const Archivo = require('../models/Archivo');
 const Escena = require('../models/Escena');
 const Interaccion = require('../models/Interaccion');
+const Presentador = require('../models/Presentador');
 const {DIDService} = require('../Services/DIDService');
 
 const InteraccionController = {};
@@ -8,9 +9,11 @@ const InteraccionController = {};
 InteraccionController.create = async (req, res) =>{
     try {
         const data = req.body;
+        const guionID = data['interaccion-guion-id'];
+        const presentador = await Presentador.getPresentadorFromGuionId(guionID);
         console.log(data);
-        const interaccion = new Interaccion(null, data['interaccion-indice'], data['interaccion-contexto'], data['interaccion-idioma'], data['interaccion-texto'], data['interaccion-guion-id'], null, null);
-        const clipDiD = await DIDService.clipGenerate(interaccion.texto);
+        const interaccion = new Interaccion(null, data['interaccion-indice'], data['interaccion-contexto'], data['interaccion-texto'], data['interaccion-guion-id'], null);
+        const clipDiD = await DIDService.talkGenerate(interaccion.texto, presentador);
         const escena = interaccion.getEscenaInstance();
         const escenaId = await Escena.create(escena);
         if(escenaId){

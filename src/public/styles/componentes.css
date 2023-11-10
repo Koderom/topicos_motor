@@ -20,6 +20,7 @@ a > .card{
 }
 .card{
     width: 12rem;
+    box-sizing: content-box;
     height: fit-content;
     border-radius: 3px;
     box-shadow: 0 0 2px 1px rgb(180, 180, 180);

@@ -43,7 +43,7 @@ class Archivo{
             if(response.rowCount > 0) return response.rows[0];
             else return null;    
         } catch (error) {
-            return error;
+            return null;
         }
     }
 }

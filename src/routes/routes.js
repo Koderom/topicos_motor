@@ -54,9 +54,10 @@ router.post('/api/interaccion/create', upload.none(), InteraccionController.crea
 
 
 router.get('/api/presentador/getAll', PresentadorController.getAll);
+router.post('/api/presentador/create', upload.none(), PresentadorController.create);
 
 router.get('/api/voces/getAll', VocesController.getAll);
-router.post('/api/configuracionPresentador/create', upload.none(), ConfiguracionPresentadorController.create);
+//router.post('/api/configuracionPresentador/create', upload.none(), ConfiguracionPresentadorController.create);
 router.post('/api/contenido/create', ServiceController.create);
 router.post('/wh/d-id', ServiceController.webhook_DID);
 

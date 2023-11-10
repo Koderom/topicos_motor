@@ -2,11 +2,9 @@ const Escena = require('./Escena');
 const {Conexion} = require('../database/conexion')
 
 class Interaccion extends Escena{
-    constructor(id, indice, contexto, idioma, texto,  guion_id, avatar_id, archivo_id){
+    constructor(id, indice, contexto, texto,  guion_id, archivo_id){
         super(id, indice, contexto, 'D', guion_id, archivo_id);
-        this.idioma = idioma;
         this.texto = texto;
-        this.avatar_id = avatar_id;
 
         this.clip_id = null;
         this.formulario = null;
@@ -27,9 +25,9 @@ class Interaccion extends Escena{
             const cliente = Conexion.newConexion();
             await cliente.connect();
             const query = `
-                INSERT INTO interacciones(id, idioma, texto, avatar_id, clip_id) VALUES ($1, $2, $3, $4, $5) RETURNING id;
+                INSERT INTO interacciones(id, texto, clip_id) VALUES ($1, $2, $3) RETURNING id;
             `;
-            const params = [interaccion.id, interaccion.idioma, interaccion.texto, interaccion.avatar_id, interaccion.clip_id];
+            const params = [interaccion.id,interaccion.texto, interaccion.clip_id];
             const response = await cliente.query(query, params);
             await cliente.end();
 
@@ -66,9 +64,9 @@ class Interaccion extends Escena{
             const cliente = Conexion.newConexion();
             await cliente.connect();
             const query = `
-                SELECT escenas.*, interacciones.idioma, interacciones.texto, interacciones.avatar_id, interacciones.clip_id
+                SELECT escenas.*, interacciones.texto, interacciones.clip_id
                 FROM interacciones, escenas 
-                WHERE escenas.id = interacciones.id and escenas.id = $1
+                WHERE escenas.id = interacciones.id and escenas.id = $1 and archivo_id <> null
             `;
             const params = [interaccion_id];
             const response = await cliente.query(query, params);

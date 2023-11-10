@@ -2,53 +2,95 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="../../styles/formularios.css">
-    <link rel="stylesheet" href="../../styles/cards.css">
-    <link rel="stylesheet" href="./../../assets/fontawesome/css/fontawesome.css">
-    <link rel="stylesheet" href="./../../assets/fontawesome/css/brands.css">
-    <link rel="stylesheet" href="./../../assets/fontawesome/css/solid.css">
-    <title>Avatar Twilio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../global/global.css">
+  <link rel="stylesheet" href="./guion.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="../../styles/formularios.css">
+  <link rel="stylesheet" href="../../styles/cards.css">
+  <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet" />
+  <!-- <link rel="preconnect" href="https://fonts.bunny.net">
+    
+    
+  -->
+  <title>TvStudioHub - Editar guion</title>
 </head>
+
 <body>
-    <div class="recursos-container">
+  <!-- <div class="recursos-container">
         <div id="notificacion-container">
             <div class="notificacion-message" id="notificacion-text-container">
                 <i class="fas fa-exclamation-circle"></i>
                 <span id="notificacion">Esta seria la notificacion</span>
             </div>
         </div>
-        <div id="video-container" class="video-container">
-            <!-- <video id="my-video" class="video-js" controls preload="auto" poster="./assets/default_music_poster.jpg" data-setup="{}" ></video> -->
-        </div>
+        <div id="video-container" class="video-container"> -->
+  <!-- <video id="my-video" class="video-js" controls preload="auto" poster="./assets/default_music_poster.jpg" data-setup="{}" ></video> -->
+  <!-- </div>
         <div class="escenas-container" id="escenas-container">
         </div>
+    </div> -->
+  <main class="main_container">
+    <div class="editor_guion_side_bar" id="chat-container">
+      <div class="guion_tool_options_container">
+        <div class="agregar_escena_option">
+          <select class="tipo_escena_selector" id="tipo_escena_selector">
+            <option value="1"><i class="fa-solid fa-person-chalkboard"></i> Interaccion</option>
+            <option value="2"><i class="fa-solid fa-music"></i> Audio</option>
+            <option value="3"><i class="fa-solid fa-film"></i> Video</option>
+            <option value="4"><i class="fa-solid fa-images"></i> Imagen</option>
+          </select>
+        </div>
+        <button class="btn_agregar_escena" id="btn_agregar_escena">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+
+      <div class="guion_container" id="messages-container">
+
+      </div>
+
+      <div class="guion_option_container">
+        <button class="btn_generar_contenido" id="btn-generar">
+          Generar contenido
+          <i class="fa-solid fa-bolt"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="previsualizador_container" id="previsualizador_container">
+        <!-- <video class="previsualizador" controls>
+            <source src="./../../storage/clp_3L0O2y-D9UJQiJB3KmEBj.mp4" type="audio/mp3">
+        </video> -->
+    </div>
+
+    <div class="contenido_generado_container" id="archivo_container">
+        <!-- <div class="contenido_generado_card">
+            <div class="contenido_generado_header">
+                <span>1</span>
+                <span>12:00</span>
+            </div>
+            <div class="contenido_generado_body">
+                <img class="contenido_generado" src="./../../storage/2023-10-03_134601.png" alt="">
+                <div class="contenido_generado_title">Este seria el nombre del archivo.jpg</div>
+            </div>
+        </div> -->
     </div>
     
-    <div id="chat-container">
-        <div class="chat-title">
-            Guion: 
-            <a id="btn-volver" class="btn-guardar" href="#" ><i class="fa-solid fa-arrow-left"></i> Volver </a>
-        </div>
-        <div id="messages-container">
-        </div>
-        <div class="opciones-guion">
-            <button class="opcion-guion" id="btn-generar-interaccion">Interaccion avatar</button>
-            <button class="opcion-guion" id="btn-generar-audio">Musica</button>
-            <button class="opcion-guion" id="btn-generar-video">Video</button>
-            <button class="opcion-guion" id="btn-generar-imagen">Imagenes</button>    
-            <button class="button-guion" id="btn-generar">Generar contenido</button>
+
+    <div id="notificacion-container">
+        <div class="notificacion-message" id="notificacion-text-container">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="notificacion">Esta seria la notificacion</span>
         </div>
     </div>
-    <!-- opciones -->
-    
-    <!-- formularios --> 
-    <!-- videos -->
-    <div class="absolute-container" id="container-form-video">
+
+  </main>
+  
+  <!-- formularios -->
+  <!-- videos -->
+  <div class="absolute-container" id="container-form-video">
         <div class="form-container">
             <h3>Agregar video al guion</h3>
             <form class="form" action="http://localhost:3035/test" method="post" enctype="multipart/form-data" id="form-video" >
@@ -76,8 +118,8 @@
             </form>
         </div>
     </div>
-    <!-- audios -->
-    <div class="absolute-container" id="container-form-audio">
+  <!-- audios -->
+  <div class="absolute-container" id="container-form-audio">
         <div class="form-container">
             <h3>Agregar audios/muiscas al guion</h3>
             <form class="form" action="http://localhost:3035/test" method="post" enctype="multipart/form-data" id="form-audio" >
@@ -109,8 +151,8 @@
             </form>
         </div>
     </div>
-    <!-- imagenes -->
-    <div class="absolute-container" id="container-form-imagen">
+  <!-- imagenes -->
+  <div class="absolute-container" id="container-form-imagen">
         <div class="form-container">
             <h3>Agregar imagen al guion</h3>
             <form class="form" action="http://localhost:3035/test" method="post" enctype="multipart/form-data" id="form-imagen" >
@@ -134,8 +176,8 @@
             </form>
         </div>
     </div>
-    <!-- interacciones -->
-    <div class="absolute-container" id="container-form-interaccion">
+  <!-- interacciones -->
+  <div class="absolute-container" id="container-form-interaccion">
         <div class="form-container">
             <h3>Agregar dialogos del presentador</h3>
             <form class="form" action="http://localhost:3035/api/interaccion/create" method="post" enctype="multipart/form-data" id="form-interaccion" >
@@ -159,17 +201,14 @@
         </div>
     </div>
 
-    <div class="absolute-container" id="refresh-content-notifycation">
-        <div class="float-notifycation-container">
-            <p>Nuevos archivos añadidos, recarga la pagina pagina para sincronizarlos</p>
-            <button id="refresh-files-button">Recargar pagina</button>
-        </div>
-        
+  <div class="absolute-container" id="refresh-content-notifycation">
+    <div class="float-notifycation-container">
+      <p>Nuevos archivos añadidos, recarga la pagina pagina para sincronizarlos</p>
+      <button id="refresh-files-button">Recargar pagina</button>
     </div>
+  </div>
 
 </body>
-<!-- <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
-<script src="https://kit.fontawesome.com/871fc34738.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 <script src="./index.js" type="module"></script>
+<script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
 </html>

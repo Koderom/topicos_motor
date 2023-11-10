@@ -72,40 +72,110 @@
             align-self: flex-end;
             margin: 0 2rem;
         }
+        .form_title{
+            width: 100%;
+            text-align: center;
+            margin: 1rem;
+        }
+        .preview_image{
+            width: 90%;
+            height: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .programaciones-list-container{
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .card_presentador{
+            font-size: 14px;
+            box-shadow: 0 0 2px 1px rgb(153, 153, 153);
+            border-radius: 10px;
+            width: 10rem;
+            height: 12rem;
+            background: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .presentador_image{
+            width: 100%;
+            height: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .presentador_image>img{
+            width: 100%;
+        }
+        .presentador_data_container{
+            height: 50%;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            padding: 0.2rem;
+            overflow: hidden;
+            
+        }
+        .card_presentador_campo{
+            font-weight: bold;
+        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../global/global.css">
     <link rel="stylesheet" href="./../../styles/componentes.css">
     <title>Document</title>
 </head>
 <body>
     <main class="programaciones-container">
         <header class="programaciones-header">
-            <span class="title">Configurar presentadores</span>
+            <span class="title">Presentadores</span>
         </header>
-        <div id="programas-list-container" class="programaciones-list-container"></div>
+        <div id="presentador_list_container" class="programaciones-list-container">
+            <!-- <div class="card_presentador">
+                <div class="presentador_image">
+                    <img  src="https://static01.nyt.com/newsgraphics/2020/11/12/fake-people/4b806cf591a8a76adfc88d19e90c8c634345bf3d/fallbacks/mobile-03.jpg" alt="">
+                </div>
+                
+                <div class="presentador_data_container">
+                    <div>
+                        <span class="card_presentador_campo">Nombre:</span> <span class="card_presentador_valor"></span>
+                    </div>
+                    <div>
+                        <span class="card_presentador_campo">Idioma:</span> <span class="card_presentador_valor"></span>
+                    </div>
+                    <div>
+                        <span class="card_presentador_campo">Genero:</span> <span class="card_presentador_valor"></span>
+                    </div>
+                </div>
+            </div> -->
+        </div>
         <div>
-            <button class="btn-crear-configuracion" id="btn-crear-configuracion">Crear nueva configuracion</button>
+            <button class="btn-crear-configuracion" id="btn-crear-configuracion">Crear nuevo presentador</button>
         </div>
     </main>
 
     <div class="absolute-container" id="form-container-crear-configuracion">
         <div class="form-container colorful-form">
-            <form class="form" action="" method="post" enctype="application/x-www-form-urlencoded" id="form-crear-configuracion" >
+            <h3 class="form_title">Crear nuevo presentador</h3>
+            <form class="form" action="" method="post" enctype="application/x-www-form-urlencoded" id="form_create_presentador" >
                 
                 <div class="form-group">
-                    <label class="form-label" for="programa-titulo">Nombre de la configuracion: </label>
+                    <label class="form-label" for="programa-titulo">Nombre del presentador: </label>
                     <input class="form-input" type="text" id="programa-titulo" name="nombre"  value=''required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="presentador_id">Seleccionar presentador: </laber>
-                    <select class="form-input" name="presentador_id" id="presentador_id"></select>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="presentador_url">Url de un presentador: </laber>
                     <input class="form-input" type="text" id="presentador_url" name="presentadorUrl"  value=''>
                 </div>
-                <div class="form-group">
+                <div class="preview_image">
                     <img src="" alt="" id="img-preview-presentador" height="280px">
                 </div>
                 <div class="form-group">

@@ -12,7 +12,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const idGuion = urlParams.get('idGuion');
 let idProgramacion = urlParams.get('idProgramacion');
 
-let mGuion = {};
+let mGuion = new Guion();
 //const mGuion = new Guion(1, 'Guion de prueba');
 
 const ws = new WebSocket('ws://localhost:3035');
@@ -21,6 +21,23 @@ ws.addEventListener('message', socket.message);
 ws.addEventListener('close', socket.close);
 ws.addEventListener('error', socket.error); 
 
+window.addEventListener('load', async () => {
+    await cargarData();
+});
+
+async function cargarData(){
+    contenido.limpiar();
+    contenido.mostrarNotificacion("Cargando datos ...");
+    mGuion = await GuionService.getData(idGuion);
+    console.log(mGuion);
+    const escenas = mGuion.escenas;
+    escenas.forEach( escena => {
+        contenido.adicionarEscena(escena);
+        contenido.adicionarArchivo(escena);
+    });
+    mGuion.escenas = escenas;
+    contenido.mostrarNotificacion("Datos cargados");
+}
 
 // document.getElementById('btn-adicionar').addEventListener('click', (event) => {
 //     const texto = document.getElementById('entrada-guion').value;
@@ -49,31 +66,33 @@ ws.addEventListener('error', socket.error);
 //     contenido.cargarDatosVista(guion);
 // });
 
-window.addEventListener('load', async () => {
-    mGuion = Guion.getInstanceFromObject({id: idGuion, titulo:'Guion de prueba', programacion_id:idProgramacion});
-    await cargarData();
-});
- 
-async function cargarData(){
-    contenido.limpiar();
-    contenido.mostrarNotificacion("Cargando datos ...");
-    const data = await GuionService.getData(mGuion.id);
-    console.log(data);
-    const escenas = data.escenas;
-    escenas.forEach( escena => {
-        contenido.adicionarEscena(escena);
-        contenido.adicionarArchivo(escena);
-    });
-    mGuion.escenas = escenas;
-    contenido.mostrarNotificacion("Datos cargados");
+
+
+const btnAgregarEscena = document.getElementById('btn_agregar_escena');
+btnAgregarEscena.addEventListener( 'click' , (event) => {
+    const tipoEsenaIndex = document.getElementById('tipo_escena_selector').value;
+    mostrarFormulario(tipoEsenaIndex);
+})
+
+function mostrarFormulario(tipoEsenaIndex){
+    tipoEsenaIndex = Number(tipoEsenaIndex);
+    let conteinerForm = null;
+    switch (tipoEsenaIndex) {
+        case 1: conteinerForm = document.getElementById('container-form-interaccion'); break;
+        case 2: conteinerForm = document.getElementById('container-form-audio'); break;
+        case 3: conteinerForm = document.getElementById('container-form-video'); break;
+        case 4: conteinerForm = document.getElementById('container-form-imagen'); break;
+    }
+    if(conteinerForm != null) conteinerForm.style.display = 'flex';
 }
 
 //boton generar video
-const btnGenerarVideo = document.getElementById('btn-generar-video');
-btnGenerarVideo.addEventListener('click', (event) => {
-    const container = document.getElementById('container-form-video');
-    container.style.display = 'flex'
-});
+// const btnGenerarVideo = document.getElementById('btn-generar-video');
+// btnGenerarVideo.addEventListener('click', (event) => {
+//     const container = document.getElementById('container-form-video');
+//     container.style.display = 'flex'
+// });
+
 // Formulario manejar adicion de video
 const formularioVideo = document.getElementById('form-video');
 formularioVideo.addEventListener('submit', (event) => {
@@ -101,12 +120,12 @@ formBtnVideoCancelar.addEventListener('click', (event) => {
     container.style.display = 'none'
 })
 
-//boton generar audio
-const btnGenerarAudio = document.getElementById('btn-generar-audio');
-btnGenerarAudio.addEventListener('click', (event) => {
-    const container = document.getElementById('container-form-audio');
-    container.style.display = 'flex'
-});
+// //boton generar audio
+// const btnGenerarAudio = document.getElementById('btn-generar-audio');
+// btnGenerarAudio.addEventListener('click', (event) => {
+//     const container = document.getElementById('container-form-audio');
+//     container.style.display = 'flex'
+// });
 // Formulario manejar adicion de video
 const formularioAudio = document.getElementById('form-audio');
 formularioAudio.addEventListener('submit', (event) => {
@@ -135,12 +154,12 @@ formBtnAudioCancelar.addEventListener('click', (event) => {
     container.style.display = 'none'
 })
 
-//boton generar imagen
-const btnGenerarImagen = document.getElementById('btn-generar-imagen');
-btnGenerarImagen.addEventListener('click', (event) => {
-    const container = document.getElementById('container-form-imagen');
-    container.style.display = 'flex'
-});
+// //boton generar imagen
+// const btnGenerarImagen = document.getElementById('btn-generar-imagen');
+// btnGenerarImagen.addEventListener('click', (event) => {
+//     const container = document.getElementById('container-form-imagen');
+//     container.style.display = 'flex'
+// });
 // Formulario manejar adicion de imagen
 const formularioImagen = document.getElementById('form-imagen');
 formularioImagen.addEventListener('submit', (event) => {
@@ -167,12 +186,12 @@ formBtnImagenCancelar.addEventListener('click', (event) => {
     container.style.display = 'none'
 })
 
-// boton generar interaccion
-const btnGenerarInteraccion = document.getElementById('btn-generar-interaccion');
-btnGenerarInteraccion.addEventListener('click', (event) => {
-    const container = document.getElementById('container-form-interaccion');
-    container.style.display = 'flex'
-});
+// // boton generar interaccion
+// const btnGenerarInteraccion = document.getElementById('btn-generar-interaccion');
+// btnGenerarInteraccion.addEventListener('click', (event) => {
+//     const container = document.getElementById('container-form-interaccion');
+//     container.style.display = 'flex'
+// });
 // Formulario manejar adicion de interaccion
 const formularioInteraccion = document.getElementById('form-interaccion');
 formularioInteraccion.addEventListener('submit', (event) => {
@@ -207,6 +226,7 @@ btnGenerar.addEventListener('click', async (event) => {
     await Guion.generarContenidoFromList(mGuion.escenas);
     await cargarData();
 });
+
 async function eliminarEscenasServidor(){
     try {
         await Promise.all(
@@ -250,17 +270,17 @@ refreshFilesButton.addEventListener('click', (event) => {
 });
 
 // boton volver
-let btnVolverClickState = false;
-const btnVolver = document.getElementById('btn-volver');
-btnVolver.addEventListener('click', async (event) => {
-    if(btnVolverClickState){
-        event.preventDefault();
-        return;
-    }
-    btnVolverClickState = true;
-    let programacion = await GuionService.getProgramacion(idGuion);
-    window.location.href = `http://localhost:3035/pages/programaciones/programaciones.html?idPrograma=${programacion.programa_id}`;
-});
+// let btnVolverClickState = false;
+// const btnVolver = document.getElementById('btn-volver');
+// btnVolver.addEventListener('click', async (event) => {
+//     if(btnVolverClickState){
+//         event.preventDefault();
+//         return;
+//     }
+//     btnVolverClickState = true;
+//     let programacion = await GuionService.getProgramacion(idGuion);
+//     window.location.href = `http://localhost:3035/pages/programaciones/programaciones.html?idPrograma=${programacion.programa_id}`;
+// });
 
 // const videoRep = document.getElementById('my-video');
 // const autoRepButton = document.getElementById('auto-rep');

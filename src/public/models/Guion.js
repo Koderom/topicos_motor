@@ -41,7 +41,7 @@ class Guion{
     static async generarContenidoFromList(escenaList){
         try {
             await Promise.all(
-                escenaList.forEach( async escena => {
+                escenaList.map( async escena => {
                     await this.generarContenido(escena);
                     contenido.mostrarNotificacion(`Escena # ${escena.indice} fue subido correctamente`);
                 })

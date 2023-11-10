@@ -27,6 +27,7 @@ const middleware = require('./middlewares/middleware');
 
 app.use((req, res, next) => {
     if (req.path === '/api/login') next();
+    else if(req.path === '/wh/d-id') next();
     else middleware.auth(req, res, next);
 });
 

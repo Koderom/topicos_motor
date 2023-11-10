@@ -29,10 +29,10 @@ class Presentador{
             const cliente = Conexion.newConexion();
             await cliente.connect();
             const query = `
-                INSERT INTO presentadores(presenter_id, created_at, thumbnail_url, preview_url, driver_id, image_url, gender, model_url, modified_at, owner_id)
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id;
+                INSERT INTO presentadores(nombre, genero, lenguaje, presentador_url, voz_provider_id)
+                VALUES ($1, $2, $3, $4, $5) RETURNING id;
             `;
-            const params = [object.presenter_id, object.created_at, object.thumbnail_url, object.preview_url, object.driver_id, object.image_url, object.gender, object.model_url, object. modified_at, object.owner_id];
+            const params = [object.nombre, object.genero, object.lenguaje, object.presentadorUrl, object.vozProviderId];
             const response = await cliente.query(query, params);
             await cliente.end();
 
@@ -51,6 +51,28 @@ class Presentador{
                 SELECT * FROM presentadores WHERE id = $1
             `;
             const params = [id];
+            const response = await cliente.query(query, params);
+            await cliente.end();
+
+            if(response.rowCount > 0) return response.rows[0];
+            else return null;
+        } catch (error) {
+            return error;
+        }
+    }
+
+    static async getPresentadorFromGuionId(guionId) {
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT * FROM presentadores pst
+                INNER JOIN programas p on p.presentador_id  = pst.id
+                INNER JOIN programaciones p2 on p2.programa_id = p.id
+                INNER JOIN guiones g on g.programacion_id = p2.id
+                where g.id = $1
+            `;
+            const params = [guionId];
             const response = await cliente.query(query, params);
             await cliente.end();
 

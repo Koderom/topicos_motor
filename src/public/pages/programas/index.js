@@ -1,7 +1,7 @@
 import { PresentadorService } from '../../services/PresentadorService.js';
 import { ProgramaService } from '../../services/ProgramaService.js';
 import { routes } from '../../global/routes.js'
-import {config} from '../global/config.js';
+import {config} from '../../global/config.js';
 
 const SERVER_API_URL = config.SERVER_API_URL;
 let programas = [];
@@ -86,3 +86,7 @@ function cargarPresentadoresAlFormulario(){
         presentadorSelector.appendChild(presentadorOption)
     });
 }
+
+document.getElementById('btn_add_presentador').addEventListener('click', (ev) => {
+    routes.goToRoute(routes.PRESENTADORES, null);
+})
