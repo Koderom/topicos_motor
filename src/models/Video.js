@@ -4,6 +4,7 @@ const {Conexion} = require('../database/conexion');
 class Video extends Escena{
     constructor(id, indice, contexto, titulo, autor, guion_id, archivo_id){
         super(id, indice, contexto, 'V',guion_id, archivo_id);
+        
         this.titulo = titulo;
         this.autor = autor;
     }

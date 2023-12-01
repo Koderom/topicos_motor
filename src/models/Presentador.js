@@ -99,6 +99,24 @@ class Presentador{
             return error;
         }
     }
+
+    static async errorDbTest(){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT * FROM presentadores
+            `;
+            const response = await cliente.query(query);
+            await cliente.end();
+
+            return response.rows;
+             
+        } catch (error) {
+            console.log(error)
+            throw error;
+        }
+    }
 }
 
 module.exports = Presentador;

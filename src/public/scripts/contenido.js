@@ -131,8 +131,9 @@ function cargarPrevisualizacion(escena){
             `;
         break;
         case'A':
+        console.log(escena)
         contendioComponent = `
-        <video class="previsualizador " poster="../../assets/images/defaul_music_image.jpg" controls>
+        <video class="previsualizador " poster="./../../storage/${escena.portada||'defaul_music_image.jpg'}" controls>
             <source src="./../../storage/${escena.archivo.nombre}" type="video/mp4">
             Tu navegador no soporta la etiqueta de video.
         </video>
@@ -167,7 +168,7 @@ function getContendioComponent(escena){
         break;
         case'A':
         contendioComponent = `
-        <video class="contenido_generado" poster="../../assets/images/defaul_music_image.jpg">
+        <video class="contenido_generado" poster="./../../storage/${escena.portada||'defaul_music_image.jpg'}">
             <source src="./../../storage/${escena.archivo.nombre}" type="video/mp4">
             Tu navegador no soporta la etiqueta de video.
         </video>

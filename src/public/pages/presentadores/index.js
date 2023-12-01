@@ -23,9 +23,23 @@ window.addEventListener('load', async (event) => {
 function cargarListaPresentadores(presentadoresList){
     const presentadorContainer = document.getElementById('presentador_list_container');
     presentadoresList.forEach( (presentador) => {
-        const presentadorComponent = getPrestadorComponent(presentador);
-        presentadorContainer.appendChild(presentadorComponent);
+        const container = document.createElement('a');
+        container.className = 'presentador_container';
+        container.addEventListener('click', onPresentadorSelected);
+        container.setAttribute('data-presentador-id', presentador.id);
+        container.appendChild(getPrestadorComponent(presentador));
+        presentadorContainer.appendChild(container);
     });
+}
+
+function onPresentadorSelected(event){
+    const presentadorContainer = event.currentTarget;
+    console.log(presentadorContainer)
+    const presentador_id = presentadorContainer.getAttribute('data-presentador-id');
+    const state_formCrearPrograma = JSON.parse(localStorage.getItem('state_formCrearPrograma'));
+    state_formCrearPrograma.presentador_id = presentador_id;
+    localStorage.setItem('state_formCrearPrograma', JSON.stringify(state_formCrearPrograma));
+    routes.goToRoute(routes.PROGRAMAS, null);
 }
 
 function getPrestadorComponent(presentador){

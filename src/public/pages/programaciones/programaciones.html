@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../styles/componentes.css">
+    <link rel="stylesheet" href="../../global/global.css">
+    <!-- <link rel="stylesheet" href="../../styles/componentes.css"> -->
     <link rel="stylesheet" href="programaciones.css">
     <title>Document</title>
 </head>
 <body>
-    <main class="programaciones-container">
+    <main class="main_container">
         <header class="programaciones-header">
             <span class="title">Programaciones</span>
             <span id="btn-volver" class="btn-volver">Volver</span>
         </header>
-        <div id="programaciones-list-container" class="programaciones-list-container">
-
+        <div class="programaciones-container">
+            <div id="programaciones-list-container" class="programaciones-list-container"></div>
         </div>
-        <button class="btn-crear-programacion" id="btn-crear-programacion">
-            crear nuevo
-        </button>
+        <div class="programa_opciones">
+            <button class="btn-crear-programacion" id="btn-crear-programacion"> crear nuevo</button>
+        </div>
+        
     </main>
 
     <div class="absolute-container" id="form-container-crear-programacion">
@@ -35,7 +37,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="programacaion-descripcion">Descripcion: </label>
-                    <input class="form-input" type="text" id="programacaion-descripcion" name="descripcion"  value=''required>
+                    <input class="form-input" type="text" id="programacaion-descripcion" name="descripcion"  value=''>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="programa-fecha-emision">Fecha de emision: </label>

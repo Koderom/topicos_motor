@@ -30,25 +30,28 @@ const storage = multer.diskStorage({
 const upload = multer({storage});
 
 router.get('/api', controller.index);
-router.get('/api/test', PresentadorController.getAll);
+router.get('/api/test', PresentadorController.errorDbTest);
 router.get('/api/start', controller.start);
 
 router.post('/api/login', UsuarioController.login);
 
 router.get('/api/programa', ProgramaController.getProgramas);
-router.post('/api/programa/create',upload.none(), ProgramaController.create);
+router.post('/api/programa/create',upload.single('programa_portada'), ProgramaController.create);
 
+router.get('/api/programacion/get-programacion', ProgramacionController.getProgramacion);
 router.get('/api/programacion', ProgramacionController.getProgramaciones);
 router.post('/api/programacion/create', upload.none(),ProgramacionController.create);
 router.get('/api/programacion/get_programa', ProgramacionController.getPrograma);
 
 
 router.get('/api/guion', GuionController.getData);
+router.get('/api/guion/get-guion', GuionController.getGuion);
 router.get('/api/guion/programacion', GuionController.getProgramacion);
 
 router.get('/api/escena/delete', EscenaController.delete);
+router.post('/api/escena/update', EscenaController.update);
 router.post('/api/video/create', upload.single('video-archivo'), VideoController.create);
-router.post('/api/audio/create', upload.single('audio-archivo'), AudioController.create);
+router.post('/api/audio/create', upload.fields([{name:'audio-archivo', maxCount: 1}, {name: 'audio-portada', maxCount: 1}]), AudioController.create);
 router.post('/api/imagen/create', upload.single('imagen-archivo'), ImagenController.create);
 router.post('/api/interaccion/create', upload.none(), InteraccionController.create);
 

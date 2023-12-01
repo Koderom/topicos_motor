@@ -10,7 +10,7 @@ ImagenController.create = async (req, res) =>{
         const data = req.body;
         const archivo = new Archivo(null, fileInfo.filename, fileInfo.mimetype, null, fileInfo.path, null);
         const archivoId = await Archivo.create(archivo);
-        const imagen = new Imagen(null, data['imagen-indice'], data['imagen-contexto'],  data['imagen-descripcion'], data['imagen-guion-id'], archivoId);
+        const imagen = new Imagen(null, data['imagen-indice'], data['imagen-contexto'],  data['imagen-descripcion'], data['imagen-duracion'], data['imagen-guion-id'], archivoId);
         const escena = imagen.getEscenaInstance();
         const escenaId = await Escena.create(escena);
         if(escenaId){

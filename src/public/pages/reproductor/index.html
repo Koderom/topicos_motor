@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../global/global.css">
+    <link rel="stylesheet" href="reproductor.css">
+    <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet" />
+    <title>TVSH - Reproductor</title>
+</head>
+<body>  
+    <div id="contenido_reproductor_container" class="contenido_reproductor_container">
+
+    </div>
+
+    <div class="reproduccion_controles">
+        <button id="control_siguiente_btn" class="control_siguiente_btn btn_control" type="button">
+            <i class="fa-solid fa-circle-arrow-right"></i>
+        </button>
+        <button id="control_anterior_btn" class="control_anterior_btn btn_control" type="button">
+            <i class="fa-solid fa-circle-arrow-left"></i>
+        </button>
+        <div class="contenido_cargado_list"></div>
+    </div>
+    <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
+    <script type="module" src="./reproductor.js"></script>
+</body>
+</html>

@@ -8,6 +8,7 @@ class Escena{
         this.tipo_escena = tipo_escena;
         this.guion_id = guion_id;
         this.archivo_id = archivo_id;
+        this.estado = 'C';
     }
 
     getEscenaInstance(){
@@ -47,6 +48,25 @@ class Escena{
             return error;
         }
     }
+    static async update(escena){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                UPDATE escenas
+                SET indice = $1, contexto = $2
+                WHERE id = $3
+                RETURNING id
+            `;
+            const params = [escena.indice, escena.contexto, escena.id];
+            const response = await cliente.query(query, params);
+            await cliente.end();
+            if(response.rowCount < 1) throw new Error("Error al actualizar escena");
+            return response.rows[0];
+        } catch (error) {
+            throw error;
+        }
+    }
     static async getEscenas(guion_id){
         try {
             const cliente = Conexion.newConexion();
@@ -63,7 +83,6 @@ class Escena{
             return error;
         }
     }
-
 }
 
 module.exports = Escena;

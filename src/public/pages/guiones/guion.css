@@ -176,6 +176,7 @@
     height: 100vh;
     top: 0;
     left: 0;
+    z-index: 10;
     background: rgba(0, 0, 0, 0.658);
 
     display: none;
@@ -229,4 +230,33 @@
     border-radius: 5px 5px 0 0;
     background: rgba(66, 66, 66, 0.877);
     color: rgba(255, 255, 255, 0.795);
+}
+
+
+.btn_float{
+    position: absolute;
+}
+.btn_salir{
+    right: 1rem;
+    top: 1rem;
+    background: transparent;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    transition: .25s all ease;
+}
+.btn_salir:hover{
+    color: var(--dark-blue);
+    background-color: white;
+}
+.btn_salir:active{
+    background-color: transparent;
+    color: white;
+}
+.icon_salir{
+    font-size: 1.3rem;
 }

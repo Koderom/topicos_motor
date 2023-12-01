@@ -7,9 +7,11 @@ let idPrograma = urlParams.get('idPrograma');
 let idProgramacion = urlParams.get('idProgramacion');
 
 let programaciones = [];
+
 const SERVER_API_URL = config.SERVER_API_URL;
 
 window.addEventListener('load', async (event) => {
+    localStorage.setItem("state_programa", idPrograma);
     if(idProgramacion) await cargarProgamaId();
     await cargarProgramaciones();
 });
@@ -41,14 +43,20 @@ async function cargarProgramaciones(){
         const programcionesListContainer = document.getElementById('programaciones-list-container');
         programaciones.forEach( (programacion) => {
             const programaItem = document.createElement('a');
+            programaItem.addEventListener('contextmenu', mostrarMenuOpciones);
+            programaItem.setAttribute('data-programacion-id', programacion.id);
+
             programaItem.href = `${SERVER_API_URL}/pages/guiones/index.html?idProgramacion=${programacion.id}&idGuion=${programacion.guion_id}`;
             //programaItem.innerHTML = `${programacion.titulo}`;
             const container = `
                 <div class="card">
-                    <h3 class="card-title">${programacion.titulo}</h3>
-                    <div><span class="card-prop">Nro episodio: </span><span class="card-value">${programacion.nro_episodio}</span><div>
-                    <div><span class="card-prop">Descripcion: </span><span class="card-value">${programacion.descripcion}</span><div>
-                    <div><span class="card-prop">Fecha de emision: </span><span class="card-value">${programacion.fecha_emision}</span><div>
+                    <div class="card_content">
+                        <h3 class="card-title">${programacion.titulo}</h3>
+                        <div><span class="card-prop">Nro episodio: </span><span class="card-value">${programacion.nro_episodio}</span><div>
+                        <div><span class="card-prop">Descripcion: </span><span class="card-value">${programacion.descripcion}</span><div>
+                        <div><span class="card-prop">Fecha de emision: </span><span class="card-value">${programacion.fecha_emision}</span><div>
+                    </div>
+                    
                 </div>`;
             programaItem.innerHTML = container;
             programcionesListContainer.appendChild(programaItem);
@@ -56,6 +64,13 @@ async function cargarProgramaciones(){
     } catch (error) {
         
     }
+}
+
+function mostrarMenuOpciones(event){
+    event.preventDefault();
+    const element = event.currentTarget;
+    const idProgramacion = element.getAttribute('data-programacion-id');
+    routes.goToRoute(routes.REPRODUCTOR, {idProgramacion});
 }
 
 async function cargarProgamaId(){

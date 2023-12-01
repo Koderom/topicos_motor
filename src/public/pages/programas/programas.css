@@ -6,45 +6,54 @@
 body{
     width: 100vw;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: rgb(219, 219, 219);
+    line-height: 1.5rem;
     overflow: hidden;
-    
 }
-.programaciones-container{
-    width: 98%;
-    height: 98%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    background: white;
-    border-radius: 8px;
-    border: 1px solid rgba(102, 102, 102, 0.411);
-    
+.main_container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 4rem auto 4rem;
+    grid-column: auto;
 }
 .programaciones-header{
-    height: 2.5rem;
+    grid-row: 1 / 2;
     width: 100%;
     border-bottom: 1px solid rgba(102, 102, 102, 0.411);
     display: flex;
+    padding: 0 1.5rem;
     align-items: center;
-    padding: 1.5rem;
+}
+.title{
+    font-weight: 600;
+    font-size: 20px;
+}
+.programaciones-container{
+    grid-row: 2/3;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    overflow-y: hidden;
+    align-content: flex-start;
+    align-items: start;
+    background: white;
+    padding: 2rem;
 }
 .programaciones-list-container{
-    height: 70%;
-    width: 95%;
-    margin: 2rem;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.205);
+    padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid rgba(102, 102, 102, 0.411);
+    overflow-y: scroll;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
-    padding: 2rem;
+    flex-direction: row;
+    align-items: stretch;
+    align-content: stretch;
+    gap: 1.5rem;
 }
 .absolute-container{
     position: absolute;
@@ -66,10 +75,6 @@ a{
 a:visited, a:link, a:focus{
     color: black;
 }
-.btn-crear-programa{
-    align-self: flex-end;
-    margin: 0 2rem;
-}
 
 .form_title{
     width: 100%;
@@ -81,4 +86,20 @@ a:visited, a:link, a:focus{
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 0.5rem;
+}
+.options_container{
+    width: 100%;
+    /* margin: 2rem; */
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.programa_opciones{
+    width: 100%;
+    height: 100%;
+    padding: 0 1.5rem;
+    grid-row: 3 / 4;
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }

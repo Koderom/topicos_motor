@@ -15,10 +15,10 @@ class Audio extends Escena{
             const cliente = Conexion.newConexion();
             await cliente.connect();
             const query = `
-                INSERT INTO audios(id, titulo, autor, genero)
-                VALUES ($1, $2, $3, $4) RETURNING id;
+                INSERT INTO audios(id, titulo, autor, genero, portada)
+                VALUES ($1, $2, $3, $4, $5) RETURNING id;
             `;
-            const params = [audio.id, audio.titulo, audio.autor, audio.genero];
+            const params = [audio.id, audio.titulo, audio.autor, audio.genero, audio.portada];
             const response = await cliente.query(query, params);
             await cliente.end();
 
@@ -34,7 +34,7 @@ class Audio extends Escena{
             const cliente = Conexion.newConexion();
             await cliente.connect();
             const query = `
-                SELECT escenas.*, audios.titulo, audios.autor, audios.genero 
+                SELECT escenas.*, audios.titulo, audios.autor, audios.genero, audios.portada
                 FROM audios, escenas 
                 WHERE escenas.id = audios.id and escenas.id = $1
             `;

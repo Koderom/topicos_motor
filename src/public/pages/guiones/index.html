@@ -32,6 +32,9 @@
         </div>
     </div> -->
   <main class="main_container">
+    <button type="button" class="btn_float btn_salir" id="btn_salir">
+        <i class="fa-solid fa-arrow-right-from-bracket icon_salir"></i>
+    </button>
     <div class="editor_guion_side_bar" id="chat-container">
       <div class="guion_tool_options_container">
         <div class="agregar_escena_option">
@@ -143,6 +146,10 @@
                     <label for="audio-archivo">Selecciona un archivo a subir:</label>
                     <input type="file" id="audio-archivo" name="audio-archivo" required="" accept="audio/*">
                 </div>
+                <div class="form-group">
+                    <label for="audio-portada">Selecciona una portada:</label>
+                    <input type="file" id="audio-portada" name="audio-portada" required="" accept="image/*">
+                </div>
                 <div class="form-option-container">
                     <button class="form-submit-btn" type="submit" id="form-btn-audio-guardar">Guardar</button>
                     <button class="form-submit-btn" type="button" id="form-btn-audio-cancelar">Cancelar</button>
@@ -163,6 +170,10 @@
                 <div class="form-group">
                     <label for="imagen-descripcion">Descripcion de la imagen:</label>
                     <textarea name="imagen-descripcion" id="imagen-descripcion" cols="30" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="imagen-duracion">Tiempo en pantalla (segundos):</label>
+                    <input type="number" name="imagen-duracion" id="imagen-duracion" required>
                 </div>
                 <div class="form-group">
                     <label for="imagen-archivo">Selecciona un archivo a subir:</label>
@@ -209,6 +220,7 @@
   </div>
 
 </body>
-<script src="./index.js" type="module"></script>
 <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script src="./index.js" type="module"></script>
 </html>

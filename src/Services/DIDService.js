@@ -39,7 +39,7 @@ DIDService.clipGenerate = async (text) => {
 DIDService.talkGenerate = async (text, presentador) => {
     try {
         const apiUrl = 'https://api.d-id.com/talks';
-        const authToken = 'Basic Ylc5b2FXcGxaRFUzTjBCbmJHRnNaVzR1WTI5dDpIR2U5QnF5OW9FOWhFWXZUbmtDUXg=';
+        const authToken = 'Basic Ym1sbWFXNXZNVEF3TUVCa2NITnZiSE11WTI5dDpuTThjQmxXNlJuLVpITXNIdnBqcDg=';
         const requestData = {
         script: {
             type: 'text',

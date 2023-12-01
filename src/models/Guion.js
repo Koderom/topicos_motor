@@ -55,6 +55,24 @@ class Guion{
             throw error;
         }
     }
+
+    static async getGuionFromProgramacion(idProgramacion){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT * FROM guiones WHERE programacion_id = $1
+            `;
+            const params = [idProgramacion];
+            const response = await cliente.query(query, params);
+            await cliente.end();
+
+            if(response.rowCount > 0) return response.rows[0];
+            else return {};    
+        } catch (error) {
+            throw error;
+        }
+    }
     
     static async getArchivosGuion(guion_id){
         try {

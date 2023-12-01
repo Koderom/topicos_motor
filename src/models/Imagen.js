@@ -2,12 +2,12 @@ const Escena = require('./Escena');
 const {Conexion} = require('../database/conexion');
 
 class Imagen extends Escena{
-    constructor(id, indice, contexto, descripcion, guion_id, archivo_id){
+    constructor(id, indice, contexto, descripcion, duracion,  guion_id, archivo_id){
         super(id, indice, contexto, 'I', guion_id, archivo_id);      
         this.descripcion = descripcion;
+        this.duracion = duracion;
 
         this.formulario = null;
-        this.estado = 'C';
         this.generado = false;
     }
 
@@ -16,9 +16,9 @@ class Imagen extends Escena{
             const cliente = Conexion.newConexion();
             await cliente.connect();
             const query = `
-                INSERT INTO imagenes(id, descripcion) VALUES ($1, $2) RETURNING id;
+                INSERT INTO imagenes(id, duracion, descripcion) VALUES ($1, $2, $3) RETURNING id;
             `;
-            const params = [imagen.id, imagen.descripcion];
+            const params = [imagen.id, imagen.duracion, imagen.descripcion];
             const response = await cliente.query(query, params);
             await cliente.end();
 
@@ -34,7 +34,7 @@ class Imagen extends Escena{
             const cliente = Conexion.newConexion();
             await cliente.connect();
             const query = `
-                SELECT escenas.*, imagenes.descripcion
+                SELECT escenas.*, imagenes.duracion, imagenes.descripcion
                 FROM imagenes, escenas 
                 WHERE escenas.id = imagenes.id and escenas.id = $1
             `;

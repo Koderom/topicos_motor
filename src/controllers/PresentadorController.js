@@ -2,6 +2,15 @@ const { DIDService } = require("../Services/DIDService");
 const Presentador = require('../models/Presentador');
 
 const PresentadorController = {}
+PresentadorController.errorDbTest = async (req, res) => {
+    try {
+        const db_resp = await Presentador.errorDbTest();
+        res.status(200).send(db_resp);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
 PresentadorController.getAll = async (req, res) => {
     try {
         

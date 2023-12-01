@@ -20,6 +20,7 @@ ServiceController.webhook_DID = async (req, res) => {
         const data = req.body;
         console.log(data);
         const info = await DIDService.storeVideoDID(data);
+        console.log(info)
         SocketManager.sendObjectAll({type: "wh-did-respuesta", body: info});
         res.status(200).send('ok');
     } catch (error) {

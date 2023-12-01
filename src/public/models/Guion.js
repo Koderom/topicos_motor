@@ -1,12 +1,12 @@
 import Video from "./Video.js";
 import Audio from "./Audio.js";
 import Imagen from "./Imagen.js";
+import Interaccion from "./Interaccion.js";
 import { VideoService } from "../services/VideoService.js";
 import { AudioService } from "../services/AudioService.js";
 import { ImagenService } from "../services/ImagenService.js";
-import Interaccion from "./Interaccion.js";
 import { InteraccionService } from "../services/InteraccionService.js";
-import { contenido } from '../scripts/contenido.js';
+//import { contenido } from '../scripts/contenido.js';
 
 class Guion{
     constructor(titulo, programacion_id){
@@ -43,7 +43,7 @@ class Guion{
             await Promise.all(
                 escenaList.map( async escena => {
                     await this.generarContenido(escena);
-                    contenido.mostrarNotificacion(`Escena # ${escena.indice} fue subido correctamente`);
+                    //contenido.mostrarNotificacion(`Escena # ${escena.indice} fue subido correctamente`);
                 })
             );
         } catch (error) {

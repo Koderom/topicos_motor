@@ -17,6 +17,21 @@ GuionController.getData = async (req, res) => {
     }
 }
 
+GuionController.getGuion = async (req, res) => {
+    try {
+        console.log(req.query);
+        const idProgramacion = req.query.idProgramacion;
+        const guion = await Guion.getGuionFromProgramacion(idProgramacion);
+        guion.escenas = await Guion.getEscenas(guion.id);
+        console.log(guion)
+        res.status(200).send(guion);
+    } catch (error) {
+        console.log(error);
+        res.status(400).send(error.message);
+        return error;
+    }
+}
+
 GuionController.getProgramacion = async (req, res) => {
     try {
         console.log(req.query);

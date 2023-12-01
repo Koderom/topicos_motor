@@ -7,6 +7,7 @@ import Interaccion from '../../models/Interaccion.js';
 import { contenido } from '../../scripts/contenido.js';
 import { GuionService } from '../../services/GuionService.js';
 import { EscenaService } from '../../services/EscenaService.js';
+import { routes } from '../../global/routes.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 const idGuion = urlParams.get('idGuion');
@@ -25,6 +26,56 @@ window.addEventListener('load', async () => {
     await cargarData();
 });
 
+const escenasContainer  = document.getElementById('messages-container');
+Sortable.create(escenasContainer, {
+    onEnd: (evt => modificarOrdenEscena( evt.oldIndex, evt.newIndex)),
+    
+});
+
+function modificarOrdenEscena( oldIndex, newIndex){
+    try {
+        console.log(`old: ${oldIndex} , new : ${newIndex}`);
+        const movedEscena = mGuion.escenas.splice(oldIndex, 1);
+        mGuion.escenas.splice(newIndex, 0, movedEscena[0]);
+        actualizarIndices();
+        actualizarInterfaz();
+        console.log(mGuion.escenas)
+    } catch (error) {
+        throw error;
+    }
+}
+function actualizarIndices(){
+    let indice = 1;
+    const escenas = mGuion.escenas;
+    console.log(escenas)
+    for(let item of escenas){
+        if(item.indice == indice){
+            indice++;
+            continue;
+        } 
+        if(item.borrar) continue;
+        item.indice = indice;
+        if(item.estado != 'C') item.estado = 'U';
+        indice++;
+    }
+    // for(let i = 0; i < mGuion.escenas.length; i++){
+    //     let escena = mGuion.escenas[i];
+    //     if(escena.indice == i + 1) continue;
+    //     escena.indice = i + 1;
+    //     if(escena.estado != 'C') escena.estado = 'U'; 
+    // }
+}
+function actualizarInterfaz(){
+    contenido.limpiar();
+    const escenas = mGuion.escenas;
+    escenas.forEach( escena => {
+        if(!escena.borrar){
+            contenido.adicionarEscena(escena);
+            contenido.adicionarArchivo(escena);
+        }
+    });
+}
+
 async function cargarData(){
     contenido.limpiar();
     contenido.mostrarNotificacion("Cargando datos ...");
@@ -38,35 +89,6 @@ async function cargarData(){
     mGuion.escenas = escenas;
     contenido.mostrarNotificacion("Datos cargados");
 }
-
-// document.getElementById('btn-adicionar').addEventListener('click', (event) => {
-//     const texto = document.getElementById('entrada-guion').value;
-//     escenas = mEscenas.addEscena(escenas, texto);
-
-//     contenido.adicionarEscena(escenas[escenas.length - 1]);
-    
-// });
-
-// document.getElementById('btn-generar').addEventListener('click', async (event) => {
-//     try {
-//         escenas = await mEscenas.generarContenido(escenas);
-//         console.log(escenas);
-//         for(let escena of escenas) contenido.adicionarArchivo(escena.archivo);    
-//     } catch (error) {
-//         contenido.mostrarNotificacion(error.message);
-//     }
-// });
-
-// document.getElementById('btn-guardar').addEventListener('click', async (event) => {
-//     guion.escenas = escenas;
-//     const id = await mGuion.guardar(guion);
-//     if(id) guion.id = id;
-    
-//     guion = await mGuion.cargar(guion);
-//     contenido.cargarDatosVista(guion);
-// });
-
-
 
 const btnAgregarEscena = document.getElementById('btn_agregar_escena');
 btnAgregarEscena.addEventListener( 'click' , (event) => {
@@ -86,31 +108,22 @@ function mostrarFormulario(tipoEsenaIndex){
     if(conteinerForm != null) conteinerForm.style.display = 'flex';
 }
 
-//boton generar video
-// const btnGenerarVideo = document.getElementById('btn-generar-video');
-// btnGenerarVideo.addEventListener('click', (event) => {
-//     const container = document.getElementById('container-form-video');
-//     container.style.display = 'flex'
-// });
-
 // Formulario manejar adicion de video
 const formularioVideo = document.getElementById('form-video');
 formularioVideo.addEventListener('submit', (event) => {
     event.preventDefault();
-    const container = document.getElementById('container-form-video');
-    const id = null;
-    const guion_id = mGuion.id;
-    //const indice = mGuion.escenas.length + 1;
     const indice = getIndice();
     const contexto = document.querySelector(`#form-video textarea[name='video-contexto']`).value;
     const titulo = document.querySelector(`#form-video input[name='video-titulo']`).value;
     const autor = document.querySelector(`#form-video input[name='video-autor']`).value;
     const formData = event.currentTarget;
-    const mVideo = new Video(id, indice, contexto, titulo, autor, guion_id);
+    
+    const mVideo = new Video(null, indice, contexto, titulo, autor, mGuion.id);
     mVideo.formulario = formData;
     mGuion.addEscena(mVideo);
-    // VideoService.create(mVideo);
     contenido.adicionarEscena(mVideo);
+    console.log(mGuion);
+    const container = document.getElementById('container-form-video');
     container.style.display = 'none';
 })
 //boton cancelar video
@@ -120,12 +133,6 @@ formBtnVideoCancelar.addEventListener('click', (event) => {
     container.style.display = 'none'
 })
 
-// //boton generar audio
-// const btnGenerarAudio = document.getElementById('btn-generar-audio');
-// btnGenerarAudio.addEventListener('click', (event) => {
-//     const container = document.getElementById('container-form-audio');
-//     container.style.display = 'flex'
-// });
 // Formulario manejar adicion de video
 const formularioAudio = document.getElementById('form-audio');
 formularioAudio.addEventListener('submit', (event) => {
@@ -142,6 +149,7 @@ formularioAudio.addEventListener('submit', (event) => {
     const formData = event.currentTarget;
     const mAudio = new Audio(id, indice, titulo, contexto, autor, genero, guion_id);
     mAudio.formulario = formData;
+    console.log(mGuion)
     mGuion.addEscena(mAudio);
     // AudioService.create(mAudio);
     contenido.adicionarEscena(mAudio);
@@ -154,12 +162,6 @@ formBtnAudioCancelar.addEventListener('click', (event) => {
     container.style.display = 'none'
 })
 
-// //boton generar imagen
-// const btnGenerarImagen = document.getElementById('btn-generar-imagen');
-// btnGenerarImagen.addEventListener('click', (event) => {
-//     const container = document.getElementById('container-form-imagen');
-//     container.style.display = 'flex'
-// });
 // Formulario manejar adicion de imagen
 const formularioImagen = document.getElementById('form-imagen');
 formularioImagen.addEventListener('submit', (event) => {
@@ -171,11 +173,12 @@ formularioImagen.addEventListener('submit', (event) => {
     const indice = getIndice();
     const contexto = document.querySelector(`#form-imagen textarea[name='imagen-contexto']`).value;
     const descripcion = document.querySelector(`#form-imagen textarea[name='imagen-descripcion']`).value;
+    const duracion = document.querySelector(`#form-imagen input[name='imagen-duracion']`).value;
     const formData = event.currentTarget;
-    const mImagen = new Imagen(id, indice, contexto, descripcion , guion_id);
+    const mImagen = new Imagen(id, indice, contexto, descripcion, duracion , guion_id);
     mImagen.formulario = formData;
     mGuion.addEscena(mImagen);
-    // ImagenService.create(mImagen);
+    console.log(mGuion.escenas);
     contenido.adicionarEscena(mImagen);
     container.style.display = 'none';
 })
@@ -186,12 +189,6 @@ formBtnImagenCancelar.addEventListener('click', (event) => {
     container.style.display = 'none'
 })
 
-// // boton generar interaccion
-// const btnGenerarInteraccion = document.getElementById('btn-generar-interaccion');
-// btnGenerarInteraccion.addEventListener('click', (event) => {
-//     const container = document.getElementById('container-form-interaccion');
-//     container.style.display = 'flex'
-// });
 // Formulario manejar adicion de interaccion
 const formularioInteraccion = document.getElementById('form-interaccion');
 formularioInteraccion.addEventListener('submit', (event) => {
@@ -222,11 +219,21 @@ formBtnInteraccionCancelar.addEventListener('click', (event) => {
 // boton generar
 const btnGenerar = document.getElementById('btn-generar');
 btnGenerar.addEventListener('click', async (event) => {
+    console.log(mGuion.escenas)
     await eliminarEscenasServidor();
+    await actualizarEscenas();
     await Guion.generarContenidoFromList(mGuion.escenas);
     await cargarData();
 });
 
+async function actualizarEscenas(){
+    const escenas = mGuion.escenas.filter( item => item.estado == 'U');
+    await Promise.all(
+        escenas.map( async escena => {
+            await EscenaService.update(escena);
+        })
+    );
+}
 async function eliminarEscenasServidor(){
     try {
         await Promise.all(
@@ -252,6 +259,8 @@ function eliminarEscena(escena_indice) {
         mGuion.escenas.splice(index,1);
         contenido.borrarEscenaItem(escena_indice);
     }
+    actualizarIndices();
+    actualizarInterfaz();
     console.log(mGuion);
 }
 
@@ -262,98 +271,19 @@ function getIndice(){
     });
     return may+1;
 }
-export {mGuion,eliminarEscena}
-
 const refreshFilesButton = document.getElementById('refresh-files-button');
 refreshFilesButton.addEventListener('click', (event) => {
     location.reload();
 });
 
-// boton volver
-// let btnVolverClickState = false;
-// const btnVolver = document.getElementById('btn-volver');
-// btnVolver.addEventListener('click', async (event) => {
-//     if(btnVolverClickState){
-//         event.preventDefault();
-//         return;
-//     }
-//     btnVolverClickState = true;
-//     let programacion = await GuionService.getProgramacion(idGuion);
-//     window.location.href = `http://localhost:3035/pages/programaciones/programaciones.html?idPrograma=${programacion.programa_id}`;
-// });
+document.getElementById('btn_salir').addEventListener('click', onPressedBtnSalir);
+function onPressedBtnSalir(env){
+    const idPrograma = localStorage.getItem("state_programa");
+    if(idPrograma){
+        routes.goToRoute(routes.PROGRAMACIONES, {idPrograma});
+    }else{
+        routes.goToRoute(routes.PROGRAMAS, null);
+    }
+}
 
-// const videoRep = document.getElementById('my-video');
-// const autoRepButton = document.getElementById('auto-rep');
-// //videoRep.style.display = 'none';
-
-// autoRepButton.addEventListener('click', () => {
-//     //videoRep.autoplay = true;
-//     videojs('my-video', {autoplay: true});
-//     autoRepButton.disabled = true;
-//     console.log("se preciono");
-// })
-// function addMessageToChat(message){
-//     mostrarNotificacion("Nuevo mensaje recibido")
-//     const chat = document.getElementById('messages-container');
-//     const messageItem = document.createElement('div');
-//     messageItem.className = 'message';
-//     messageItem.innerHTML = `<b>+${message.from}(${message.profileName}) : </b> ${message.message}`;
-//     chat.appendChild(messageItem);
-// }
-
-// function loadVideo(video){
-//     const presenterImage = document.getElementById('presenter-image');
-//     const videoContainer = document.getElementById('video-container');
-//     videoRep.src = video.videoUrl;
-
-//     videoRep.oncanplay = (event) => {
-//         videoRep.style.display = 'block';
-//         presenterImage.style.display = 'none';
-//     }
-    
-//     videoRep.onended = () => {
-//         presenterImage.style.display = 'block';
-//         videoRep.style.display = 'none';
-//     };
-//     videoContainer.addEventListener('click', () => {
-//         loadVideo(video);
-//     });
-// }
-
-
-
-// async function onMusic(data){
-//     try {
-//         var myPlayer = videojs('my-video');
-
-        
-
-//         console.log("solicitando guardado de cancion");
-//         const respuesta = await saveFileFromURL(data.url);
-//         const filename = respuesta.filename;
-//         const filetype = respuesta.filetype;
-//         //console.log(`${filename}.${filetype}`);    
-//         const path = `./storage/${filename}.${filetype}`;
-
-//         myPlayer.src({type: 'audio/mpeg', src: `${path}`});
-
-//         myPlayer.ready(function() {
-//             myPlayer.play();
-//             mostrarNotificacion(`Reproduciendo: ${data.title}`);
-//         });
-
-//         // videoRep.innerHTML = `<source src="${path}" type="audio/mpeg"/>`;
-//         // console.log(videoRep);
-//     } catch (error) {
-//         console.log(error);
-//         mostrarNotificacion(error.message);
-//     }
-    
-// }
-  
-
-// function simularPeticion(musicName){
-//     const url = 'http://127.0.0.1:3000/test';
-//     const body = {music: 'in the end'};
-//     axios.post(url, body);
-// }
+export {mGuion,eliminarEscena}

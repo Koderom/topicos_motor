@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../../styles/componentes.css">
     <link rel="stylesheet" href="../../global/global.css">
+    <link rel="stylesheet" href="../../styles/componentes.css">
     <link rel="stylesheet" href="programas.css">
     <title>TvStudioHub</title>
 </head>
 <body>
-    <main class="programaciones-container">
+    <main class="main_container">
         <header class="programaciones-header">
             <span class="title">Programas</span>
         </header>
-        <div id="programas-list-container" class="programaciones-list-container">
-
-        </div>
-        <div>
-            <!-- <button id="btn-configurar-presentadores">Configurar presentadores</button> -->
+        <section class="programaciones-container">
+            <div id="programas-list-container" class="programaciones-list-container">
+            </div>
+        </section>
+        <div class="programa_opciones">
             <button class="btn-crear-programa" id="btn-crear-programa">crear nuevo</button>
         </div>
-        
     </main>
-
+    
     <div class="absolute-container" id="form-container-crear-programa">
         <div class="form-container colorful-form">
             <h3 class="form_title">Crear nuevo programa</h3>
@@ -38,13 +37,15 @@
 
                 <div class="form-group">
                     <label class="form-label" for="presentador_selector">Seleccione un presentador: </label>
-
                     <div class="flex_row_container">
-                        <select class="form-input" name="presentador_id" id="presentador_selector" ></select>
+                        <select class="form-input" name="presentador_id" id="presentador_selector" required></select>
                         <button type="button" id="btn_add_presentador"><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <label class="form-label" for="programa-genero">Seleccionar imagen de portada: </label>
+                    <input class="form-input" type="file" id="programa_portada" name="programa_portada" required accept="image/*">
+                </div>
                 <div class="form-group">
                     <label class="form-label" for="programa-genero">Genero: </label>
                     <input class="form-input" type="text" id="programa-genero" name="genero" >
@@ -54,17 +55,26 @@
                     <input class="form-input" type="text" id="programa-clasificacion" name="clasificacion">
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="programa-fecha-incio">Fecha de inicio de transmision: </label>
-                    <input class="form-input" type="date" id="programa-fecha-incio" name="fecha_inicio" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="programa-estado">Estado: </label>
-                    <input class="form-input" type="text" id="programa-estado" name="estado" required>
-                </div>
-                <div class="form-group">
                     <label class="form-label" for="programa-hora-emision">Horario de emision: </label>
                     <input class="form-input" type="time" id="programa-hora-emision" name="horario_emision" required>
                 </div>
+                <div class="form-group">
+                    <label class="form-label" for="programa-fecha-incio">Fecha de inicio de transmision: </label>
+                    <input class="form-input" type="date" id="programa-fecha-incio" name="fecha_inicio" required>
+                </div>
+                <!-- <div class="form-group">
+                    <label class="form-label" for="programa-estado">Estado: </label>
+                    <input class="form-input" type="text" id="programa-estado" name="estado" required>
+                </div> -->
+                <div class="form-group">
+                    <label class="form-label" for="programa-estado">Estado del programa: </label>
+                    <Select class="form-input" id="programa-estado" name="estado" required>
+                        <option value="pendiente">Proximo a emision</option>
+                        <option value="emision">En emision</option>
+                        <option value="cancelado">Cancelado</option>
+                    </Select>
+                </div>
+                
                 <div class="form-group">
                     <label class="form-label" for="programa-duracion">Duración (minutos): </label>
                     <input class="form-input" type="number" id="programa-duracion" name="duracion" required>

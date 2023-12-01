@@ -8,7 +8,6 @@ class Interaccion extends Escena{
 
         this.clip_id = null;
         this.formulario = null;
-        this.estado = 'C';
         this.generado = false;
     }
     
@@ -66,7 +65,7 @@ class Interaccion extends Escena{
             const query = `
                 SELECT escenas.*, interacciones.texto, interacciones.clip_id
                 FROM interacciones, escenas 
-                WHERE escenas.id = interacciones.id and escenas.id = $1 and archivo_id <> null
+                WHERE escenas.id = interacciones.id and escenas.id = $1 and archivo_id is not null
             `;
             const params = [interaccion_id];
             const response = await cliente.query(query, params);

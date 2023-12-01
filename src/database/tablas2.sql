@@ -30,6 +30,7 @@ CREATE TABLE presentadores(
 CREATE TABLE programas(
     id SERIAL PRIMARY KEY,
     titulo VARCHAR(150),
+    portada VARCHAR(250),
     descripcion VARCHAR(250),
     genero VARCHAR(150),
     clasificacion VARCHAR(250),
@@ -82,23 +83,10 @@ CREATE TABLE escenas(
     FOREIGN KEY (archivo_id) REFERENCES archivos(id)
 );
 
--- CREATE TABLE presentadores (
---     id SERIAL PRIMARY KEY,
---     presenter_id VARCHAR(255),
---     created_at TIMESTAMPTZ,
---     thumbnail_url VARCHAR(255),
---     preview_url VARCHAR(255),
---     driver_id VARCHAR(255),
---     image_url VARCHAR(255),
---     gender VARCHAR(50),
---     model_url VARCHAR(255),
---     modified_at TIMESTAMPTZ,
---     owner_id VARCHAR(255)
--- );
-
 
 CREATE TABLE imagenes(
     id INTEGER PRIMARY KEY,
+    duracion INTEGER NOT NULL,
     descripcion VARCHAR(300),
 
     FOREIGN KEY(id) REFERENCES escenas(id) ON DELETE CASCADE
@@ -109,6 +97,7 @@ CREATE TABLE audios(
     titulo VARCHAR(200),
     autor VARCHAR(150),
     genero VARCHAR(100),
+    portada VARCHAR(150),
 
     FOREIGN KEY (id) REFERENCES escenas(id) ON DELETE CASCADE
 );
@@ -130,7 +119,8 @@ CREATE TABLE interacciones(
 );
 
 INSERT INTO usuarios(name, password) VALUES ('admin', '123456789');
--- INSERT INTO guiones(titulo) VALUES ('guion de pruebas') RETURNING id
+
 INSERT INTO presentadores(nombre, genero, lenguaje, presentador_url, voz_provider_id)
-    VALUES ('prentador 1', 'male','Spanish (Spain)','https://cgfaces.com/collection/preview/0f3e1b79-d4f5-4d1f-81ce-a70fb0cef7a2.jpg','es-ES-DarioNeural'),
-    VALUES ('prentador 2', 'female','Spanish (Arg)','https://img.freepik.com/fotos-premium/mujer-encuentra-oficina-brazos-cruzados_57490-363.jpg?size=626&ext=jpg','es-AR-ElenaNeural')
+    VALUES 
+        ('prentador 1', 'male','Spanish (Spain)','https://cgfaces.com/collection/preview/0f3e1b79-d4f5-4d1f-81ce-a70fb0cef7a2.jpg','es-ES-DarioNeural'),
+        ('prentador 2', 'female','Spanish (Arg)','https://img.freepik.com/fotos-premium/mujer-encuentra-oficina-brazos-cruzados_57490-363.jpg?size=626&ext=jpg','es-AR-ElenaNeural')

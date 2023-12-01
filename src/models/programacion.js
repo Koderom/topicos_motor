@@ -12,7 +12,7 @@ class Programacion{
         return new Programacion(object.titulo, object.nro_episodio, object.descripcion, object.fecha_emision, object.programa_id);
     }
 
-    static async create(programacion) {
+    static async createProgramacion(programacion) {
         try {
             const cliente = Conexion.newConexion();
             await cliente.connect();
@@ -32,7 +32,47 @@ class Programacion{
         }
     }
 
-    static async getAll(idPrograma){
+    static async getProgramacion(idProgramacion){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT * FROM programaciones WHERE id = $1
+            `;
+            const params = [idProgramacion];
+            const response = await cliente.query(query, params);
+
+            if(response.rowCount > 0) return response.rows[0];
+            else throw Error("programacion no encontrada");
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    static async updateProgramacion(programacion){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                UPDATE programacion
+                SET titulo=$2, nro_episodio=$3, descripcion=$4, fecha_emision=$5, programa_id=$6
+                WHERE id=$1
+                RETURNING *;
+            `;
+            const params = [programacion.id, programacion.titulo, programacion.nro_episodio, programacion.descripcion, programacion.fecha_emision, programacion.programa_id];
+            const response = await cliente.query(query, params);
+            await cliente.end();
+
+            if(response.rowCount > 0) return response.rows[0];
+            return true;
+        } catch (error) {
+            console.log(error);
+            return error.message;
+        }
+    }
+
+    static async getProgramaciones(idPrograma){
         try {
             const cliente = Conexion.newConexion();
             await cliente.connect();
@@ -54,29 +94,27 @@ class Programacion{
             return error.message;
         }
     }
-    
-    static async getPrograma(idProgramcion){
+
+    static async existeProgramacion(idProgramacion){
         try {
             const cliente = Conexion.newConexion();
             await cliente.connect();
             const query = `
-                SELECT programas.*
-                FROM  programas
-                INNER JOIN programaciones ON programaciones.programa_id = programas.id
-                WHERE programacion.id = idProgramacion
+                SELECT *
+                FROM programaciones
+                WHERE id=$1
             `;
-            const params = [idProgramcion]
+            const params = [idProgramacion]
             const response = await cliente.query(query, params);
             await cliente.end();
 
-            if(response.rowCount > 0) return response.rows[0];
-            else return null;    
+            if(response.rowCount > 0) return true;
+            else false;
         } catch (error) {
             console.log(error);
-            return error.message;
+            return error;
         }
     }
-
 }
 
 module.exports = Programacion;
