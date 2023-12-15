@@ -61,6 +61,7 @@ GuionService.getProgramacion = async (guion_id) => {
 
 function parseResponseToGuion(object){
     const escenas = object.escenas;
+    console.log(object);
     escenas.forEach(escena => escena.estado = 'R');
 
     const mGuion = new Guion();

@@ -38,4 +38,39 @@ ProgramaService.create = async (formData) => {
     }
 }
 
+ProgramaService.cambiarEstadoEmision = async (idPrograma) => {
+    try {
+        let response = await fetch(`${SERVER_API_URL}/api/programa/estado/emision?idPrograma=${idPrograma}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${authToken}`
+            }
+        });
+        console.log(response);
+        if(response.status != 200) throw new Error(response.text);
+        return true;
+    } catch (error) {
+        console.log(error.message);
+        throw error;
+    }
+}
+
+ProgramaService.cambiarEstadoPendiente = async (idPrograma) => {
+    try {
+        let response = await fetch(`${SERVER_API_URL}/api/programa/estado/pendiente?idPrograma=${idPrograma}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${authToken}`
+            }
+        });
+        if(response.status != 200) throw new Error(response.text);
+        return true;
+    } catch (error) {
+        console.log(error.message);
+        return false;
+    }
+}
+
 export {ProgramaService}

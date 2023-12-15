@@ -8,6 +8,7 @@ const InteraccionController = {};
 
 InteraccionController.create = async (req, res) =>{
     try {
+        console.log("creando interaccion ------------------->");
         const data = req.body;
         const guionID = data['interaccion-guion-id'];
         const presentador = await Presentador.getPresentadorFromGuionId(guionID);

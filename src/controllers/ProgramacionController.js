@@ -47,11 +47,43 @@ ProgramacionController.getProgramaciones = async (req, res) => {
 ProgramacionController.getPrograma = async (req, res) => {
     try {
         const idProgramacion = req.query.idProgramacion;
-        const programa = await Programa.getPrograma(idProgramacion);
+        const programa = await Programa.getProgramaFromProgramacion(idProgramacion);
         res.status(200).send(programa);
     } catch (error) {
         console.log(error);
         res.status(400).send(error);
     }
 }
+
+ProgramacionController.iniciandoReproduccion = async (req, res) => {
+    try {
+        const idProgramacion = req.query.idProgramacion;
+        const programacion = await Programacion.getProgramacion(idProgramacion);
+        const programacionReproduciendo = await Programacion.getProgramacionReproduciendo();
+        if(programacionReproduciendo) programacionReproduciendo.reproduciendo = 0;
+        programacion.reproduciendo = 1;
+        await Programacion.updateProgramacion(programacionReproduciendo);
+        await Programacion.updateProgramacion(programacion);
+        res.status(200).send('Reproduciendo programacion');
+    } catch (error) {
+        console.log(error);
+        res.status(400).send(error.message);
+    }
+}
+
+
+
+ProgramacionController.finalizandoReproduccion = async (req, res) => {
+    try {
+        const idProgramacion = req.query.idProgramacion;
+        const programacion = await Programacion.getProgramacion(idProgramacion);
+        programacion.reproduciendo = 0;
+        await Programacion.updateProgramacion(programacion);
+        res.status(200).send("Reproduccion finalizada");
+    } catch (error) {
+        console.log(error);
+        res.status(400).send(error);
+    }
+}
+
 module.exports = {ProgramacionController};

@@ -94,10 +94,19 @@ class ReproducirContenidoTask {
     }
 
     #onContenidoCargado(data){
-        console.log('contenido cardado');
+        console.log('contenido cargado');
         this.contenidoLoaded.push(data);
     }
 
+    #onSaludoAdded(data){
+        console.log('saludo añadido');
+        this.contenidoLoaded.splice(this.actualReproduciendo + 1, 0, data);
+    }
+    #onPeticionAdded(data){
+        console.log('peticion añadida');
+        this.contenidoLoaded.splice(this.actualReproduciendo + 1, 0, data.presentacion);
+        this.contenidoLoaded.splice(this.actualReproduciendo + 2, 0, data.musica);
+    }
     /*---------------------------------- */
     agregarObservador(observador) {
         this.observadores.push(observador);
@@ -112,6 +121,7 @@ class ReproducirContenidoTask {
     actualizar(event, data) {
         switch(event){
             case 'onContenidoCargado': this.#onContenidoCargado(data); break;
+            case 'onSaludoAdded': this.#onSaludoAdded(data); break;
         }
     }
 }

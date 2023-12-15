@@ -29,12 +29,72 @@ class Archivo{
         }
     }
 
+    static async update(archivo){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                update archivos
+                set nombre=$1, tipo=$2, duracion=$3, local_path$4, fecha_hora_creacion=$5
+                where id = $6
+            `;
+            const params = [archivo.nombre, archivo.tipo, archivo.duracion, archivo.local_path, archivo.fecha_hora_creacion, archivo.id];
+            const response = await cliente.query(query, params);
+            await cliente.end(); 
+        } catch (error) {
+            return error;
+        }
+    }
+
+    static async getArchivoFromEscena(escena_id){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT arc.* 
+                FROM archivos arc
+                inner join escenas esc on esc.archivo_id =  arc.id
+                WHERE arc.id = $1
+            `;
+            const params = [escena_id];
+            const response = await cliente.query(query, params);
+            await cliente.end();
+
+            if(response.rowCount > 0) return response.rows[0];
+            else return null;    
+        } catch (error) {
+            return null;
+        }
+    }
+
+    static async getArchivoFromName(nombre){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT arc.* 
+                FROM archivos arc
+                WHERE arc.nombre = $1
+            `;
+            const params = [nombre];
+            const response = await cliente.query(query, params);
+            await cliente.end();
+
+            if(response.rowCount > 0) return response.rows[0];
+            else return null;    
+        } catch (error) {
+            return null;
+        }
+    }
+
     static async getArchivo(archivo_id){
         try {
             const cliente = Conexion.newConexion();
             await cliente.connect();
             const query = `
-                SELECT * FROM archivos WHERE id = $1
+                SELECT arc.* 
+                FROM archivos arc
+                WHERE arc.id = $1
             `;
             const params = [archivo_id];
             const response = await cliente.query(query, params);
@@ -47,5 +107,9 @@ class Archivo{
         }
     }
 }
+
+
+
+
 
 module.exports = Archivo;

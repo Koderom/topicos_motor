@@ -8,6 +8,7 @@ class Audio extends Escena{
         this.autor = autor;
         this.genero = genero;
         this.archivo_id = archivo_id;
+        this.portada = null;
     }
 
     static async create(audio) {

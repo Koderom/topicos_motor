@@ -133,7 +133,7 @@ formBtnVideoCancelar.addEventListener('click', (event) => {
     container.style.display = 'none'
 })
 
-// Formulario manejar adicion de video
+// Formulario manejar adicion de audio
 const formularioAudio = document.getElementById('form-audio');
 formularioAudio.addEventListener('submit', (event) => {
     event.preventDefault();

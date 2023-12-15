@@ -9,16 +9,29 @@ class CargarContenidoTask{
         this.#cargarContenido();
     }
     
-    
+    addSaludoTelevidente(contenido){
+        console.log(contenido);
+        const saludo = this.#cargarEscenaVideo(contenido)
+        console.log('nuevo contenido añadido');
+        this.notificar('onSaludoAdded', saludo);
+    }
+
+    cargarPeticionMusica(peticionMusica){
+        const presentacion = this.#cargarEscenaVideo(peticionMusica.presentacion);
+        const audio = this.#cargarEscenaVideo(peticionMusica.presentacion);
+
+        this.notificar('onPeticionAdded', {presentacion, audio});
+    }
+
     #cargarContenido(){
         if(this.contenidoToLoad.length != 0){
             this.#cargarComponente(this.contenidoToLoad.shift());
         }else{
             this.notificar('onEnded', 'terminado');
         }
-        // else{
+        // }else{
         //     console.log("verificando lista de carga")
-        //     setTimeout(cargarContenido, 200);
+        //     setTimeout(this.#cargarContenido(), 200);
         // }
     }
     
@@ -30,6 +43,7 @@ class CargarContenidoTask{
             case 'I' : contenido = this.#cargarEscenaImagen(escena); break;
             case 'D' : contenido = this.#cargarEscenaVideo(escena); break;
             case 'A' : contenido = this.#cargarEscenaAudio(escena); break;
+            case 'S' : contenido = this.#cargarEscenaVideo(escena); break;
             default: this.#cargarContenido();
         }
         this.notificar('onContenidoCargado', contenido);

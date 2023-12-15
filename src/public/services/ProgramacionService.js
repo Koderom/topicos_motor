@@ -1,5 +1,7 @@
 const ProgramacionService = {};
 const authToken = localStorage.getItem('authToken');
+import {config} from '../global/config.js';
+const SERVER_API_URL = config.SERVER_API_URL;
 
 ProgramacionService.getProgramacion = async (idProgramacion) => {
     try {
@@ -65,5 +67,36 @@ ProgramacionService.create = async (formData) => {
     }
 }
 
+ProgramacionService.iniciandoReproduccion = async (idProgramacion) => {
+    try {
+        let response = await fetch(`${SERVER_API_URL}/api/programacion/reproduciendo/iniciando?idProgramacion=${idProgramacion}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${authToken}`
+            }
+        });
+        console.log(response);
+        if(response.status != 200) throw new Error(response.text);
+        return true;
+    } catch (error) {
+        throw error;
+    }
+}
+ProgramacionService.finalizandoReproduccion = async (idProgramacion) => {
+    try {
+        let response = await fetch(`${SERVER_API_URL}/reproduciendo/iniciando?idProgramacion=${idProgramacion}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${authToken}`
+            }
+        });
+        if(response.status != 200) throw new Error(response.text);
+        return true;
+    } catch (error) {
+        throw error;
+    }
+}
 
 export {ProgramacionService}

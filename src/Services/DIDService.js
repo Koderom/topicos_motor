@@ -39,7 +39,7 @@ DIDService.clipGenerate = async (text) => {
 DIDService.talkGenerate = async (text, presentador) => {
     try {
         const apiUrl = 'https://api.d-id.com/talks';
-        const authToken = 'Basic Ym1sbWFXNXZNVEF3TUVCa2NITnZiSE11WTI5dDpuTThjQmxXNlJuLVpITXNIdnBqcDg=';
+        const authToken = credentials;
         const requestData = {
         script: {
             type: 'text',
@@ -74,33 +74,46 @@ DIDService.talkGenerate = async (text, presentador) => {
         console.log(error);
         return error;
     }
-    // try {
-    //     let resp = await sdk.createTalk({
-    //         script: {
-    //             type: 'text',
-    //             provider: {
-    //                 type: 'microsoft', voice_id: 'es-AR-ElenaNeural'
-    //             },
-    //             ssml: 'false',
-    //             input: `${text}`,
-    //             subtitles: 'false'
-    //         },
-    //         config: {
-    //             fluent: 'false',
-    //             pad_audio: '0.0',
-    //             align_driver: false,
-    //             auto_match: true,
-    //             stitch: true
-    //         },
-    //         source_url: 'https://clips-presenters.d-id.com/amy/Aq6OmGZnMt/Vcq0R4a8F0/image.png',
-    //         webhook: `${NGROK_PUBLIC_URL}/wh/d-id`
-    //     });
-    //     console.log(resp)
-    //     return resp.data;
-    // } catch (error) {
-    //     console.log(error);
-    //     return error;
-    // }
+}
+
+DIDService.talkGenerateWithWebHook = async (text, presentador, webhookUrl) => {
+    try {
+        const apiUrl = 'https://api.d-id.com/talks';
+        const authToken = credentials;
+        const requestData = {
+        script: {
+            type: 'text',
+            subtitles: 'false',
+            provider: {
+            type: 'microsoft',
+            voice_id: presentador.voz_provider_id,
+            },
+            ssml: 'false',
+            input: text,
+        },
+        config: {
+            fluent: 'false',
+            pad_audio: '0.0',
+            align_driver: false,
+            auto_match: true,
+            stitch: true,
+        },
+        source_url: presentador.presentador_url,
+        webhook: `${NGROK_PUBLIC_URL}${webhookUrl}`
+        };
+        const response = await axios.post(apiUrl, requestData, {
+            headers: {
+              'Accept': 'application/json',
+              'Authorization': authToken,
+              'Content-Type': 'application/json',
+            },
+          });
+        console.log(response.data)
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
 }
 DIDService.storeVideoDID = async (data) => {
     try {
@@ -111,10 +124,29 @@ DIDService.storeVideoDID = async (data) => {
         dResponse.url_portada = "https://clips-presenters.d-id.com/amy/jcwCkr1grs/uM00QMwJ9x/image.png";
         const url = data.result_url;
         const fileInfo = await FileManager.storeFileFromURL(url, dResponse.nombre);
-        const archivo = new Archivo(null, `${fileInfo.filename}.${fileInfo.filetype}`, "mp4", null, fileInfo.filepath, null);
+        let archivo = new Archivo(null, `${fileInfo.filename}.${fileInfo.filetype}`, "mp4", null, fileInfo.filepath, null);
         const archivoId = await Archivo.create(archivo);        
         await Interaccion.updateWhitClip(data.id, archivoId);
         dResponse.path = fileInfo.filepath;
+        archivo = await Archivo.getArchivo(archivoId);
+        return archivo;
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+}
+
+DIDService.storeTempVideoDID = async (data) => {
+    try {
+        const dResponse = {};
+        dResponse.nombre = data.id;
+        dResponse.tipo = "mp4";
+        dResponse.duracion = `${data.duration}`;
+        dResponse.url_portada = "https://clips-presenters.d-id.com/amy/jcwCkr1grs/uM00QMwJ9x/image.png";
+        const url = data.result_url;
+        const fileInfo = await FileManager.storeFileFromURL(url, dResponse.nombre);
+        let archivo = new Archivo(null, `${fileInfo.filename}.${fileInfo.filetype}`, "mp4", null, fileInfo.filepath, null);
+        console.log(archivo);
         return archivo;
     } catch (error) {
         console.log(error);

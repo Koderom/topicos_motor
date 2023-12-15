@@ -50,7 +50,7 @@ CREATE TABLE programaciones(
     descripcion VARCHAR(250),
     fecha_emision DATE,
     programa_id INTEGER,
-
+    reproduciendo INTEGER,
     FOREIGN KEY (programa_id) REFERENCES programas(id)
 );
 

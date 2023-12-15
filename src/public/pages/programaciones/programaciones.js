@@ -1,4 +1,5 @@
 import { ProgramacionService } from "../../services/ProgramacionService.js";
+import { ProgramaService} from "../../services/ProgramaService.js"
 import { config } from './../../global/config.js'
 import { routes } from './../../global/routes.js';
 
@@ -66,11 +67,20 @@ async function cargarProgramaciones(){
     }
 }
 
-function mostrarMenuOpciones(event){
+async function mostrarMenuOpciones(event){
     event.preventDefault();
-    const element = event.currentTarget;
-    const idProgramacion = element.getAttribute('data-programacion-id');
-    routes.goToRoute(routes.REPRODUCTOR, {idProgramacion});
+    try {
+        const element = event.currentTarget;
+        const idProgramacion = element.getAttribute('data-programacion-id');
+
+        await ProgramaService.cambiarEstadoEmision(idPrograma);
+        await ProgramacionService.iniciandoReproduccion(idProgramacion);
+        alert("comenzando reproduccion");
+
+        routes.goToRoute(routes.REPRODUCTOR, {idProgramacion});    
+    } catch (error) {
+        alert(error.message);
+    }
 }
 
 async function cargarProgamaId(){

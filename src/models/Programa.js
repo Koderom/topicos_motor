@@ -53,7 +53,7 @@ class Programa{
             await cliente.end();
 
             if(response.rowCount > 0) return response.rows[0];
-            return true;
+            else throw new Error('Error al actualizar programa');
         } catch (error) {
             console.log(error);
             throw error;
@@ -77,8 +77,26 @@ class Programa{
             throw error;
         }
     }
+    static async getPrograma(idPrograma){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT * FROM  programas WHERE id=$1
+            `;
+            const params = [idPrograma];
+            const response = await cliente.query(query, params);
+            await cliente.end();
 
-    static async getPrograma(idProgramcion){
+            if(response.rowCount > 0) return response.rows[0];
+            return null;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    static async getProgramaFromProgramacion(idProgramcion){
         try {
             const cliente = Conexion.newConexion();
             await cliente.connect();
@@ -113,6 +131,45 @@ class Programa{
 
             if(response.rowCount > 0) return true;
             return false;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+    static async getProgramaEnEmision(){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT * FROM  programas WHERE estado = $1
+            `;
+            const params = ['emision'];
+            const response = await cliente.query(query, params);
+            await cliente.end();
+
+            if(response.rowCount > 0) return response.rows[0];
+            return null;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    static async deletePrograma(idPrograma){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                DELETE 
+                FROM programas 
+                WHERE id = $1
+            `;
+            const params = [idPrograma]
+            const response = await cliente.query(query, params);
+            await cliente.end();
+
+            if(response.rowCount > 0) return response.rows[0];
+            else return null;    
         } catch (error) {
             console.log(error);
             throw error;

@@ -3,7 +3,7 @@ const {DIDService} = require('../Services/DIDService');
 const SocketManager = require('../utils/SocketManager');
 const ServiceController = {};
 
-ServiceController.create = async (req, res) => {
+ServiceController.music_create = async (req, res) => {
     try {
         let respuesta = {};
         if(req.body.tipo == 'A') respuesta = await AudiusService.searchMusicByName(req.body.texto);

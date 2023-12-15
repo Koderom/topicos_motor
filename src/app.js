@@ -28,6 +28,9 @@ const middleware = require('./middlewares/middleware');
 app.use((req, res, next) => {
     if (req.path === '/api/login') next();
     else if(req.path === '/wh/d-id') next();
+    else if(req.path === '/wh/d-id/generar-saludo') next();
+    else if(req.path === '/wh/d-id/generar-peticion') next();
+    else if(req.path === '/wh/twilio') next();
     else if(req.path === '/api/test') next();
     else middleware.auth(req, res, next);
 });

@@ -67,12 +67,49 @@ class Escena{
             throw error;
         }
     }
+    static async getEscena(escena_id){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT * FROM  escenas WHERE id = $1
+            `;
+            const params = [escena_id];
+            const response = await cliente.query(query, params);
+            await cliente.end();
+            if(response.rowCount > 0) return response.rows[0];
+            else return null;
+        } catch (error) {
+            console.log(error.message);
+            return error;
+        }
+    }
+
+    static async getEscenaFromArchivoName(archivo_name){
+        try {
+            const cliente = Conexion.newConexion();
+            await cliente.connect();
+            const query = `
+                SELECT esc
+                FROM  escenas esc, archivos arc
+                WHERE esc.tipo_escena = $1 and arc.nombre = $2
+            `;
+            const params = ["P", archivo_name];
+            const response = await cliente.query(query, params);
+            await cliente.end();
+            if(response.rowCount > 0) return response.rows[0];
+            else return null;
+        } catch (error) {
+            console.log(error.message);
+            return error;
+        }
+    }
     static async getEscenas(guion_id){
         try {
             const cliente = Conexion.newConexion();
             await cliente.connect();
             const query = `
-                SELECT * FROM  escenas WHERE guion_id = $1 ORDER BY indice 
+                SELECT * FROM  escenas WHERE guion_id = $1 and tipo_escena in ('V', 'I', 'D', 'A') ORDER BY indice 
             `;
             const params = [guion_id];
             const response = await cliente.query(query, params);

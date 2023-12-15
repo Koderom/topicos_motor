@@ -117,6 +117,9 @@ class Guion{
     static async getEscenas(guion_id){
         try {
             let escenas = await Escena.getEscenas(guion_id);
+            console.log("escenas cargadas");
+            console.log(escenas);
+
             escenas = await Promise.all(
                 escenas.map( async (escena) => {
                     const escenaWithChild = await this.getChildEscena(escena);

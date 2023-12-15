@@ -16,6 +16,8 @@ const { UsuarioController } = require('../controllers/UsuarioController');
 const { PresentadorController } = require('../controllers/PresentadorController');
 const { VocesController } = require('../controllers/VocesController');
 const { ConfiguracionPresentadorController } = require('../controllers/ConfiguracionPresentadorController');
+const { TwilioController } = require('../controllers/TwilioController');
+const { DIDController } = require('../controllers/DIDController');
 
 const dotenv = require('dotenv').config();
 
@@ -36,13 +38,17 @@ router.get('/api/start', controller.start);
 router.post('/api/login', UsuarioController.login);
 
 router.get('/api/programa', ProgramaController.getProgramas);
+router.get('/api/programa/get-programa', ProgramaController.getPrograma);
+router.get('/api/programa/estado/emision', ProgramaController.cambiarEstadoEmision);
+router.get('/api/programa/estado/pendiente', ProgramaController.cambiarEstadoPendiente);
 router.post('/api/programa/create',upload.single('programa_portada'), ProgramaController.create);
 
 router.get('/api/programacion/get-programacion', ProgramacionController.getProgramacion);
 router.get('/api/programacion', ProgramacionController.getProgramaciones);
 router.post('/api/programacion/create', upload.none(),ProgramacionController.create);
 router.get('/api/programacion/get_programa', ProgramacionController.getPrograma);
-
+router.get('/api/programacion/reproduciendo/iniciando', ProgramacionController.iniciandoReproduccion);
+router.get('/api/programacion/reproduciendo/finalizado', ProgramacionController.finalizandoReproduccion);
 
 router.get('/api/guion', GuionController.getData);
 router.get('/api/guion/get-guion', GuionController.getGuion);
@@ -61,7 +67,9 @@ router.post('/api/presentador/create', upload.none(), PresentadorController.crea
 
 router.get('/api/voces/getAll', VocesController.getAll);
 //router.post('/api/configuracionPresentador/create', upload.none(), ConfiguracionPresentadorController.create);
-router.post('/api/contenido/create', ServiceController.create);
+router.post('/api/contenido/create', ServiceController.music_create);
 router.post('/wh/d-id', ServiceController.webhook_DID);
-
+router.post('/wh/d-id/generar-saludo', DIDController.generarSaludo);
+router.post('/wh/d-id/generar-peticion', DIDController.generarPeticion);
+router.post('/wh/twilio', TwilioController.messageReceived);
 module.exports = router;

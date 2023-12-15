@@ -1,17 +1,18 @@
 import { contenido } from "./contenido.js";
-import {escenas} from './escenas.js';
+
 const socket = {};
 
 socket.open = (event) => {
-    //contenido.mostrarNotificacion("Conectado al socket");
+    console.log("Conectado");
 }
 socket.message = (event) => {
-    console.log("Socket cliente: mensaje entrante");
     const resp = JSON.parse(event.data);
+
+    console.log("Socket cliente: mensaje entrante");
     console.log(resp);
+
     switch (resp.type) {
-        case 'wh-did-respuesta': 
-                contenido.showRefreshNotifycation();
+        case 'wh-did-generar-saludo': 
                 console.log(resp.body);
             break;
         default:
